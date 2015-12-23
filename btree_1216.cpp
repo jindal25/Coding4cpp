@@ -22,7 +22,7 @@ class btree {
   bool isBalanced ();
   void findHeight(node *n, int* height) ;
   void printLevel(int level, node *n);
-  int isBalanced(node *n);
+  bool isBalanced(node *n);
 };
 
 int btree::isBalanced(node *n) {
@@ -98,6 +98,29 @@ void btree::printLevel(int level, node *n) {
         printLevel(level,n->right);
     }
        
+}
+
+/* Returns true if binary tree with root as root is height-balanced */
+bool btree::isBalanced(struct node *root)
+{
+   int lh; /* for height of left subtree */
+   int rh; /* for height of right subtree */ 
+ 
+   /* If tree is empty then return true */
+   if(root == NULL)
+    return 1; 
+ 
+   /* Get the height of left and right sub trees */
+   lh = findheight(root->left);
+   rh = findheight(root->right);
+ 
+   if( abs(lh-rh) <= 1 &&
+       isBalanced(root->left) &&
+       isBalanced(root->right))
+     return 1;
+ 
+   /* If we reach here then tree is not height-balanced */
+   return 0;
 }
 
 int main() {
