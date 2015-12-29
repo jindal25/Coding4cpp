@@ -10,8 +10,8 @@ class node {
   int val;
   node * left;
   node * right;
-  node(int a): val(a){}
-  node(){}
+  node(int a): val(a),left(NULL), right(NULL){}
+  node(){}  
 };
 
 class btree {
@@ -22,10 +22,10 @@ class btree {
   bool isBalanced ();
   void findHeight(node *n, int* height) ;
   void printLevel(int level, node *n);
-  bool isBalanced(node *n);
+  int isBalanced(node *n);
 };
 
-int btree::isBalanced(node *n) {
+/*int btree::isBalanced(node *n) {
   if( n == NULL)
      return 0;
   int lh=0, rh=0;
@@ -46,7 +46,7 @@ int btree::isBalanced(node *n) {
   return (max(lh,rh) + 1);
  
 
-}
+}*/
 
 void btree::findHeight(node *n, int* height) {
    if(n==NULL)
@@ -72,12 +72,12 @@ void btree::insertNode( node *n, int a) {
       return;
    }
    
-    if( n->val < a )
+    if( n->val > a )
       if(n->left != NULL)
         insertNode(n->left,a);
       else
         n->left = new node(a);
-    else if(n->val > a)
+    else if(n->val < a)
       if(n->right != NULL)
         insertNode(n->right,a);
       else
@@ -97,11 +97,95 @@ void btree::printLevel(int level, node *n) {
       if(n->right!=NULL)
         printLevel(level,n->right);
     }
-       
 }
 
+void btree::printLevelreversed(int level, node *n) {
+    if( n==NULL)
+      return;
+
+    if(level == 0)
+      cout << n->val << ",";
+    else {
+      level--;
+      if(n->left!=NULL)
+        printLevel(level,n->left);
+      if(n->right!=NULL)
+        printLevel(level,n->right);
+    }
+}
+
+node commonParent( node * n1, node *n2){
+
+ node *tn1, *tn2;
+ int count1=0,count2=0;
+
+ tn1=n1;
+ tn2=n2;
+
+  if( n1 == n2)
+    return n1->parent;
+
+  while(n1->parent != NULL)
+  {
+    n1=n1->parent;
+    count1++;
+  }
+
+  while(n2->parent != NULL)
+  {
+    n2=n2->parent;
+    count2++;
+  }
+
+  if (count1 == count2){
+    /* the nodes are on the same level*/
+    n1=tn1;
+    n2=tn2;
+    while(n1->parent != NULL || n2->parent != NULL) {
+      if (n1->parent == n2->parent)
+        return n1->parent;
+     else {
+        n1=n1->parent;
+        n2=n2->parent;
+      }
+     }
+  } 
+   else if( count1 > count2) {
+    diff = count1 - count2;
+    while(diff) {
+      n1=n1->parent;
+      diff--;
+    }
+    while(n1->parent != NULL || n2->parent != NULL) {
+      if (n1->parent == n2->parent)
+        return n1->parent;
+     else {
+        n1=n1->parent;
+        n2=n2->parent;
+      }
+    }
+      else if ( count2 > count21) {
+        diff = count2 - count1;
+    while(diff) {
+      n2=n2->parent;
+      diff--;
+    }
+    while(n1->parent != NULL || n2->parent != NULL) {
+      if (n1->parent == n2->parent)
+        return n1->parent;
+     else {
+        n1=n1->parent;
+        n2=n2->parent;
+      }
+    }
+
+      }
+
+
+  }
+}
 /* Returns true if binary tree with root as root is height-balanced */
-bool btree::isBalanced(struct node *root)
+int btree::isBalanced(struct node *root)
 {
    int lh; /* for height of left subtree */
    int rh; /* for height of right subtree */ 
@@ -111,8 +195,8 @@ bool btree::isBalanced(struct node *root)
     return 1; 
  
    /* Get the height of left and right sub trees */
-   lh = findheight(root->left);
-   rh = findheight(root->right);
+   findHeight(root->left,&lh);
+   findHeight(root->right,&rh);
  
    if( abs(lh-rh) <= 1 &&
        isBalanced(root->left) &&

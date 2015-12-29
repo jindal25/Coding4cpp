@@ -1,44 +1,71 @@
-// Array A[] has the items to sort; array B[] is a work array.
-TopDownMergeSort(A[], B[], n)
+#include <iostream>
+
+
+/* UITLITY FUNCTIONS */
+/* Function to print an array */
+void printArray(int A[], int size)
 {
-    TopDownSplitMerge(A, 0, n, B);
+    int i;
+    for (i=0; i < size; i++)
+        printf("%d ", A[i]);
+    printf("\n");
 }
 
-// iBegin is inclusive; iEnd is exclusive (A[iEnd] is not in the set).
-TopDownSplitMerge(A[], iBegin, iEnd, B[])
-{
-    if(iEnd - iBegin < 2)                       // if run size == 1
-        return;                                 //   consider it sorted
-    // recursively split runs into two halves until run size == 1,
-    // then merge them and return back up the call chain
-    iMiddle = (iEnd + iBegin) / 2;              // iMiddle = mid point
-    TopDownSplitMerge(A, iBegin,  iMiddle, B);  // split / merge left  half
-    TopDownSplitMerge(A, iMiddle,    iEnd, B);  // split / merge right half
-    TopDownMerge(A, iBegin, iMiddle, iEnd, B);  // merge the two half runs
-    CopyArray(B, iBegin, iEnd, A);              // copy the merged runs back to A
-}
-
-//  Left half is A[iBegin :iMiddle-1].
-// Right half is A[iMiddle:iEnd-1   ].
-TopDownMerge(A[], iBegin, iMiddle, iEnd, B[])
-{
-    i = iBegin, j = iMiddle;
+void merge( int arr[], int start , int mid , int end) {
     
-    // While there are elements in the left or right runs...
-    for (k = iBegin; k < iEnd; k++) {
-        // If left run head exists and is <= existing right run head.
-        if (i < iMiddle && (j >= iEnd || A[i] <= A[j])) {
-            B[k] = A[i];
-            i = i + 1;
-        } else {
-            B[k] = A[j];
-            j = j + 1;    
+    int k = 0, i =0, j=0;
+    int n2,n1;
+    
+    n2 = end - mid ;
+    n1 = mid - start + 1;
+    
+    int arr1[n1];
+    int arr2[n2];
+    
+    for (;i< n1;i++)
+        arr1[i] = arr[i];
+    
+    for (;j< n2;j++)
+        arr2[j] = arr[mid + j +1];
+    
+    i=0; j=0;
+    
+    while( i < n1 && j < n2) {
+        if (arr1[i] < arr2[j]) {
+            arr[k++] = arr1[i++];
         }
-    } 
+        else {
+            arr[k++] = arr2[j++];
+        }
+    }
+    
+    for(;i<n1;i++)
+        arr[k++]=arr1[i];
+    
+    for(;j<n2;j++)
+        arr[k++]=arr2[j];
+    
+    printArray(arr,sizeof(arr)/sizeof(arr[0]));
 }
 
-CopyArray(B[], iBegin, iEnd, A[])
+void mergeSort(int arr[] , int l , int r) {
+    
+    if ( l< r) {
+        int mid = (l + r)/2;
+        
+        mergeSort (arr, l, mid);
+        mergeSort(arr, mid + 1, r);
+        merge(arr, l, mid , r);
+        
+    }
+    
+}
+
+int main()
 {
-    for(k = iBegin; k < iEnd; k++)
-        A[k] = B[k];
+    int arr[] = {12, 11, 13, 5, 6, 7};
+    int arr_size = sizeof(arr)/sizeof(arr[0]);
+    mergeSort(arr, 0, arr_size-1);
+    for ( int i =0; i< 6 ; i++)
+        printf(" %d\n", arr[i]);
 }
