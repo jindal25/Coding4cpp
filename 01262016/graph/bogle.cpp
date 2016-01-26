@@ -17,6 +17,7 @@ int co = 0;
 // per the question dictionary is givem to us.
 bool isWord(string &str)
 {
+    //cout << str << endl;
     // Linearly search all words
     for (int i=0; i<n; i++)
         if (str.compare(dictionary[i]) == 0)
@@ -33,7 +34,7 @@ void findWordsUtil(char boggle[M][N], bool visited[M][N], int i,
     visited[i][j] = true;
     str = str + boggle[i][j];
     co++;
-    cout << "str is " << str << " " << boggle[i][j] <<  co << endl;
+    cout <<  str  << " " <<endl;
  
     // If str is present in dictionary, then print it
     if (isWord(str))
@@ -64,7 +65,7 @@ void findWords(char boggle[M][N])
     // starting with this character
     for (int i=0; i<M; i++)
        for (int j=0; j<N; j++)
-             findWordsUtil(boggle, visited, i, j, str);
+             findWordsUtil(boggle, visited, 0, 0, str);
 }
  
 // Driver program to test above function

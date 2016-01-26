@@ -1,5 +1,4 @@
-/* A typical recursive implementation of quick sort */
-#include<stdio.h>
+#include <stdio.h>
  
 // A utility function to swap two elements
 void swap(int* a, int* b)
@@ -15,19 +14,19 @@ void swap(int* a, int* b)
 int partition (int arr[], int l, int h)
 {
     int x = arr[h];    // pivot
-    int i = (l - 1);  // Index of smaller element
+    int i = l;  // Index of smaller element
  
     for (int j = l; j <= h- 1; j++)
     {
         // If current element is smaller than or equal to pivot 
         if (arr[j] <= x)
         {
-            i++;    // increment index of smaller element
             swap(&arr[i], &arr[j]);  // Swap current element with index
+            i++;
         }
     }
-    swap(&arr[i + 1], &arr[h]);  
-    return (i + 1);
+    swap(&arr[i], &arr[h]);  
+    return i;
 }
  
 /* arr[] --> Array to be sorted, l  --> Starting index, h  --> Ending index */

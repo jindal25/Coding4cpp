@@ -387,7 +387,8 @@ int getLevel(struct Tree *node, int elm, int level)
 }
 
 /* This code prints out all nodes at the same depth (level) */
-void BreadthFirst_LevelElement_Print(struct Tree *root, vector<vector<int> > &v)
+void BreadthFirst_LevelElement_Print
+               (struct Tree *root, vector<vector<int> > &v)
 {
 	if(root == NULL) return;
 	deque<Tree *> q;
@@ -779,3 +780,63 @@ int main(int argc, char **argv)
 
 	return 0;
 }
+From the run, we get:
+
+size = 9
+max depth = 3
+min depth = 2
+This tree is balanced!
+Min value = A
+Max value = I
+Node B is at level: 1
+Node H is at level: 3
+Node F is at level: 0
+even level elements : F A D I
+odd level elements : B G C E H
+Min value of subtree B as a root is A
+Max value of subtree B as a root is E
+In Order Successor of B is C
+In Order Successor of E is F
+In Order Successor of I is None
+In Order Predecessor of B is A
+In Order Predecessor of E is D
+In Order Predecessor of I is H
+The lowest common ancestor of A and C is B
+The lowest common ancestor of E and H is F
+The lowest common ancestor of D and E is B
+The lowest common ancestor of G and I is F
+The lowest common ancestor of H and I is G
+increasing sort order
+A B C D E F G H I
+post order
+A C E D B H I G F
+pre order
+F B A D C E G I H
+reverse order
+I H G F E D C B A
+D is in the tree
+M is not in the tree
+printing paths ...
+FBA
+FBDC
+FBDE
+FGIH
+5-th maximum data is E
+printing with Breadth-first traversal
+F B G A D I C E H
+Level at 0: F
+Level at 1: B G
+Level at 2: A D I
+Level at 3: C E H
+levelPrint()
+level 0: F
+level 1: B G
+level 2: A D I
+level 3: C E H
+New array: A B C D E F G H I
+New array: A B C D E F G H I
+1-2 subtree: 1
+1-3 subtree: 1
+1-4 subtree: 0
+2-3 subtree: 0
+3-2 subtree: 1
