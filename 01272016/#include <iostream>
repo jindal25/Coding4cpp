@@ -1,0 +1,16 @@
+#include <iostream>
+
+int main(){
+	std::vector <std::thread> workers;
+
+	for(int i =0 i<10;i++){
+			workers.push_back(th([](){
+	           	cout << "this is the thread" <<endl;
+			}));
+	}
+
+	std::for_each(workers.begin(),workers.end(),[](thread& th){
+			th.join();
+	});
+
+}
