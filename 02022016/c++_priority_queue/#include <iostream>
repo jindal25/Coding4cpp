@@ -1,0 +1,45 @@
+#include <iostream>
+#include <vector>
+
+int partition(vector<int> vec, int first, int last){
+	int x = vec.at(last);
+	int j = 0;
+
+	for(int i = first;i<last;i++)
+	{
+		if(vec.at(i) <= x ){
+		 swap(vec.at(i), vec.at(j));
+		 j++;
+		}
+	}
+	swap(vec.at(i), vec.at(j));
+	return j;
+
+}
+
+void quickSort(vector<int> vec,int first ,int last){
+	if(first<last){
+	i=partition( vec, first,last);
+	quickSort( vec,first, i-1 );
+	quickSort( vec, i+1, last);
+	}
+}
+
+main(){
+	vector <int> first;
+	int first_max,second_max,third_max;
+	int first_min,second_min;
+
+	do{
+	cin >>  test;
+	first.push_back(test);
+	while(test != 0);
+
+	vector<int> iterator :: it;
+	for ( it = first.begin(); it != first.end(); it++){
+
+
+	}
+
+
+}
