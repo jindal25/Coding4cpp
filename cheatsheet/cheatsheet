@@ -1,0 +1,408 @@
+===================Notes for everyday==========================
+Audio hal
+Gstreamer
+Audio Manager
+All JIRA bugs
+Patchs in files
+AudioWeaver
+
+=========================New emplyee info=================================================
+https://lucidmotors.atlassian.net/wiki/spaces/INFO/pages/524314/New+Employee+Information
+============================================
+globalprotect connect --portal sg1.atieva.com
+====================To clone=====================================
+git clone ssh://git@gitlab.atieva.com/issw/android-scripts.git
+../android-scripts/build_dash5dv_9r35_full.sh -f
+<android-script>/build_dash5dv_9r35_full.sh -f
+source build/envsetup.sh
+lunch 56
+make -j${nproc}
+make -j${nproc} dist
+nohup <build string> &
+=========================defconfig========================================
+android_JDI_build_0422/dash5dv/device/renesas/kernel/arch/arm64/configs/android_p_dash5dv_defconfig
+=============================brcm_patchram===================================
+brcm_patchram_plus --no2bytes --tosleep 50000 --baudrate 3000000 --use_baudrate_for_download --patchram /lib/firmware/brcm/CYW89359B1_002.002.014.0143.0295.hcd /dev/ttySC1
+brcm_patchram_plus --no2bytes --tosleep 50000 --baudrate 3000000 --use_baudrate_for_download --patchram /lib/firmware/brcm/CYW89359B1_002.002.014.0143.0295.hcd /dev/ttySC1
+hciattach /dev/ttySC1 any 3000000 flow
+hciconfig hci0 up
+hcitool -i hci0 scan
+mount / -o remount,rw 
+wl_arm64_1_363_73
+./wl_arm64_1_363_73 rsdb_mode 0                                                            
+ modprobe jody-w164-03a
+ifconfig wlan0 up
+cd /opt/jody-w1/certification/
+./sta.sh SBG8300Guest-5869-5G 748853110651 192.168.50.5 SBG8300-5869 748853110651 192.168.20.5
+===============================building qnx===========================================================================
+ <path to qnx-scripts >/build.sh --config <path to qnx-scripts >/build_config/dash5dhttps://jenkins.infotainment.prod.atieva.com/view/1.2-CCC-Mainline-Nightly/job/CCC-QNX-nightly/142/v_ccc/bsp_latest.xml
+ =======================================================copy files from USB============================================================
+cd /data/local/tmp
+mkdir ifs
+mkdir usb
+mount /dev/block/vda1 ifs   
+mount /dev/block/sda1 usb
+============================================================putting things========================================================
+./adb push libbt-vendor.so /vendor/lib64
+=======================================audio_hw_primary=======================================================================
+06-18 07:22:13.075  1539  1539 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: BT_SCO=off
+06-18 07:22:13.075  1539  1539 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "BT_SCO=off".
+==============================================================Builds jenkins link==========================================================================
+QNX 142 https://jenkins.infotainment.prod.atieva.com/view/1.2-CCC-Mainline-Nightly/job/CCC-QNX-nightly/142/
+Android_guest 125 https://jenkins.infotainment.prod.atieva.com/view/1.2-CCC-Mainline-Nightly/job/CCC-Dash5DV-9r35-QNX/125/
+===========================================================alsa playback======================================================================================
+aplay -D hw:1,2 /opt/atieva/audioweaver/sounds/welcome.wav
+===============================================================================================================================
+QNX - cat /etc/qnx_build_info.txt
+Android - adb shell getprop ro.build.fingerprint 
+=====================================================================================================
+./adb shell service call bluetooth_manager 6
+./adb shell am start -a android.bluetooth.adapter.action.REQUEST_ENABLE
+./adb shell am start -a android.bluetooth.adapter.action.REQUEST_DISCOVERABLE
+=================================================local manifest==============================================
+this is the file /local2/pankajjindal/android-scripts/dash5dv/.repo/local_manifests/local_manifest.xml 
+For android native: the mainline branch is android-9.0.0_r35_full_dash5dv_JDI
+For android QNX guest: the mainline branch is android-9.0.0_r35_full_dash5dv_JDI-QNX
+===========================================BUILD path===========================================================
+
+QNX 223 :https://jenkins.infotainment.prod.atieva.com/view/2.1-ICC-Dash/job/ICC-QNX-nightly/223/
+Linux: 290: https://jenkins.infotainment.prod.atieva.com/view/2.1-ICC-Dash/job/dash5dv-Yocto-3.21-QNX/290/
+======================================================flashing a build=========================================================
+For ccc
+https://lucidmotors.atlassian.net/wiki/spaces/INFO/pages/2226128005/Cheat+Sheet+-+CCC+with+QNX+and+Android+guest
+for ICC
+https://lucidmotors.atlassian.net/wiki/spaces/INFO/pages/1722581608/Setup+QNX+hypervisor+and+Yocto+Linux+as+guest+OS+on+Dash5dv
+===========================================flashing build to ICC just two commands are required================================
+sudo unzip ~/Documents/Issues/22114/update.zip -d /mnt/home/root/qnx_liunux_guest
+sudo cp /<downloaded_directory_location>/update_qnx.zip /mnt/home/root/qnx_liunux_guest
+==================================================================================================================================
+awe_shm 
+
+root@dash5dv:~#mount / -o remount,rw
+root@dash5dv:~# systemctl disable dashapp2
+root@dash5dv:~# systemctl disable icapp
+root@dash5dv:~# systemctl disable audioweaver
+
+systemctl restart audioweaver
+
+root@dash5dv:~# mount / -o remount,ro
+==============================================================================================================================
+awe_shm 9 1 for welcome sounds.
+=====================running LAA=============================================================================
+
+echo LD_LIBRRAY_PATH=/opt/atieva/audioweaver/lib
+
+systemctl stop audioweaver
+ /opt/atieva/audioweaver/dcx_frontend -o /tmp/out.wav
+taskset 0x08 /opt/atieva/audioweaver/TalkToSampleAPP
+
+taskset 0x08 /opt/atieva/audioweaver/LucidAudioApp
+ 
+cat /lib/systemd/system/audioweaver.service 
+cat /etc/systemd/system/multi-user.target.wants/audioweaver.service
+/lib/systemd/system/audioweaver.service
+===================================================================================================================
+ls -l  /usr/bin/lucidAndroid*
+lucidAndroid2x4mic.sh
+
+    Press Ctrl + \ together to get out of Linux console
+
+    Type “dtach -a /tmp/lvc” to get back to Linux
+================================Audio Manager log===================================================================================
+awe_shm 9 1
+2021.07.13-01:50:38.851<D4>: Function stop trigger event (trigger id=150 (LUCID_GEAR_P))
+2021.07.13-02:10:05.362<D4>: Function start trigger event (trigger id=9 (LUCID_WELCOME))
+2021.07.13-02:10:05.362<D4>: New active sound with token 2 at stack position 0
+2021.07.13-02:10:05.362<D4>: Stack[0] Pipeline:CHIME1 Mode:2(PLAY_NORMAL) Loudness:160 Status:0 NextAction:1
+2021.07.13-02:10:05.362<D4>: ActiveSounds stack has 1 elements
+2021.07.13-02:10:05.362<D3>: Set Sound Control for pipeline CHIME1: action=2, mode=0, name=DP_Welcome_51_v1.wav
+2021.07.13-02:10:05.362<D2>: Set AWE IPC control value (ix=26 - val=160)
+2021.07.13-02:10:05.362<D2>: Set AWE IPC control value (ix=27 - val=0)
+2021.07.13-02:10:05.363<D4>: Pipeline CHIME1: Status IDLE->TO_PLAY
+2021.07.13-02:10:05.363<D2>: AWE Controls committed to SHM
+2021.07.13-02:10:05.363<D3>: Sound Controls committed to SHM
+2021.07.13-02:10:05.369<D4>: Received PLAYING sound event on pipeline CHIME1
+2021.07.13-02:10:05.369<D4>: Pipeline CHIME1: Status TO_PLAY->PLAY
+===================================================================================================================================
+2021.07.13-02:12:16.383<D4>: Function stop trigger event (trigger id=14 (LUCID_LEFT_TURNING_SIGNAL_TIK))
+2021.07.13-02:12:18.688<D4>: Function start trigger event (trigger id=14 (LUCID_LEFT_TURNING_SIGNAL_TIK))
+2021.07.13-02:12:18.688<D4>: New active sound with token 4 at stack position 0
+2021.07.13-02:12:18.688<D4>: Stack[0] Pipeline:LC Mode:2(PLAY_NORMAL) Loudness:160 Status:0 NextAction:1
+2021.07.13-02:12:18.688<D4>: ActiveSounds stack has 1 elements
+2021.07.13-02:12:18.688<D3>: Set Sound Control for pipeline LC: action=2, mode=0, name=Tik-Left.wav
+2021.07.13-02:12:18.688<D2>: Set AWE IPC control value (ix=32 - val=160)
+2021.07.13-02:12:18.688<D2>: Set AWE IPC control value (ix=33 - val=0)
+2021.07.13-02:12:18.688<D4>: Pipeline LC: Status IDLE->TO_PLAY
+2021.07.13-02:12:18.688<D2>: AWE Controls committed to SHM
+2021.07.13-02:12:18.689<D3>: Sound Controls committed to SHM
+2021.07.13-02:12:18.693<D4>: Received PLAYING sound event on pipeline LC
+2021.07.13-02:12:18.693<D4>: Pipeline LC: Status TO_PLAY->PLAY
+2021.07.13-02:12:19.205<D4>: Received SOUNDEND sound event on pipeline LC
+2021.07.13-02:12:19.205<D2>: Set AWE IPC control value (ix=32 - val=0)
+2021.07.13-02:12:19.205<D2>: Set AWE IPC control value (ix=33 - val=1)
+2021.07.13-02:12:19.205<D4>: Removed ActiveSound with token 4 from stack
+2021.07.13-02:12:19.205<D3>: Set Sound Control for pipeline LC: action=1
+2021.07.13-02:12:19.205<D4>: Pipeline LC: Status PLAY->WAIT_IDLE
+2021.07.13-02:12:19.205<D2>: AWE Controls committed to SHM
+2021.07.13-02:12:19.205<D3>: Sound Controls committed to SHM
+2021.07.13-02:12:19.221<D4>: Received STOPPED sound event on pipeline LC
+2021.07.13-02:12:19.221<D3>: Set Sound Control for pipeline LC: action=0
+2021.07.13-02:12:19.221<D4>: ActiveSounds stack has 0 elements
+2021.07.13-02:12:19.221<D4>: Pipeline LC: Status WAIT_IDLE->IDLE
+2021.07.13-02:12:19.221<D3>: Sound Controls committed to SHM
+===========================================================================================================================================
+2021.07.13-02:12:16.383<D4>: Function stop trigger event (trigger id=14 (LUCID_LEFT_TURNING_SIGNAL_TIK))
+2021.07.13-02:12:18.688<D4>: Function start trigger event (trigger id=14 (LUCID_LEFT_TURNING_SIGNAL_TIK))
+2021.07.13-02:12:18.688<D4>: New active sound with token 4 at stack position 0
+2021.07.13-02:12:18.688<D4>: Stack[0] Pipeline:LC Mode:2(PLAY_NORMAL) Loudness:160 Status:0 NextAction:1
+2021.07.13-02:12:18.688<D4>: ActiveSounds stack has 1 elements
+2021.07.13-02:12:18.688<D3>: Set Sound Control for pipeline LC: action=2, mode=0, name=Tik-Left.wav
+2021.07.13-02:12:18.688<D2>: Set AWE IPC control value (ix=32 - val=160)
+2021.07.13-02:12:18.688<D2>: Set AWE IPC control value (ix=33 - val=0)
+2021.07.13-02:12:18.688<D4>: Pipeline LC: Status IDLE->TO_PLAY
+2021.07.13-02:12:18.688<D2>: AWE Controls committed to SHM
+2021.07.13-02:12:18.689<D3>: Sound Controls committed to SHM
+2021.07.13-02:12:18.693<D4>: Received PLAYING sound event on pipeline LC
+2021.07.13-02:12:18.693<D4>: Pipeline LC: Status TO_PLAY->PLAY
+2021.07.13-02:12:19.205<D4>: Received SOUNDEND sound event on pipeline LC
+2021.07.13-02:12:19.205<D2>: Set AWE IPC control value (ix=32 - val=0)
+2021.07.13-02:12:19.205<D2>: Set AWE IPC control value (ix=33 - val=1)
+2021.07.13-02:12:19.205<D4>: Removed ActiveSound with token 4 from stack
+2021.07.13-02:12:19.205<D3>: Set Sound Control for pipeline LC: action=1
+2021.07.13-02:12:19.205<D4>: Pipeline LC: Status PLAY->WAIT_IDLE
+2021.07.13-02:12:19.205<D2>: AWE Controls committed to SHM
+2021.07.13-02:12:19.205<D3>: Sound Controls committed to SHM
+2021.07.13-02:12:19.221<D4>: Received STOPPED sound event on pipeline LC
+2021.07.13-02:12:19.221<D3>: Set Sound Control for pipeline LC: action=0
+2021.07.13-02:12:19.221<D4>: ActiveSounds stack has 0 elements
+2021.07.13-02:12:19.221<D4>: Pipeline LC: Status WAIT_IDLE->IDLE
+2021.07.13-02:12:19.221<D3>: Sound Controls committed to SHM
+2021.07.13-02:16:09.084<D4>: Function stop trigger event (trigger id=14 (LUCID_LEFT_TURNING_SIGNAL_TIK))
+==================================================================================================================================================
+awe_qshm 14 1;awe_qshm 14 0;awe_qshm 15 1 ;awe_qshm 15 0;awe_shm 16 1;awe_shm 16 0;awe_shm 17 1;awe_shm 17 0
+================================================================================================================================================
+A2B runs on TDM8 channels 
+=================================Lucid audio app===============================================================================================
+https://gitlab.corp.atieva.com/issw/LucidAudioApp
+===========================building yocto-build ================================================================================================
+source poky/oe-init-build-env
+path to yocto_scripts >/build.sh --config <path to yocto_scripts >/build_config/dash5dv/bsp_v3.9.xml --no-mirror-sync
+
+source ${WORK}/poky/oe-init-build-env ${WORK}/${BUILDNAME}
+e.g. source poky/oe-init-build-env ./build-dash5dv     # after cd to directory from which you run build.sh
+bitbake core-image-weston
+bitbake core-image-weston -c populate_sdk
+
+source poky/oe-init-build-env
+bitbake core-image-weston -c populate_sdk
+https://gitlab.corp.atieva.com/issw/sony_amp_audio
+================================================== going back from QNX to android flashing android guest============================================================================
+Download the full image zip file from an android build workspace available in Jenkins to a folder in a Linux laptop. In case of ccc-dash5dv-9r35-mainline-nightly build you can find the dash5dv-files.zip from HERE in Jenkins. Now cd into that folder in linux terminal.
+
+In the terminal type:
+
+·      cd /Documents/CCC-Beta2/Beta2-Build (build location)
+
+·      ./fastboot oem format
+
+·      ./fastboot reboot bootloader
+
+·      ./fastboot.sh
+
+System will start flashing ccc image. will take 5 to 10 minutes
+
+Board will reboot and you should be able to see the displays coming up after few minutes.
+adb reboot bootloader
+
+fastboot update -w dash5-img-19.zip
+================================================================================================================================================================
+
+root@dash5dv:~# modprobe jody-w164-03a
+[  337.167004] dhd_module_init in
+[  337.170200] no wifi platform data, skip
+[  337.174247] PCI_PROBE:  bus 1, slot 0,vendor 14E4, device 43EF(good PCI location)
+[  337.181724] dhdpcie_init: can't find adapter info for this chip
+[  337.187653] pcieh 0000:01:00.0: enabling device (0000 -> 0002)
+[  337.194069] DHD: dongle ram size is set to 786432(orig 786432) at 0x180000
+[  337.200940] wifi_platform_get_mac_addr
+[  337.206769] dhd_init_logstrs_array: Failed to open the file /root/logstrs.bin
+[  337.214047] dhd_read_map: Failed to open /root/rtecdc.map
+[  337.219553] readmap error 0X0
+[  337.222625] readmap Error!!
+[  337.225523] dhd_read_map: Failed to open /root/roml.map
+[  337.230827] readmap error 0X0
+[  337.233882] readmap Error!!
+[  337.236859] dhd_attach(): thread:dhd_watchdog_thread:dd8 started
+[  337.242866] dhd_deferred_work_init: work queue initialized
+[  337.248579] dhd_bus_download_firmware: firmware path=/lib/firmware/brcm/jody-w1-pcie/fw_bcmdhd_mfg.bin, nvram pm
+[  337.263430] [WIFI_SEC] dhd_get_memcheck_info: File [/data/.memcheck.info] doesn't exist
+[  337.271414] dhdpcie_mem_check: memcheck_enabled: 0
+[  337.276355] dhdpcie_download_code_file: download firmware /lib/firmware/brcm/jody-w1-pcie/fw_bcmdhd_mfg.bin
+[  337.286798] dhd_os_open_image: /lib/firmware/brcm/jody-w1-pcie/fw_bcmdhd_mfg.bin (622566 bytes) open success
+[  337.365944] dhd_os_open_image: /lib/firmware/brcm/jody-w1-pcie/jody-w164-03a.nvram (5163 bytes) open success
+[  337.376022] dhdpcie_download_nvram: dhd_get_download_buffer len 5163
+[  337.382411] dhdpcie_download_nvram: process_nvram_vars len 4136
+[  337.389869] dhdpcie_bus_write_vars: Download, Upload and compare of NVRAM succeeded.
+[  337.584138] PCIe shared addr (0x001e1df8) read took 108095 usec before dongle is ready
+[  337.592053] DMA RX offset from shared Area 0
+[  337.596314] dhdpcie_readshared: Dongle advertizes 4 size indices
+[  337.602424] dhdpcie_readshared: max H2D queues 42
+[  337.607143] dhd_bus_start: Initializing 42 h2drings
+[  337.612088] dhd_pktid_map_init:1421: pktid_audit init succeeded 3073
+[  337.618501] dhd_bus_cmn_writeshared:
+[  337.622079]   0000: 00 f0 2c 58 00 00 00 00
+[  337.626340] dhd_bus_cmn_writeshared:
+[  337.629918]   0000: 00 c0 34 58 00 00 00 00
+[  337.634179] dhd_bus_cmn_writeshared:
+[  337.637756]   0000: 00 50 2e 58 00 00 00 00
+[  337.642015] dhd_bus_cmn_writeshared:
+[  337.645593]   0000: 00 80 35 58 00 00 00 00
+[  337.649854] dhd_bus_cmn_writeshared:
+[  337.653430]   0000: 00 c0 35 58 00 00 00 00
+[  337.657690] dhd_bus_cmn_writeshared:
+[  337.661259]   0000: 00 60 2e 58 00 00 00 00
+[  337.665520] dhd_bus_cmn_writeshared:
+[  337.669090]   0000: 08 00 00 00
+[  337.672313] Attach flowrings pool for 40 rings
+[  337.680818] dhd_get_assert_info: File [/data/misc/wifi/.assert.info] doesn't exist
+[  337.688718] dhd_sync_with_dongle: GET_REVINFO device 0x43ef, vendor 0x14e4, chipnum 0x4359
+[  337.696977] dhd_preinit_ioctls : Set IOCTL response time for Manufactring Firmware
+[  337.704535] wifi_platform_get_mac_addr
+[  337.708670] dhd_os_open_image: /lib/firmware/brcm/jody-w1-pcie/4359b1.clm_blob (4863 bytes) open success
+[  337.723274] Firmware up: op_mode=0x0200, MAC=cc:f9:57:a1:fd:0d
+[  337.730865] dhd_prot_ioctl: status ret value is -23
+[  337.730886] EVENT_LOG_HDR[No.0]: timestamp 0x00000000 length = 516
+[  337.730888]
+[  337.743466] dhd_preinit_ioctls Set txbf returned (-23)
+[  337.749799] dhd_prot_ioctl: status ret value is -23
+[  337.754762] dhd_preinit_ioctls pspretend_threshold for HostAPD failed  -23
+[  337.763007] clm version = Cypress.Automotive
+[  337.767678] Firmware version = wl0: Mar  7 2019 03:05:57 version 9.40.112.1 (r712207 CY WLTEST) FWID 01-c7be5db8
+[  337.778473] dhd_prot_ioctl: status ret value is -23
+[  337.784002] dhd_prot_ioctl: status ret value is -23
+[  337.788961] dhd_interworking_enable: set wnm returned (-23)
+[  337.794960] dhd_prot_ioctl: status ret value is -23
+[  337.799918] dhd_preinit_ioctls failed to set ShubHub disable
+[  337.806118] Dongle Host Driver, version 1.363.68 (r)
+[  337.806118] Compiled in /data/jenkins/workspace/Dash5dv-eol-Yocto-3.9/build-dash5dv/tmp/work/dash5dv-poky-linuxd
+[  337.828261] Register interface [wlan0]  MAC: cc:f9:57:a1:fd:0d
+[  337.828261]
+[  337.835726] dhd_module_init out
+================================================================================================================================
+modprobe jody-w164-03a
+ifconfig wlan0 up
+cd /opt/jody-w1/certification/
+./sta.sh SBG8300Guest-5869-5G 748853110651 192.168.50.5 SBG8300-5869 748853110651 192.168.20.5
+==================================================Going TO native android==============================================================================
+https://lucidmotors.atlassian.net/wiki/spaces/INFO/pages/2398958067/Converting+between+CCC-QNX+and+NON-QNX+Native+Android
+
+usb start
+ext4ls usb 0:1 /boot
+ /boot/Image, /boot/dash5dv.dtb
+run bootcmd_usb
+this should be done from computer
+
+
+Linux Ubuntu:
+cd ~/folder where you have unzipped dash5dv-files-XXX.zip
+chmod a+x *sh fastboot
+./fastboot oem format
+./fastboot reboot bootloader
+./fastboot.sh
+
+./fastboot reboot
+
+ ./flashupdate.sh --ipl --uboot
+ 
+ ./flashupdate.sh --ipl --uboot
+after flashing is done type:
+reboot -f (and keep hitting enter. You will see “=>”)
+env default -a
+saveenv
+reset (keep hitting enter)
+fastboot
+ 
+ 
+ cd /Documents/CCC-Beta2/Beta2-Build (build location)
+./fastboot oem format
+./fastboot reboot bootloader
+./fastboot.sh
+================================================
+./fastboot.sh --nobl  --slot=a
+==============================CCC audio playback================================================================================
+tinyplay t44.wav  -D 2 -d  -p 1024 -n 2   
+===============================================================================================================================
+USB audio module:
+Output Profile:
+  card:2, device:0 - OUT
+  Formats: 0 
+  Rates: 48000 44100 32000 24000 16000 8000 
+  Channel Counts: 2 
+  min/max period size [16 : 131072]
+  min/max channel count [2 : 2]
+  Default Config:
+    channels: 2
+    rate: 48000
+    period_size: 960
+    period_count: 2
+    format: 0
+Output Proxy:
+  channels: 2
+  rate: 48000
+  period_size: 960
+  period_count: 2
+  format: 0
+Input Profile:
+  card:2, device:0 - IN
+  Formats: 0 
+  Rates: 48000 44100 32000 24000 16000 8000 
+  Channel Counts: 2 
+  min/max period size [16 : 131072]
+  min/max channel count [2 : 2]
+  Default Config:
+    channels: 2
+    rate: 48000
+    period_size: 960
+    period_count: 2
+    format: 0
+Input Proxy:
+  channels: 2
+  rate: 16000
+  period_size: 320
+  period_count: 2
+  format: 0
+===================================================================================================================================
+taskset 0x08 /opt/atieva/audioweaver/LucidAudioApp
+lpr -o sides=two-sided-long-edge -o number-up=2 -o ColorModel=RGB ed72268c187741bab3e51480fb8b9870a4f7ba36.txt
+===================================================================================================================================
+<route type="mix" sink="bus0_media_out" sources="mixport_bus0_media_out"/>
+                <route type="mix" sink="bus1_navigation_out" sources="mixport_bus1_navigation_out"/>
+                <route type="mix" sink="bus2_voice_command_out" sources="mixport_bus2_voice_command_out"/>
+                <route type="mix" sink="bus3_call_ring_out" sources="mixport_bus3_call_ring_out"/>
+                <route type="mix" sink="bus4_call_out" sources="mixport_bus4_call_out"/>
+                <route type="mix" sink="bus5_alarm_out" sources="mixport_bus5_alarm_out"/>
+                <route type="mix" sink="bus6_notification_out" sources="mixport_bus6_notification_out"/>
+                <route type="mix" sink="bus7_system_sound_out" sources="mixport_bus7_system_sound_out"/>
+                <route type="mix" sink="primary input" sources="Built-In Mic"/>
+                <route type="mix" sink="mixport_tuner0" sources="FM Tuner"/>
+============================================================================================================================
+
+adb root && adb remount
+adb push set_eth_interfaces_vlans_to_wifi_eth1.sh /vendor/bin/set_eth_interfaces_vlans.sh
+===============================================to find out builds============================================================================
+cat /etc/yocto-release
+=========================just update android========================================================
+
+./adb reboot bootloader
+./fastboot update -w dash5-img-19.zip
+===========================================to connect to wifi =================================
+adb root && adb remount
+	adb push set_eth_interfaces_vlans_to_wifi_eth1.sh /vendor/bin/set_eth_interfaces_vlans.sh
+==================================how to sync your workspace===========================================
+update android-scripts
+repo sync
+===========================Compiling lucid audio app========================================
+. ./set_up_poky_env
+. ./build.sh
+===========================================================================================
+
