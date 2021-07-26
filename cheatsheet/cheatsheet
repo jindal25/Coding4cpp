@@ -404,5 +404,35 @@ repo sync
 ===========================Compiling lucid audio app========================================
 . ./set_up_poky_env
 . ./build.sh
-===========================================================================================
+===========================================Running LAA================================================
+taskset 0x08 /opt/atieva/audioweaver/LucidAudioApp
+====================================gitlab changes ====================================================
+https://gitlab.corp.atieva.com/VinayPal
+https://gitlab.corp.atieva.com/arvindagrawal
+==================================Trigger file====================================================
+/opt/atieva/audioweaver/keys/trigger_shm.key
+=======================================================================================================
+root@dash5dv:~# awe_shm 17 1
+main:70 size 248
+main:81 
+main:100 key 1090716600 
+main:109 attached buf 0xffff8e36d00
+main:110 buf->shmSignature 55AA55AA
+main: Trigger[17] 1                
+main:132                           
+main:135                           
+main:140 
+Writing Process: Complete
+root@dash5dv:~# awe_shm 17 0
+main:70 size 248
+main:81 
+main:100 key 1090716600 
+main:109 attached buf 0xffff9c055000
+main:110 buf->shmSignature 55AA55AA
+main: Trigger[17] 0
+main:132 
+main:135 
+main:140 
+Writing Process: Complete
+==============================================================================================================
 
