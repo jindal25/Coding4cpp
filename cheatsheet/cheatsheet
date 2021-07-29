@@ -35,7 +35,8 @@ ifconfig wlan0 up
 cd /opt/jody-w1/certification/
 ./sta.sh SBG8300Guest-5869-5G 748853110651 192.168.50.5 SBG8300-5869 748853110651 192.168.20.5
 ===============================building qnx===========================================================================
- <path to qnx-scripts >/build.sh --config <path to qnx-scripts >/build_config/dash5dhttps://jenkins.infotainment.prod.atieva.com/view/1.2-CCC-Mainline-Nightly/job/CCC-QNX-nightly/142/v_ccc/bsp_latest.xml
+ <path to qnx-scripts >/build.sh --config <path to qnx-scripts >/build_config/dash5d
+ https://jenkins.infotainment.prod.atieva.com/view/1.2-CCC-Mainline-Nightly/job/CCC-QNX-nightly/142/v_ccc/bsp_latest.xml
  =======================================================copy files from USB============================================================
 cd /data/local/tmp
 mkdir ifs
@@ -75,6 +76,11 @@ https://lucidmotors.atlassian.net/wiki/spaces/INFO/pages/1722581608/Setup+QNX+hy
 ===========================================flashing build to ICC just two commands are required================================
 sudo unzip ~/Documents/Issues/22114/update.zip -d /mnt/home/root/qnx_liunux_guest
 sudo cp /<downloaded_directory_location>/update_qnx.zip /mnt/home/root/qnx_liunux_guest
+
+(optional) usb start     
+"ext4ls usb 0:1 /boot" 
+run bootcmd_usb .    hit enter and you will be asked for login. Type "root" and enter. You will now be logged in to " root@dash5dv:~# " serial.
+Change directory to /home/root/qnx_linux_guest, then execute “./initial_flash.sh”.
 ==================================================================================================================================
 awe_shm 
 
@@ -434,5 +440,30 @@ main:132
 main:135 
 main:140 
 Writing Process: Complete
-==============================================================================================================
+=========================================to TRANFER files to ICC to ip address on ICC=====================================================================
+ifconfig on qnx host
+dhclient rabVO
+this will get the company IP address 
+and then transfer the file to /shared which is shared between qnx and linux guest
+==================================================================================
+gles2-gears -display=3 -zorder=2000 
+gles2-gears -display=4 -zorder=2000 
+====================================building qnx-hypervisor=============================================
+https://lucidmotors.atlassian.net/wiki/spaces/INFO/pages/1876789136/How+to+build+QNX+hypervisor+bsp
+===================================enable sshd=========================================================================
+/usr/bin/sshd -E /data/sshd_log -f /etc/ssh/sshd_config -p 22
+======================================================================================================
+sudo mount -o remount,rw /
+===============================================copying file to the board===================================================
+https://lucidmotors.atlassian.net/wiki/spaces/INFO/pages/2158396307/SSH+to+ICC+QNX
+Use the media converter to assign the same IP address.
+put the board and the PC in the same subnet .
+sudo ifconfig enx00249b6d1fed 192.168.52.2
+===================================================================================================
+export LD_LIBRAY_PATH=/opt/atieva/audioweaver/lib/  
+/opt/atieva/audioweaver/LucidAudioApp --qnx_guest 1
+==========================================================================================================
+Car-Lucid-VIN-165@lucidmotors.com
+Car-Lucid-VIN-172@lucidmotors.com
+
 
