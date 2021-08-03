@@ -96,7 +96,7 @@ root@dash5dv:~# mount / -o remount,ro
 awe_shm 9 1 for welcome sounds.
 =====================running LAA=============================================================================
 
-echo LD_LIBRRAY_PATH=/opt/atieva/audioweaver/lib
+export LD_LIBRARY_PATH=/opt/atieva/audioweaver/lib
 
 systemctl stop audioweaver
  /opt/atieva/audioweaver/dcx_frontend -o /tmp/out.wav
@@ -465,5 +465,69 @@ export LD_LIBRAY_PATH=/opt/atieva/audioweaver/lib/
 ==========================================================================================================
 Car-Lucid-VIN-165@lucidmotors.com
 Car-Lucid-VIN-172@lucidmotors.com
+======================================================================================================
+adb shell dumpsys -l
+ ./adb shell dumpsys audio > audio_dumpsys.txt
+./adb shell dumpsys media.audio_policy > audio_policy.txt
+ ./adb shell dumpsys media.audio_flinger > media_audio_flinger.txt
+ ./adb shell dumpsys media.service > media_servie.txt
+./adb shell dumpsys -l
+=================================================================
+a2b files to check a2b interface
+=======================================================a==========
+/data/ to check all the three log files for microphone, premium and base amplifier.
+===============================================================
+oot@dash5dv:~# sony_base_a2bstart.sh       
+dev_str 6A
+maddr 0x6A
+saddr 0x6B
+aplay: main:807: arecord: main:807: audio open error: Device or resource busyaudio open error: Device or resource y
 
+ 
 
+60: 60 -- -- -- -- -- -- -- 68 69 6a 6b 6c 6d -- -- 
+Dac_Addr is 0x20
+DscDone
+Vendor 0xad Product 0x28 Version 0x00
+=========================================
+ Sample-B amp version v3
+=========================================
+=========================================
+Initializing DAC  0x20
+=========================================
+DAC 0x20 Ack is 0x9d
+0x20
+FILE FOUND
+DAC addr is 0x20
+=========================================
+ V3.0
+=========================================
+Temp Sensor1 read out data
+0x1a 0x00 
+Temp Sensor2 read out data
+0x1c 0x80 
+ADC1 read out data
+0x05 0x2b 
+AB1 startup Diag. results
+0x44 0x00 0xc4 0x00 0x00
+AB2 startup Diag. results
+0x44 0x04 0xc4 0x04 0x00
+/data/base_speaker.log
+=====================================================================
+base amp Speaker Diagnostics
+=====================================================================
+
+ 
+
+AB1 Amp Ch1 - BRM Open
+AB1 Amp Ch2 - FRM Connected
+AB1 Amp Ch3 - BLM Open
+AB1 Amp Ch4 - FLM Connected
+
+ 
+
+AB2 Amp Ch1 - SR_M Open
+AB2 Amp Ch2 - CM Open
+AB2 Amp Ch3 - SL_M Open
+AB2 Amp Ch4 - CTw Open
+=============================================================================================
