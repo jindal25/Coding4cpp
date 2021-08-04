@@ -218,6 +218,7 @@ In the terminal type:
 System will start flashing ccc image. will take 5 to 10 minutes
 
 Board will reboot and you should be able to see the displays coming up after few minutes.
+
 adb reboot bootloader
 
 fastboot update -w dash5-img-19.zip
@@ -335,8 +336,9 @@ fastboot
 ./fastboot.sh
 ================================================
 ./fastboot.sh --nobl  --slot=a
-==============================CCC audio playback================================================================================
-tinyplay t44.wav  -D 2 -d  -p 1024 -n 2   
+==============================CCC audio playback from USB DEVICE================================================================================
+tinyplay t44.wav  -D 2 -d 0  -p 1024 -n 2  
+tinyplay t44.wav  -D 2 -d 0 -p 1024 -n 2      
 ===============================================================================================================================
 USB audio module:
 Output Profile:
@@ -442,9 +444,12 @@ main:140
 Writing Process: Complete
 =========================================to TRANFER files to ICC to ip address on ICC=====================================================================
 ifconfig on qnx host
-dhclient rabVO
+try this command on QNX-HOST
+/usr/bin/sshd -E /data/sshd_log -f /etc/ssh/sshd_config -p 22
+dhclient ravb0	
 this will get the company IP address 
 and then transfer the file to /shared which is shared between qnx and linux guest
+its mounted to /media on linux
 ==================================================================================
 gles2-gears -display=3 -zorder=2000 
 gles2-gears -display=4 -zorder=2000 
@@ -476,8 +481,9 @@ adb shell dumpsys -l
 a2b files to check a2b interface
 =======================================================a==========
 /data/ to check all the three log files for microphone, premium and base amplifier.
-===============================================================
-oot@dash5dv:~# sony_base_a2bstart.sh       
+============================================amplifier scripts===================
+https://gitlab.corp.atieva.com/issw/sony_amp_audio/-/blob/QNX/sony_a2bstart_qnx.sh#L139
+root@dash5dv:~# sony_base_a2bstart.sh       
 dev_str 6A
 maddr 0x6A
 saddr 0x6B
@@ -531,3 +537,299 @@ AB2 Amp Ch2 - CM Open
 AB2 Amp Ch3 - SL_M Open
 AB2 Amp Ch4 - CTw Open
 =============================================================================================
+sudo ifconfig vlan1 create
+sudo ifconfig vlan1 vlan 1 vlandev en5
+sudo ifconfig vlan1 192.168.1.99
+=============================================================================================
+cd /shared
+dtach -a /tmp/lvc
+==============================================================================================
+==============================================================================================
+dash5dv-qnx#./sony_a2bstart_qnx.sh 
+usage: ./sony_a2bstart_qnx.sh [A2B_NO | base | prem]
+A2B_NO - A2B bus number 0,1 or 2
+dash5dv-qnx#./sony_a2bstart_qnx.sh base
+dev_str 6A
+maddr 0x6A
+saddr 0x6B
+data: 12h 84h
+Data recvd:
+data: 40h 0h
+Data recvd:
+data: 41h 42h
+Data recvd:
+data: fh 89h
+Data recvd:
+data: 12h 81h
+Data recvd:
+data: 9h 1h
+Data recvd:
+data: 13h 89h
+Data recvd:
+------
+A data: 1ah
+Data recvd: 1h
+------
+newStr 0x1
+======
+A 0x1
+======
+DscDone
+data: 1h 0h
+Data recvd:
+newStr 0x0
+newStr 0x0
+newStr 0x0
+Vendor 0x0 Product 0x0 Version 0x0
+=========================================
+ Sample-B amp version v3
+=========================================
+data: ah 0h
+Data recvd:
+data: bh 10h
+Data recvd:
+data: dh 0h
+Data recvd:
+data: ch 0h
+Data recvd:
+data: eh 0h
+Data recvd:
+data: 3fh 0h
+Data recvd:
+data: 43h 0h
+Data recvd:
+data: 45h 0h
+Data recvd:
+data: 4dh e0h
+Data recvd:
+data: 4eh 7h
+Data recvd:
+data: dh 10h
+Data recvd:
+data: eh 0h
+Data recvd:
+data: 1eh bfh
+Data recvd:
+data: 10h 44h
+Data recvd:
+data: 11h 1h
+Data recvd:
+data: 42h 38h
+Data recvd:
+data: 12h 81h
+Data recvd:
+data: 4bh 60h
+Data recvd:
+data: 4ch 0h
+Data recvd:
+data: 1h 0h
+Data recvd:
+data: 0h 6dh
+Data recvd:
+data: 1h 20h
+Data recvd:
+data: 81h 5eh 10h 24h 1h
+Data recvd:
+data: 1h 0h
+Data recvd:
+data: 0h 6fh
+Data recvd:
+data: 1h 20h
+Data recvd:
+data: 81h 5eh 10h 24h 1h
+Data recvd:
+data: 1h 0h
+Data recvd:
+data: 0h 10h
+Data recvd:
+data: 1h 20h
+Data recvd:
+data: 0h 7h
+Data recvd:
+data: ah 9dh
+Data recvd:
+data: 1h 0h
+Data recvd:
+data: 42h bh
+Data recvd:
+data: 41h e2h
+Data recvd:
+data: 0h 48h
+Data recvd:
+data: 1h 20h
+Data recvd:
+=========================================
+ V3.0
+=========================================
+Temp Sensor1 read out data
+data: 0h
+Data recvd: 23h 0h
+data: 1h 0h
+Data recvd:
+data: 0h 49h
+Data recvd:
+data: 1h 20h
+Data recvd:
+Temp Sensor2 read out data
+data: 0h
+Data recvd: 25h 80h
+data: 1h 0h
+Data recvd:
+data: 0h 4dh
+Data recvd:
+data: 1h 20h
+Data recvd:
+ADC1 read out data
+data:
+Data recvd: 5h 13h
+data: 1h 0h
+Data recvd:
+data: 0h 6dh
+Data recvd:
+data: 1h 20h
+Data recvd:
+AB1 startup Diag. results
+data:
+Data recvd: 44h 0h c4h 0h 0h
+newStr 0x44 0x0 0xc4 0x0 0x0
+data: 1h 0h
+Data recvd:
+data: 0h 6fh
+Data recvd:
+data: 1h 20h
+Data recvd:
+AB2 startup Diag. results
+data:
+Data recvd: 44h 4h c4h 4h 0h
+newStr 0x44 0x4 0xc4 0x4 0x0
+data: 1h 0h
+Data recvd:
+data: 4ch 20h
+Data recvd:
+./sony_a2bstart_qnx.sh base AB1 0x44 0x0 0xc4 0x0
+B is 0x44 1
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB1 Amp Ch1 - BRM Open
+AB1 Amp Ch1 - BRM Open
+B is 0x0 2
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB1 Amp Ch2 - FRM Connected
+AB1 Amp Ch2 - FRM Connected
+B is 0xc4 3
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB1 Amp Ch3 - BLM Open
+AB1 Amp Ch3 - BLM Open
+B is 0x0 4
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB1 Amp Ch4 - FLM Connected
+AB1 Amp Ch4 - FLM Connected
+DONE DONE DONE
+tee:  Unable to open '/disk-dos/base_speaker.log'
+
+
+./sony_a2bstart_qnx.sh base AB2 0x44 0x4 0xc4 0x4
+B is 0x44 1
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB2 Amp Ch1 - SR_M Open
+AB2 Amp Ch1 - SR_M Open
+B is 0x4 2
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB2 Amp Ch2 - CM Open
+AB2 Amp Ch2 - CM Open
+B is 0xc4 3
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB2 Amp Ch3 - SL_M Open
+AB2 Amp Ch3 - SL_M Open
+B is 0x4 4
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB2 Amp Ch4 - CTw Open
+AB2 Amp Ch4 - CTw Open
+DONE DONE DONE
+AMP base
+classDerr
+/disk-dos/base_speaker.log
+./sony_a2bstart_qnx.sh[803]: cannot create /disk-dos/base_speaker.log: Read-only file system
+tee:  Unable to open '/disk-dos/base_speaker.log'
+=====================================================================
+=====================================================================
+tee:  Unable to open '/disk-dos/base_speaker.log'
+base amp Speaker Diagnostics
+base amp Speaker Diagnostics
+tee:  Unable to open '/disk-dos/base_speaker.log'
+=====================================================================
+=====================================================================
+tee:  Unable to open '/disk-dos/base_speaker.log'
+
+
+AB1SD 0x44 0x0 0xc4 0x0 0x0
+AB2SD 0x44 0x4 0xc4 0x4 0x0
+./sony_a2bstart_qnx.sh base AB1 0x44 0x0 0xc4 0x0
+B is 0x44 1
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB1 Amp Ch1 - BRM Open
+AB1 Amp Ch1 - BRM Open
+B is 0x0 2
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB1 Amp Ch2 - FRM Connected
+AB1 Amp Ch2 - FRM Connected
+B is 0xc4 3
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB1 Amp Ch3 - BLM Open
+AB1 Amp Ch3 - BLM Open
+B is 0x0 4
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB1 Amp Ch4 - FLM Connected
+AB1 Amp Ch4 - FLM Connected
+DONE DONE DONE
+tee:  Unable to open '/disk-dos/base_speaker.log'
+
+
+./sony_a2bstart_qnx.sh base AB2 0x44 0x4 0xc4 0x4
+B is 0x44 1
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB2 Amp Ch1 - SR_M Open
+AB2 Amp Ch1 - SR_M Open
+B is 0x4 2
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB2 Amp Ch2 - CM Open
+AB2 Amp Ch2 - CM Open
+B is 0xc4 3
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB2 Amp Ch3 - SL_M Open
+AB2 Amp Ch3 - SL_M Open
+B is 0x4 4
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB2 Amp Ch4 - CTw Open
+AB2 Amp Ch4 - CTw Open
+DONE DONE DONE
+classDerr
+AMP base
+dash5dv-qnx#
+===============================================================================
+
+# Start the master clocks SSI3 and SSI0
+#arecord -D hw:1,5 -c8 -r 48000 -f S16_LE -d1 | aplay -D hw:1,0 -d1
+==================================================================================
+https://gitlab.corp.atieva.com/issw/dash5/device/renesas/dash5/-/tree/air-beta1/hal/audio
+======================================flashing native android on CCC===============================================
+
+adb reboot bootloader
+fastboot update -w dash5-img-19.zip
+========================================PLAY AUDIO FROM USB ON CCC=========================================================================
+Now try killing mediaserver process: kill -9 #, where # is the process ID you noted earlier. 
+You should see a dump from media.log in the main logcat, showing all the logs leading up to the crash. 
+tinyplay t44.wav  -D 2 -d 0 -p 1024 -n 2     
+tinyplay t44.wav  -D 1 -d 2 -p 1024 -n 2     
+================================================media log==================================================================
+ media.log is disabled by default. It is active only when property ro.test_harness is 1. You can enable it by:
+
+adb root
+adb shell
+echo ro.test_harness=1 > /data/local.prop
+chmod 644 /data/local.prop
+reboot
+===================================================to play the audio from tinyplay======================================================================
+change the name of audio hal by mv and then play from tinyplay
+this is the location of the audio hal /vendor/lib64/hw/audio.primary.dash5dv.so
+====================================================================================================================================================
+
