@@ -832,4 +832,45 @@ reboot
 change the name of audio hal by mv and then play from tinyplay
 this is the location of the audio hal /vendor/lib64/hw/audio.primary.dash5dv.so
 ====================================================================================================================================================
+dash5dv:/ # ls -l /vendor/lib64/hw/audio.                                                              
+audio.primary.dash5dv.so          audio.r_submix.default.so         audio.usb.default.so
+===========================================updating android on QNX=====================================================================================
+
+sudo unzip update_qnx.zip -d /mnt/home/root/qnx_android_guest
+run bootcmd_usb
+go to /home/root/qnx_android_guest
+
+==============================================================================================================================================================
+tinyplay /data/t44.wav  -D 2 -d 0 -p 1024 -n 2                                      <
+Sample rate is 44100Hz, device only supports >= 48000Hz
+Sample is 2 channels, device only supports >= 8 channels
+Period count is 2 periods, device only supports >= 3 periods
+===========================================================================================================================================================
+slay qmlshow in qnx terminal to see the terminals.
+================================================tinyplay on android guest for usb audio=============================================================================================================
+tinyplay /data/t44.wav  -D 3 -d 0 -p 1024 -n 2 
+=================================================================================other commands==================================================================================
+inyplay /data/t44.wav  -D 0 -d 0 -p 1024 -n 2                                      <
+Playing sample: 2 ch, 44100 hz, 16 bit
+inyplay /data/t44.wav  -D 0 -d 1 -p 1024 -n 2                                      <
+Playing sample: 2 ch, 44100 hz, 16 bit
+inyplay /data/t44.wav  -D 1 -d 0 -p 1024 -n 2                                      <
+Period count is 2 periods, device only supports >= 3 periods
+inyplay /data/t44.wav  -D 2 -d 0 -p 1024 -n 2                                      <
+Sample rate is 44100Hz, device only supports >= 48000Hz
+Sample is 2 channels, device only supports >= 8 channels
+Period count is 2 periods, device only supports >= 3 periods
+inyplay /data/t44.wav  -D 3 -d 0 -p 1024 -n 2                                      <
+Playing sample: 2 ch, 44100 hz, 16 bit
+=====================================================================================================================================================================================
+usr/bin/pcm_logger=usr/bin/pcm_logger on QNX-Ubuntu
+======================================================Dolby decoder code=========================================================================================
+https://gitlab.corp.atieva.com/issw/DolbyAtmosIntegratedDecoder/-/commit/484b8d65d5fede348f1212f1ea09b5fb3b00741f
+=================================QNX-audio driver=======================================================================================================================================
+==========================to connect to wifi=================================================================
+to add intoT-QA
+password : 17501750
+
+to connect to wifi just long home the settings button.
+=============================================================================================================
 
