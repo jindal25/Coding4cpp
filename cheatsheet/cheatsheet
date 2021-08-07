@@ -871,6 +871,926 @@ https://gitlab.corp.atieva.com/issw/DolbyAtmosIntegratedDecoder/-/commit/484b8d6
 to add intoT-QA
 password : 17501750
 
-to connect to wifi just long home the settings button.
-=============================================================================================================
+
+adb push ~/Downloads/set_eth_interfaces_vlans.sh /vendor/bin/set_eth_interfaces_vlans.sh
+to connect to wifi just long home the settings button and then networks show just connect and it should work.
+===============================USB audio HAL==============================================================================
+android_JDI_build_07013/dash5dv/hardware/libhardware/modules/usbaudio
+device/renesas/dash5dv/hal/audio/audio_hw.c
+===========================================tinyalsa===============================================================================
+./external/tinyalsa
+device/renesas/dash5dv/hal/audio/audio_hw.c
+
+===========================================devices on CCC ==========================================================================
+dash5dv:/ # cat /proc/asound/cards                                                  
+ 0 [Loopback       ]: Loopback - Loopback
+                      Loopback 1
+ 1 [virtaudio      ]: virtaudio - virtaudio
+                      virtaudio 0
+ 2 [virtaudio_1    ]: virtaudio - virtaudio
+                      virtaudio 1
+ 3 [H540           ]: USB-Audio - Logitech USB Headset H540
+                      Logitech Inc Logitech USB Headset H540 at usb-ee0a0000.usb-1, full speed
+=====================================build usb audio hal==================================================================================================
+source build/env..
+lunch56
+mmm hardware/libhardware/modules/usbaudio/
+adb remount
+adb push out/target/product/phoenix/system/lib/hw/audio.usb.default.so /system/lib/
+adb push out/target/product/phoenix/system/lib64/hw/audio.usb.default.so /system/lib64/hw/
+=======================================================================================================================================================
+07-23 19:01:20.026  2333  2333 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: card=2;connect=-2113929216;device=0
+07-23 19:01:20.026  3009  3009 W TelecomManager: Telecom Service not found.
+07-23 19:01:20.026  2333  2333 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "card=2;connect=-2113929216;device=0".
+===========================================================================================================================================================
+This is after changing the audio usb hal
+28556:08-06 23:51:21.306  2328  2499 V modules.usbaudio.audio_hal: out_set_parameters() keys:card=2;device=0;routing=67108864
+
+30193:08-06 23:51:29.737  2328  3113 V modules.usbaudio.audio_hal: start_output_stream(card:2 device:0)
+1290:07-23 19:01:17.182  2657  2756 D EventHub: No input device configuration file found for device 'Logitech Inc  Logitech USB Headset H540'.
+1298:07-23 19:01:17.187  2657  2756 I EventHub: New device: id=1, fd=103, path='/dev/input/event0', name='Logitech Inc  Logitech USB Headset H540', classes=0x80000001, configuration='', keyLayout='/system/usr/keylayout/Generic.kl', keyCharacterMap='/system/usr/keychars/Generic.kcm', builtinKeyboard=false, 
+1300:07-23 19:01:17.189  2657  2756 I InputReader: Device added: id=1, name='Logitech Inc  Logitech USB Headset H540', sources=0x00000101
+
+===============================================================audio_hw logs just to intilise each sink==============================================================================================
+303:09-26 15:23:13.544  2328  2440 V audio_hw_primary_dash5dv: adev_open
+304:09-26 15:23:13.544  2328  2440 V audio_hw_primary_dash5dv: adev_open:3096
+305:09-26 15:23:13.544  2328  2440 V audio_hw_primary_dash5dv: adev_open:3100
+306:09-26 15:23:13.544  2328  2440 V audio_hw_primary_dash5dv: adev_open:3105 adev 0xf9afcbe1c000
+307:09-26 15:23:13.544  2328  2440 V audio_hw_primary_dash5dv: adev_open:3140
+308:09-26 15:23:13.544  2328  2440 V audio_hw_primary_dash5dv: adev_open:3150
+309:09-26 15:23:13.544  2328  2440 V audio_hw_primary_dash5dv: select_output_device
+310:09-26 15:23:13.544  2328  2440 V audio_hw_primary_dash5dv: select_input_device
+311:09-26 15:23:13.544  2328  2440 V audio_hw_primary_dash5dv: adev_open adev 0xf9afcbe1c000
+313:09-26 15:23:13.546  2328  2449 V audio_hw_primary_dash5dv: process_bt_sco adev 0xf9afcbe1c000
+314:09-26 15:23:13.546  2328  2449 V audio_hw_primary_dash5dv: process_bt_sco mode 0, going to sleep
+315:09-26 15:23:13.548  2328  2440 V audio_hw_primary_dash5dv: adev_init_check
+316:09-26 15:23:13.548  2328  2440 D audio_hw_primary_dash5dv: adev_get_master_volume 
+317:09-26 15:23:13.549  2328  2440 V audio_hw_primary_dash5dv: adev_set_master_volume volume=0.500000
+320:09-26 15:23:13.549  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream dev 0xf9afcbe1c000
+321:09-26 15:23:13.549  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream() normal buffer
+324:09-26 15:23:13.554  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream: setting out standby
+325:09-26 15:23:13.554  2328  2440 V audio_hw_primary_dash5dv: out_set_format: format = 0x1
+326:09-26 15:23:13.554  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream:2482 out-> 0xf9afcbe1f1c0 bus: bus0_media_out 
+328:09-26 15:23:13.555  2328  2440 V audio_hw_primary_dash5dv: out_get_buffer_size_low_latency: size 768, audio_stream_frame_size 4
+329:09-26 15:23:13.560  2328  2440 V audio_hw_primary_dash5dv: out_get_buffer_size_low_latency: size 768, audio_stream_frame_size 4
+383:09-26 15:23:13.639  2328  2440 V audio_hw_primary_dash5dv: out_get_buffer_size_low_latency: size 768, audio_stream_frame_size 4
+385:09-26 15:23:13.640  2328  2440 V audio_hw_primary_dash5dv: adev_set_mode ================================
+386:09-26 15:23:13.640  2328  2440 V audio_hw_primary_dash5dv: adev_set_mode mode 0
+387:09-26 15:23:13.640  2328  2440 V audio_hw_primary_dash5dv: adev_set_mode ================================
+391:09-26 15:23:13.641  2328  2328 D audio_hw_primary_dash5dv: out_standby out->bus_address bus0_media_out out->format 0x1
+416:09-26 15:23:13.665  2328  2440 V audio_hw_primary_dash5dv: adev_set_voice_volume 0.000000
+418:09-26 15:23:13.666  2328  2440 D audio_hw_primary_dash5dv: adev_create_audio_patch: source[0] type=2 address=
+419:09-26 15:23:13.666  2328  2440 D audio_hw_primary_dash5dv: adev_create_audio_patch: sink[0] type=1 address=bus0_media_out
+421:09-26 15:23:13.667  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream dev 0xf9afcbe1c000
+422:09-26 15:23:13.667  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream() normal buffer
+423:09-26 15:23:13.667  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream: setting out standby
+424:09-26 15:23:13.667  2328  2440 V audio_hw_primary_dash5dv: out_set_format: format = 0x1
+425:09-26 15:23:13.667  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream:2482 out-> 0xf9afcbe1f380 bus: bus1_navigation_out 
+426:09-26 15:23:13.667  2328  2440 V audio_hw_primary_dash5dv: out_get_buffer_size_low_latency: size 768, audio_stream_frame_size 4
+427:09-26 15:23:13.670  2328  2440 V audio_hw_primary_dash5dv: out_get_buffer_size_low_latency: size 768, audio_stream_frame_size 4
+429:09-26 15:23:13.671  2328  2440 V audio_hw_primary_dash5dv: out_get_buffer_size_low_latency: size 768, audio_stream_frame_size 4
+432:09-26 15:23:13.672  2328  2440 D audio_hw_primary_dash5dv: out_standby out->bus_address bus1_navigation_out out->format 0x1
+472:09-26 15:23:13.673  2328  2440 D audio_hw_primary_dash5dv: adev_create_audio_patch: source[0] type=2 address=
+474:09-26 15:23:13.673  2328  2440 D audio_hw_primary_dash5dv: adev_create_audio_patch: sink[0] type=1 address=bus1_navigation_out
+485:09-26 15:23:13.674  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream dev 0xf9afcbe1c000
+486:09-26 15:23:13.674  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream() normal buffer
+487:09-26 15:23:13.674  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream: setting out standby
+488:09-26 15:23:13.674  2328  2440 V audio_hw_primary_dash5dv: out_set_format: format = 0x1
+489:09-26 15:23:13.674  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream:2482 out-> 0xf9afcbe1f540 bus: bus2_voice_command_out 
+490:09-26 15:23:13.675  2328  2440 V audio_hw_primary_dash5dv: out_get_buffer_size_low_latency: size 768, audio_stream_frame_size 4
+491:09-26 15:23:13.676  2328  2440 V audio_hw_primary_dash5dv: out_get_buffer_size_low_latency: size 768, audio_stream_frame_size 4
+493:09-26 15:23:13.677  2328  2440 V audio_hw_primary_dash5dv: out_get_buffer_size_low_latency: size 768, audio_stream_frame_size 4
+496:09-26 15:23:13.680  2328  2440 D audio_hw_primary_dash5dv: adev_create_audio_patch: source[0] type=2 address=
+497:09-26 15:23:13.680  2328  2440 D audio_hw_primary_dash5dv: adev_create_audio_patch: sink[0] type=1 address=bus2_voice_command_out
+498:09-26 15:23:13.681  2328  2440 D audio_hw_primary_dash5dv: out_standby out->bus_address bus2_voice_command_out out->format 0x1
+500:09-26 15:23:13.681  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream dev 0xf9afcbe1c000
+501:09-26 15:23:13.681  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream() normal buffer
+502:09-26 15:23:13.681  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream: setting out standby
+503:09-26 15:23:13.681  2328  2440 V audio_hw_primary_dash5dv: out_set_format: format = 0x1
+504:09-26 15:23:13.681  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream:2482 out-> 0xf9afcbe1f700 bus: bus3_call_ring_out 
+505:09-26 15:23:13.682  2328  2440 V audio_hw_primary_dash5dv: out_get_buffer_size_low_latency: size 768, audio_stream_frame_size 4
+506:09-26 15:23:13.684  2328  2440 V audio_hw_primary_dash5dv: out_get_buffer_size_low_latency: size 768, audio_stream_frame_size 4
+508:09-26 15:23:13.684  2328  2440 V audio_hw_primary_dash5dv: out_get_buffer_size_low_latency: size 768, audio_stream_frame_size 4
+511:09-26 15:23:13.688  2328  2440 D audio_hw_primary_dash5dv: adev_create_audio_patch: source[0] type=2 address=
+512:09-26 15:23:13.688  2328  2440 D audio_hw_primary_dash5dv: adev_create_audio_patch: sink[0] type=1 address=bus3_call_ring_out
+513:09-26 15:23:13.688  2328  2440 D audio_hw_primary_dash5dv: out_standby out->bus_address bus3_call_ring_out out->format 0x1
+515:09-26 15:23:13.689  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream dev 0xf9afcbe1c000
+516:09-26 15:23:13.689  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream() normal buffer
+517:09-26 15:23:13.689  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream: setting out standby
+518:09-26 15:23:13.689  2328  2440 V audio_hw_primary_dash5dv: out_set_format: format = 0x1
+519:09-26 15:23:13.689  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream:2482 out-> 0xf9afcbe1f8c0 bus: bus4_call_out 
+520:09-26 15:23:13.689  2328  2440 V audio_hw_primary_dash5dv: out_get_buffer_size_low_latency: size 768, audio_stream_frame_size 4
+521:09-26 15:23:13.691  2328  2440 V audio_hw_primary_dash5dv: out_get_buffer_size_low_latency: size 768, audio_stream_frame_size 4
+523:09-26 15:23:13.691  2328  2440 V audio_hw_primary_dash5dv: out_get_buffer_size_low_latency: size 768, audio_stream_frame_size 4
+526:09-26 15:23:13.692  2328  2440 D audio_hw_primary_dash5dv: adev_create_audio_patch: source[0] type=2 address=
+527:09-26 15:23:13.692  2328  2440 D audio_hw_primary_dash5dv: adev_create_audio_patch: sink[0] type=1 address=bus4_call_out
+528:09-26 15:23:13.693  2328  2440 D audio_hw_primary_dash5dv: out_standby out->bus_address bus4_call_out out->format 0x1
+530:09-26 15:23:13.693  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream dev 0xf9afcbe1c000
+531:09-26 15:23:13.693  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream() normal buffer
+532:09-26 15:23:13.693  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream: setting out standby
+533:09-26 15:23:13.693  2328  2440 V audio_hw_primary_dash5dv: out_set_format: format = 0x1
+534:09-26 15:23:13.693  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream:2482 out-> 0xf9afcbe1fa80 bus: bus5_alarm_out 
+535:09-26 15:23:13.693  2328  2440 V audio_hw_primary_dash5dv: out_get_buffer_size_low_latency: size 768, audio_stream_frame_size 4
+536:09-26 15:23:13.695  2328  2440 V audio_hw_primary_dash5dv: out_get_buffer_size_low_latency: size 768, audio_stream_frame_size 4
+538:09-26 15:23:13.695  2328  2440 V audio_hw_primary_dash5dv: out_get_buffer_size_low_latency: size 768, audio_stream_frame_size 4
+541:09-26 15:23:13.696  2328  2440 D audio_hw_primary_dash5dv: out_standby out->bus_address bus5_alarm_out out->format 0x1
+544:09-26 15:23:13.697  2328  2440 D audio_hw_primary_dash5dv: adev_create_audio_patch: source[0] type=2 address=
+545:09-26 15:23:13.697  2328  2440 D audio_hw_primary_dash5dv: adev_create_audio_patch: sink[0] type=1 address=bus5_alarm_out
+547:09-26 15:23:13.697  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream dev 0xf9afcbe1c000
+548:09-26 15:23:13.697  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream() normal buffer
+549:09-26 15:23:13.697  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream: setting out standby
+550:09-26 15:23:13.697  2328  2440 V audio_hw_primary_dash5dv: out_set_format: format = 0x1
+551:09-26 15:23:13.697  2328  2440 V audio_hw_primary_dash5dv: adev_open_output_stream:2482 out-> 0xf9afcbe1fc40 bus: bus6_notification_out 
+552:09-26 15:23:13.698  2328  2440 V audio_hw_primary_dash5dv: out_get_buffer_size_low_latency: size 768, audio_stream_frame_size 4
+553:09-26 15:23:13.706  2328  2468 V audio_hw_primary_dash5dv: out_get_buffer_size_low_latency: size 768, audio_stream_frame_size 4
+555:09-26 15:23:13.706  2328  2468 V audio_hw_primary_dash5dv: out_get_buffer_size_low_latency: size 768, audio_stream_frame_size 4
+558:09-26 15:23:13.707  2328  2468 D audio_hw_primary_dash5dv: out_standby out->bus_address bus6_notification_out out->format 0x1
+560:09-26 15:23:13.708  2328  2468 D audio_hw_primary_dash5dv: adev_create_audio_patch: source[0] type=2 address=
+561:09-26 15:23:13.708  2328  2468 D audio_hw_primary_dash5dv: adev_create_audio_patch: sink[0] type=1 address=bus6_notification_out
+563:09-26 15:23:13.708  2328  2468 V audio_hw_primary_dash5dv: adev_open_output_stream dev 0xf9afcbe1c000
+564:09-26 15:23:13.708  2328  2468 V audio_hw_primary_dash5dv: adev_open_output_stream() normal buffer
+565:09-26 15:23:13.708  2328  2468 V audio_hw_primary_dash5dv: adev_open_output_stream: setting out standby
+566:09-26 15:23:13.708  2328  2468 V audio_hw_primary_dash5dv: out_set_format: format = 0x1
+567:09-26 15:23:13.708  2328  2468 V audio_hw_primary_dash5dv: adev_open_output_stream:2482 out-> 0xf9afcc268000 bus: bus7_system_sound_out 
+568:09-26 15:23:13.709  2328  2468 V audio_hw_primary_dash5dv: out_get_buffer_size_low_latency: size 768, audio_stream_frame_size 4
+569:09-26 15:23:13.710  2328  2468 V audio_hw_primary_dash5dv: out_get_buffer_size_low_latency: size 768, audio_stream_frame_size 4
+571:09-26 15:23:13.711  2328  2468 V audio_hw_primary_dash5dv: out_get_buffer_size_low_latency: size 768, audio_stream_frame_size 4
+575:09-26 15:23:13.713  2328  2468 D audio_hw_primary_dash5dv: out_standby out->bus_address bus7_system_sound_out out->format 0x1
+577:09-26 15:23:13.714  2328  2468 D audio_hw_primary_dash5dv: adev_create_audio_patch: source[0] type=2 address=
+578:09-26 15:23:13.714  2328  2468 D audio_hw_primary_dash5dv: adev_create_audio_patch: sink[0] type=1 address=bus7_system_sound_out
+579:09-26 15:23:13.716  2328  2468 V audio_hw_primary_dash5dv: adev_open_input_stream: req_rate = 48000, format = 1, ch = 2
+581:09-26 15:23:13.718  2328  2440 V audio_hw_primary_dash5dv: adev_open_input_stream: req_rate = 48000, format = 1, ch = 2
+582:09-26 15:23:13.719  2328  2328 V audio_hw_primary_dash5dv: adev_close_input_stream:2911
+583:09-26 15:23:13.719  2328  2328 V audio_hw_primary_dash5dv: in_standby adev->active_input 0x0
+585:09-26 15:23:13.721  2328  2499 V audio_hw_primary_dash5dv: adev_close_input_stream:2911
+586:09-26 15:23:13.721  2328  2499 V audio_hw_primary_dash5dv: in_standby adev->active_input 0x0
+1499:07-23 19:01:17.540  2328  2440 V audio_hw_primary_dash5dv: adev_set_master_volume volume=1.000000
+1500:07-23 19:01:17.541  2328  2781 V audio_hw_primary_dash5dv: adev_set_mic_mute state 0
+1502:07-23 19:01:17.544  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+1503:07-23 19:01:17.544  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+1504:07-23 19:01:17.545  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+1505:07-23 19:01:17.545  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+1506:07-23 19:01:17.545  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+1507:07-23 19:01:17.545  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+1508:07-23 19:01:17.545  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+1509:07-23 19:01:17.545  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+1510:07-23 19:01:17.546  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+1511:07-23 19:01:17.546  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+1512:07-23 19:01:17.546  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+1513:07-23 19:01:17.546  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+1514:07-23 19:01:17.546  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+1515:07-23 19:01:17.546  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+1516:07-23 19:01:17.546  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+1517:07-23 19:01:17.546  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+1518:07-23 19:01:17.549  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+1519:07-23 19:01:17.549  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+1520:07-23 19:01:17.550  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+1521:07-23 19:01:17.550  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+1522:07-23 19:01:17.550  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+1523:07-23 19:01:17.550  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+1524:07-23 19:01:17.550  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+1525:07-23 19:01:17.550  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+1526:07-23 19:01:17.550  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+1527:07-23 19:01:17.550  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+1528:07-23 19:01:17.551  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+1529:07-23 19:01:17.551  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+1532:07-23 19:01:17.551  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+1533:07-23 19:01:17.551  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+1534:07-23 19:01:17.552  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+1535:07-23 19:01:17.552  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+1847:07-23 19:01:17.904  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: A2dpSuspended=false
+1848:07-23 19:01:17.905  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "A2dpSuspended=false".
+1857:07-23 19:01:17.906  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: BT_SCO=off
+1858:07-23 19:01:17.906  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "BT_SCO=off".
+2431:07-23 19:01:19.491  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: card=2;connect=67108864;device=0
+2432:07-23 19:01:19.491  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "card=2;connect=67108864;device=0".
+2676:07-23 19:01:20.013  2328  2781 V audio_hw_primary_dash5dv: adev_set_voice_volume 1.000000
+2689:07-23 19:01:20.022  2328  2328 D audio_hw_primary_dash5dv: adev_release_audio_patch: handle: 0
+2690:07-23 19:01:20.023  2328  2781 D audio_hw_primary_dash5dv: adev_release_audio_patch: handle: 0
+2691:07-23 19:01:20.024  2328  2328 D audio_hw_primary_dash5dv: adev_release_audio_patch: handle: 0
+2692:07-23 19:01:20.025  2328  2781 D audio_hw_primary_dash5dv: adev_release_audio_patch: handle: 0
+2693:07-23 19:01:20.026  2328  2781 D audio_hw_primary_dash5dv: adev_release_audio_patch: handle: 0
+2694:07-23 19:01:20.027  2328  2328 D audio_hw_primary_dash5dv: adev_release_audio_patch: handle: 0
+2695:07-23 19:01:20.028  2328  2781 D audio_hw_primary_dash5dv: adev_release_audio_patch: handle: 0
+2697:07-23 19:01:20.032  2328  2328 D audio_hw_primary_dash5dv: adev_release_audio_patch: handle: 0
+2698:07-23 19:01:20.037  2328  2328 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: card=2;connect=-2113929216;device=0
+2699:07-23 19:01:20.037  2328  2328 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "card=2;connect=-2113929216;device=0".
+2903:07-23 19:01:20.394  2328  2781 V audio_hw_primary_dash5dv: hashmapGet: bus_address: bus0_media_out -> out 0xf9afcbe1f1c0
+2904:07-23 19:01:20.394  2328  2781 D audio_hw_primary_dash5dv: adev_set_audio_port_config: config->gain.values[0]= 48 on bus0_media_out
+2914:07-23 19:01:20.405  2328  2781 D audio_hw_primary_dash5dv: Sent update_volume to client.c:
+2916:07-23 19:01:20.406  2328  2781 V audio_hw_primary_dash5dv: hashmapGet: bus_address: bus1_navigation_out -> out 0xf9afcbe1f380
+2917:07-23 19:01:20.406  2328  2781 D audio_hw_primary_dash5dv: adev_set_audio_port_config: config->gain.values[0]= 39 on bus1_navigation_out
+2921:07-23 19:01:20.406  2328  2781 D audio_hw_primary_dash5dv: Sent update_volume to client.c:
+2924:07-23 19:01:20.408  2328  2781 V audio_hw_primary_dash5dv: hashmapGet: bus_address: bus4_call_out -> out 0xf9afcbe1f8c0
+2925:07-23 19:01:20.408  2328  2781 D audio_hw_primary_dash5dv: adev_set_audio_port_config: config->gain.values[0]= 39 on bus4_call_out
+2929:07-23 19:01:20.408  2328  2781 D audio_hw_primary_dash5dv: Sent update_volume to client.c:
+2934:07-23 19:01:20.410  2328  2781 V audio_hw_primary_dash5dv: hashmapGet: bus_address: bus2_voice_command_out -> out 0xf9afcbe1f540
+2935:07-23 19:01:20.410  2328  2781 D audio_hw_primary_dash5dv: adev_set_audio_port_config: config->gain.values[0]= 51 on bus2_voice_command_out
+2939:07-23 19:01:20.410  2328  2781 D audio_hw_primary_dash5dv: Sent update_volume to client.c:
+2940:07-23 19:01:20.411  2328  2781 V audio_hw_primary_dash5dv: hashmapGet: bus_address: bus3_call_ring_out -> out 0xf9afcbe1f700
+2941:07-23 19:01:20.411  2328  2781 D audio_hw_primary_dash5dv: adev_set_audio_port_config: config->gain.values[0]= 51 on bus3_call_ring_out
+2942:07-23 19:01:20.411  2328  2781 D audio_hw_primary_dash5dv: adev_set_audio_port_config  bus bus3_call_ring_out not supported for volume
+2943:07-23 19:01:20.411  2328  2781 D audio_hw_primary_dash5dv: Sent update_volume to client.c:
+2944:07-23 19:01:20.412  2328  2781 V audio_hw_primary_dash5dv: hashmapGet: bus_address: bus5_alarm_out -> out 0xf9afcbe1fa80
+2945:07-23 19:01:20.412  2328  2781 D audio_hw_primary_dash5dv: adev_set_audio_port_config: config->gain.values[0]= 51 on bus5_alarm_out
+2946:07-23 19:01:20.412  2328  2781 D audio_hw_primary_dash5dv: adev_set_audio_port_config  bus bus5_alarm_out not supported for volume
+2947:07-23 19:01:20.412  2328  2781 D audio_hw_primary_dash5dv: Sent update_volume to client.c:
+2948:07-23 19:01:20.413  2328  2781 V audio_hw_primary_dash5dv: hashmapGet: bus_address: bus6_notification_out -> out 0xf9afcbe1fc40
+2949:07-23 19:01:20.413  2328  2781 D audio_hw_primary_dash5dv: adev_set_audio_port_config: config->gain.values[0]= 51 on bus6_notification_out
+2950:07-23 19:01:20.413  2328  2781 D audio_hw_primary_dash5dv: adev_set_audio_port_config  bus bus6_notification_out not supported for volume
+2951:07-23 19:01:20.413  2328  2781 D audio_hw_primary_dash5dv: Sent update_volume to client.c:
+2952:07-23 19:01:20.414  2328  2781 V audio_hw_primary_dash5dv: hashmapGet: bus_address: bus7_system_sound_out -> out 0xf9afcc268000
+2953:07-23 19:01:20.414  2328  2781 D audio_hw_primary_dash5dv: adev_set_audio_port_config: config->gain.values[0]= 51 on bus7_system_sound_out
+2954:07-23 19:01:20.414  2328  2781 D audio_hw_primary_dash5dv: adev_set_audio_port_config  bus bus7_system_sound_out not supported for volume
+2955:07-23 19:01:20.414  2328  2781 D audio_hw_primary_dash5dv: Sent update_volume to client.c:
+3070:07-23 19:01:20.607  2328  2328 V audio_hw_primary_dash5dv: adev_set_master_volume volume=1.000000
+3071:07-23 19:01:20.609  2328  2328 V audio_hw_primary_dash5dv: adev_set_mic_mute state 0
+3073:07-23 19:01:20.611  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3074:07-23 19:01:20.611  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3075:07-23 19:01:20.612  2328  2328 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3076:07-23 19:01:20.612  2328  2328 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3077:07-23 19:01:20.612  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3078:07-23 19:01:20.612  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3079:07-23 19:01:20.613  2328  2328 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3080:07-23 19:01:20.613  2328  2328 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3081:07-23 19:01:20.613  2328  2328 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3082:07-23 19:01:20.613  2328  2328 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3084:07-23 19:01:20.614  2328  2328 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3085:07-23 19:01:20.614  2328  2328 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3086:07-23 19:01:20.614  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3087:07-23 19:01:20.614  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3088:07-23 19:01:20.614  2328  2328 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3089:07-23 19:01:20.614  2328  2328 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3090:07-23 19:01:20.615  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3091:07-23 19:01:20.615  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3093:07-23 19:01:20.615  2328  2328 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3094:07-23 19:01:20.615  2328  2328 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3112:07-23 19:01:20.618  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3113:07-23 19:01:20.618  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3114:07-23 19:01:20.618  2328  2328 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3115:07-23 19:01:20.618  2328  2328 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3116:07-23 19:01:20.619  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3117:07-23 19:01:20.619  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3118:07-23 19:01:20.620  2328  2328 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3119:07-23 19:01:20.620  2328  2328 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3120:07-23 19:01:20.620  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3121:07-23 19:01:20.620  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3122:07-23 19:01:20.621  2328  2328 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3123:07-23 19:01:20.621  2328  2328 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3124:07-23 19:01:20.621  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3125:07-23 19:01:20.621  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3126:07-23 19:01:20.621  2328  2328 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3127:07-23 19:01:20.621  2328  2328 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3128:07-23 19:01:20.622  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3129:07-23 19:01:20.622  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3131:07-23 19:01:20.622  2328  2328 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3132:07-23 19:01:20.622  2328  2328 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3136:07-23 19:01:20.632  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3137:07-23 19:01:20.632  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3138:07-23 19:01:20.633  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3139:07-23 19:01:20.633  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3140:07-23 19:01:20.633  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3142:07-23 19:01:20.634  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3144:07-23 19:01:20.635  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3145:07-23 19:01:20.635  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3150:07-23 19:01:20.640  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3151:07-23 19:01:20.640  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3152:07-23 19:01:20.641  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3153:07-23 19:01:20.641  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3154:07-23 19:01:20.641  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3155:07-23 19:01:20.641  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3156:07-23 19:01:20.642  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3157:07-23 19:01:20.642  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3158:07-23 19:01:20.643  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3159:07-23 19:01:20.644  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3162:07-23 19:01:20.644  2328  2328 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+3163:07-23 19:01:20.644  2328  2328 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+3327:07-23 19:01:20.910  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: A2dpSuspended=false
+3328:07-23 19:01:20.910  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "A2dpSuspended=false".
+3330:07-23 19:01:20.912  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: BT_SCO=off
+3331:07-23 19:01:20.912  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "BT_SCO=off".
+4645:08-06 23:49:57.894  2328  2440 V audio_hw_primary_dash5dv: adev_set_master_volume volume=1.000000
+4649:08-06 23:49:57.902  2328  2440 V audio_hw_primary_dash5dv: adev_set_mic_mute state 0
+4651:08-06 23:49:57.904  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4653:08-06 23:49:57.904  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4654:08-06 23:49:57.905  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4655:08-06 23:49:57.905  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4656:08-06 23:49:57.906  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4657:08-06 23:49:57.906  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4658:08-06 23:49:57.906  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4659:08-06 23:49:57.906  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4660:08-06 23:49:57.907  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4661:08-06 23:49:57.907  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4662:08-06 23:49:57.907  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4663:08-06 23:49:57.908  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4664:08-06 23:49:57.908  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4665:08-06 23:49:57.908  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4666:08-06 23:49:57.908  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4667:08-06 23:49:57.908  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4668:08-06 23:49:57.909  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4669:08-06 23:49:57.909  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4671:08-06 23:49:57.909  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4672:08-06 23:49:57.909  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4682:08-06 23:49:57.914  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4683:08-06 23:49:57.914  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4684:08-06 23:49:57.915  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4685:08-06 23:49:57.915  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4686:08-06 23:49:57.915  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4687:08-06 23:49:57.915  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4689:08-06 23:49:57.916  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4690:08-06 23:49:57.916  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4691:08-06 23:49:57.917  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4692:08-06 23:49:57.917  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4694:08-06 23:49:57.917  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4695:08-06 23:49:57.918  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4698:08-06 23:49:57.918  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4699:08-06 23:49:57.918  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4700:08-06 23:49:57.918  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4701:08-06 23:49:57.918  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4702:08-06 23:49:57.919  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4703:08-06 23:49:57.919  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4705:08-06 23:49:57.920  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4706:08-06 23:49:57.920  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4715:08-06 23:49:57.925  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4716:08-06 23:49:57.925  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4717:08-06 23:49:57.926  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4718:08-06 23:49:57.926  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4719:08-06 23:49:57.927  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4720:08-06 23:49:57.927  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4721:08-06 23:49:57.927  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4722:08-06 23:49:57.927  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4723:08-06 23:49:57.932  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4724:08-06 23:49:57.932  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4727:08-06 23:49:57.933  2328  2440 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4728:08-06 23:49:57.933  2328  2440 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4729:08-06 23:49:57.933  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4730:08-06 23:49:57.933  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4733:08-06 23:49:57.936  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4734:08-06 23:49:57.936  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4735:08-06 23:49:57.936  2328  2468 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4736:08-06 23:49:57.936  2328  2468 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+4738:08-06 23:49:57.937  2328  2781 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: __defvolume__=1.0000000000
+4739:08-06 23:49:57.937  2328  2781 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "__defvolume__=1.0000000000".
+8588:08-06 23:50:04.477  2328  2468 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: connect=-2147475456
+8589:08-06 23:50:04.477  2328  2468 E audio_hw_primary_dash5dv: adev_set_parameters: Unhandled kvpair: "connect=-2147475456".
+8595:08-06 23:50:04.478  2328  2468 V audio_hw_primary_dash5dv: adev_open_input_stream: req_rate = 48000, format = 1, ch = 2
+8634:08-06 23:50:04.502  2328  2468 V audio_hw_primary_dash5dv: in_standby adev->active_input 0x0
+8639:08-06 23:50:04.509  2328  2468 V audio_hw_primary_dash5dv: in_standby adev->active_input 0x0
+8640:08-06 23:50:04.511  2328  2468 V audio_hw_primary_dash5dv: adev_close_input_stream:2911
+8641:08-06 23:50:04.511  2328  2468 V audio_hw_primary_dash5dv: in_standby adev->active_input 0x0
+19263:08-06 23:50:18.706  2328  2328 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: ICC_AUDIO_TRIGGER=2:1
+19264:08-06 23:50:18.706  2328  2328 V audio_hw_primary_dash5dv: handle_icc_audio_trigger: index=2 value=1
+19275:08-06 23:50:18.707  2328  2328 V audio_hw_primary_dash5dv: adev_set_parameters kvpairs: ICC_AUDIO_TRIGGER=0:0
+19276:08-06 23:50:18.707  2328  2328 V audio_hw_primary_dash5dv: handle_icc_audio_trigger: index=0 value=0
+==========================================================================================================================================================================================
+2434:07-23 19:01:19.492  2328  2781 V modules.usbaudio.audio_hal: adev_open_output_stream() handle:0x4D, devicesSpec:0x4000000, flags:0x0, addr:card=2;device=0
+2576:07-23 19:01:19.739  2328  2440 V modules.usbaudio.audio_hal: out_get_sample_rate() = 48000
+2577:07-23 19:01:19.741  2328  2440 V modules.usbaudio.audio_hal: out_get_sample_rate() = 48000
+2579:07-23 19:01:19.743  2328  2440 V modules.usbaudio.audio_hal: out_get_sample_rate() = 48000
+2581:07-23 19:01:19.745  2328  2440 V modules.usbaudio.audio_hal: out_set_parameters() keys:card=2;device=0
+2583:07-23 19:01:19.745  2328  2781 V modules.usbaudio.audio_hal: device_get_parameters = sup_formats=AUDIO_FORMAT_PCM_16_BIT
+2584:07-23 19:01:19.746  2328  2781 V modules.usbaudio.audio_hal: device_get_parameters = sup_sampling_rates=48000|44100|32000|24000|16000|8000
+2585:07-23 19:01:19.746  2328  2781 V modules.usbaudio.audio_hal: device_get_parameters = sup_channels=AUDIO_CHANNEL_OUT_STEREO|AUDIO_CHANNEL_INDEX_MASK_2
+2587:07-23 19:01:19.747  2328  2781 V modules.usbaudio.audio_hal: out_set_parameters() keys:closing=true
+2589:07-23 19:01:19.748  2328  2440 V modules.usbaudio.audio_hal: out_set_parameters() keys:exiting=1
+2592:07-23 19:01:19.750  2328  2328 V modules.usbaudio.audio_hal: adev_open_output_stream() handle:0x55, devicesSpec:0x4000000, flags:0x0, addr:card=2;device=0
+2593:07-23 19:01:19.751  2328  2781 V modules.usbaudio.audio_hal: adev_close_output_stream(c:2 d:0)
+2671:07-23 19:01:20.010  2328  2781 V modules.usbaudio.audio_hal: out_get_sample_rate() = 48000
+2672:07-23 19:01:20.012  2328  2781 V modules.usbaudio.audio_hal: out_get_sample_rate() = 48000
+2674:07-23 19:01:20.012  2328  2781 V modules.usbaudio.audio_hal: out_get_sample_rate() = 48000
+2681:07-23 19:01:20.018  2328  2781 V modules.usbaudio.audio_hal: out_get_sample_rate() = 48000
+2700:07-23 19:01:20.037  2328  2328 V modules.usbaudio.audio_hal: adev_open_input_stream() rate:0, chanMask:0x0, fmt:0
+2817:07-23 19:01:20.356  2328  2328 V modules.usbaudio.audio_hal: in_get_sample_rate() = 48000
+2818:07-23 19:01:20.357  2328  2328 V modules.usbaudio.audio_hal: in_get_sample_rate() = 48000
+2822:07-23 19:01:20.359  2328  2328 V modules.usbaudio.audio_hal: in_get_sample_rate() = 48000
+2825:07-23 19:01:20.362  2328  2781 V modules.usbaudio.audio_hal: in_set_parameters() keys:card=2;device=0
+2828:07-23 19:01:20.363  2328  2781 V modules.usbaudio.audio_hal: device_get_parameters = sup_formats=AUDIO_FORMAT_PCM_16_BIT
+2829:07-23 19:01:20.363  2328  2781 V modules.usbaudio.audio_hal: device_get_parameters = sup_sampling_rates=48000|44100|32000|24000|16000|8000
+2830:07-23 19:01:20.364  2328  2781 V modules.usbaudio.audio_hal: device_get_parameters = sup_channels=AUDIO_CHANNEL_IN_STEREO|AUDIO_CHANNEL_INDEX_MASK_2
+2831:07-23 19:01:20.366  2328  2781 V modules.usbaudio.audio_hal: adev_close_input_stream(c:2 d:0)
+19044:08-06 23:50:18.093  2328  2499 V modules.usbaudio.audio_hal: adev_open_input_stream() rate:16000, chanMask:0xC, fmt:1
+19045:08-06 23:50:18.309  2328  2328 V modules.usbaudio.audio_hal: in_get_sample_rate() = 16000
+19047:08-06 23:50:18.311  2328  2328 V modules.usbaudio.audio_hal: in_get_sample_rate() = 16000
+28556:08-06 23:51:21.306  2328  2499 V modules.usbaudio.audio_hal: out_set_parameters() keys:card=2;device=0;routing=67108864
+28648:08-06 23:51:21.540  2328  3113 V modules.usbaudio.audio_hal: start_output_stream(card:2 device:0)
+30193:08-06 23:51:29.737  2328  3113 V modules.usbaudio.audio_hal: start_output_stream(card:2 device:0)
+==================================================================================================================================================================================================
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+[  225.160163] android_work: sent uevent USB_STATE=DISCONNECTED
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+[  227.369497] android_work: sent uevent USB_STATE=CONNECTED
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+[  227.520873] configfs-gadget gadget: high-speed config #1: b
+============================================================================
+52922:08-06 17:16:11.614  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+52923:08-06 17:16:11.614  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+52939:08-06 17:16:11.631  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+52941:08-06 17:16:11.711  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+52943:08-06 17:16:11.727  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+52944:08-06 17:16:11.772  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+52945:08-06 17:16:11.772  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+52946:08-06 17:16:11.772  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+52947:08-06 17:16:11.789  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+52949:08-06 17:16:11.883  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+52951:08-06 17:16:11.928  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+52952:08-06 17:16:11.928  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+52953:08-06 17:16:11.928  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+52954:08-06 17:16:11.945  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+52956:08-06 17:16:12.086  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+52957:08-06 17:16:12.086  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+52958:08-06 17:16:12.086  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+52959:08-06 17:16:12.103  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+52961:08-06 17:16:12.151  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+52963:08-06 17:16:12.198  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+52965:08-06 17:16:12.244  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+52966:08-06 17:16:12.244  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+52967:08-06 17:16:12.244  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+52968:08-06 17:16:12.260  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+52970:08-06 17:16:12.404  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+52971:08-06 17:16:12.404  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+52972:08-06 17:16:12.404  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+52973:08-06 17:16:12.421  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+52975:08-06 17:16:12.486  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+53035:08-06 17:16:12.501  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+53042:08-06 17:16:12.502  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+53211:08-06 17:16:12.519  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+53443:08-06 17:16:12.566  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+53444:08-06 17:16:12.566  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+53445:08-06 17:16:12.566  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+53446:08-06 17:16:12.583  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+53448:08-06 17:16:12.649  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+53450:08-06 17:16:12.664  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+53452:08-06 17:16:12.726  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+53453:08-06 17:16:12.726  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+53454:08-06 17:16:12.726  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+53455:08-06 17:16:12.743  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+53457:08-06 17:16:12.840  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+53459:08-06 17:16:12.886  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+53460:08-06 17:16:12.886  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+53461:08-06 17:16:12.886  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+53462:08-06 17:16:12.902  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+53464:08-06 17:16:13.043  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+53465:08-06 17:16:13.044  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+53466:08-06 17:16:13.044  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+53467:08-06 17:16:13.060  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+53469:08-06 17:16:13.201  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+53470:08-06 17:16:13.201  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+53471:08-06 17:16:13.201  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+53472:08-06 17:16:13.218  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+53474:08-06 17:16:13.360  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+53475:08-06 17:16:13.361  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+53476:08-06 17:16:13.361  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+53477:08-06 17:16:13.377  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+53479:08-06 17:16:13.518  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+53480:08-06 17:16:13.518  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+53481:08-06 17:16:13.518  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+53482:08-06 17:16:13.534  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+53484:08-06 17:16:13.675  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+53485:08-06 17:16:13.675  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+53486:08-06 17:16:13.675  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+53487:08-06 17:16:13.691  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+53901:08-06 17:16:13.743  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54005:08-06 17:16:13.759  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54006:08-06 17:16:13.759  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54088:08-06 17:16:13.775  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54089:08-06 17:16:13.775  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54092:08-06 17:16:13.790  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54093:08-06 17:16:13.837  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54094:08-06 17:16:13.837  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+54095:08-06 17:16:13.838  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+54096:08-06 17:16:13.854  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54098:08-06 17:16:13.996  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54099:08-06 17:16:13.996  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+54100:08-06 17:16:13.996  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+54101:08-06 17:16:14.013  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54103:08-06 17:16:14.156  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54104:08-06 17:16:14.156  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+54105:08-06 17:16:14.156  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+54106:08-06 17:16:14.173  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54108:08-06 17:16:14.253  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54111:08-06 17:16:14.269  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54112:08-06 17:16:14.314  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54113:08-06 17:16:14.314  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+54114:08-06 17:16:14.314  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+54115:08-06 17:16:14.330  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54117:08-06 17:16:14.474  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54118:08-06 17:16:14.474  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+54119:08-06 17:16:14.474  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+54120:08-06 17:16:14.490  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54122:08-06 17:16:14.633  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54123:08-06 17:16:14.633  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+54124:08-06 17:16:14.633  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+54140:08-06 17:16:14.650  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54142:08-06 17:16:14.746  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54144:08-06 17:16:14.794  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54145:08-06 17:16:14.794  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+54146:08-06 17:16:14.794  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+54147:08-06 17:16:14.810  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54149:08-06 17:16:14.950  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54150:08-06 17:16:14.950  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+54151:08-06 17:16:14.950  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+54152:08-06 17:16:14.966  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54155:08-06 17:16:15.015  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54157:08-06 17:16:15.108  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54158:08-06 17:16:15.108  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+54159:08-06 17:16:15.108  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+54302:08-06 17:16:15.124  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54604:08-06 17:16:15.176  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54607:08-06 17:16:15.192  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54609:08-06 17:16:15.224  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54611:08-06 17:16:15.271  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54612:08-06 17:16:15.271  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+54613:08-06 17:16:15.271  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+54646:08-06 17:16:15.287  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54817:08-06 17:16:15.337  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54819:08-06 17:16:15.352  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54821:08-06 17:16:15.429  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54822:08-06 17:16:15.429  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+54823:08-06 17:16:15.429  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+54824:08-06 17:16:15.447  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54826:08-06 17:16:15.587  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54827:08-06 17:16:15.587  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+54828:08-06 17:16:15.587  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+54829:08-06 17:16:15.604  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54831:08-06 17:16:15.746  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54832:08-06 17:16:15.746  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+54833:08-06 17:16:15.746  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+54834:08-06 17:16:15.762  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54836:08-06 17:16:15.902  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54837:08-06 17:16:15.902  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+54838:08-06 17:16:15.902  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+54839:08-06 17:16:15.919  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54841:08-06 17:16:16.013  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54843:08-06 17:16:16.058  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54844:08-06 17:16:16.058  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+54845:08-06 17:16:16.058  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+54846:08-06 17:16:16.075  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54848:08-06 17:16:16.125  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54850:08-06 17:16:16.171  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54852:08-06 17:16:16.217  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54853:08-06 17:16:16.217  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+54854:08-06 17:16:16.217  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+54855:08-06 17:16:16.234  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54857:08-06 17:16:16.314  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+54985:08-06 17:16:16.330  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+55422:08-06 17:16:16.376  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+55424:08-06 17:16:16.376  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+55425:08-06 17:16:16.376  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+55461:08-06 17:16:16.393  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+55463:08-06 17:16:16.488  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+55471:08-06 17:16:16.535  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+55472:08-06 17:16:16.535  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+55473:08-06 17:16:16.535  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+55475:08-06 17:16:16.552  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+55477:08-06 17:16:16.693  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+55478:08-06 17:16:16.693  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+55479:08-06 17:16:16.693  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+55481:08-06 17:16:16.709  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+55482:08-06 17:16:16.759  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+55484:08-06 17:16:16.774  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+55486:08-06 17:16:16.852  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+55487:08-06 17:16:16.852  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+55488:08-06 17:16:16.852  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+55489:08-06 17:16:16.868  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+55491:08-06 17:16:17.009  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+55492:08-06 17:16:17.010  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+55493:08-06 17:16:17.010  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+55494:08-06 17:16:17.026  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+55496:08-06 17:16:17.090  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+55498:08-06 17:16:17.105  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+55500:08-06 17:16:17.121  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+55502:08-06 17:16:17.167  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+55503:08-06 17:16:17.167  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+55504:08-06 17:16:17.167  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+55505:08-06 17:16:17.183  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+55507:08-06 17:16:17.279  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+55509:08-06 17:16:17.326  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+55510:08-06 17:16:17.326  1685  1858 V audio_hw_primary_dash5dv: mixer_pipeline_write pcm_write error: ret: -1
+55511:08-06 17:16:17.326  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
+55512:08-06 17:16:17.342  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+55514:08-06 17:16:17.408  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+
 
