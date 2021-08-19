@@ -895,6 +895,7 @@ dash5dv:/ # cat /proc/asound/cards
 source build/env..
 lunch56
 mmm hardware/libhardware/modules/usbaudio/
+mmm device/renesas/dash5dv/hal/audio
 adb remount
 adb push out/target/product/phoenix/system/lib/hw/audio.usb.default.so /system/lib/
 adb push out/target/product/phoenix/system/lib64/hw/audio.usb.default.so /system/lib64/hw/
@@ -1792,5 +1793,724 @@ virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
 55511:08-06 17:16:17.326  1685  1858 E audio_hw_primary_dash5dv: out_write_low_latency: pcm_write Error -1, Unknown error -1
 55512:08-06 17:16:17.342  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
 55514:08-06 17:16:17.408  1685  1858 D audio_hw_primary_dash5dv: out_write_low_latency Bytes 3072, adev 0xe0b46221c000,  out(0xe0b46221f1c0)->standby 0 frame_size 4, in_frames 768 out->bus_address bus0_media_out
+
+===============================================================================================================================================================================
+id-minimal-dash5.qvmconf:174] virtio_audio_control: VDEV_CTRL_OPTIONS_START
+[id-minimal-dash5.qvmconf:174] virtio_audio_control: VDEV_CTRL_OPTIONS_END
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel info channel 0: pcm path pcmC0D0p, pcm caps 33024, audio_type=
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel info channel 1: pcm path pcmC0D0c, pcm caps 32768, audio_type=
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: rates=0x80; formats=0x10; min/max fragsize=8192/81920
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: min/max voices = 8/8; fragment_align = 8192; max_buffersize = 245760
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[0]=Front left
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[1]=Front right
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[2]=Front center
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[3]=LFE/Woofer
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[4]=Rear left
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[5]=Rear right
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[6]=Side left
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[7]=Side right
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 1: rates=0x80; formats=0x10; min/max fragsize=64/65536
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 1: min/max voices = 2/2; fragment_align = 1; max_buffersize = 262144
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 1: chmap_pos[0]=Front left
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 1: chmap_pos[1]=Front right
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume info: mixer path /dev/snd/mixerC0D0
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: capabilities=0x3d, voices=8
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[0]=Front left
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[1]=Front right
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[2]=Front center
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[3]=Rear left
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[4]=Rear right
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[5]=LFE/Woofer
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[6]=Side left
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[7]=Side right
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: vol range=0[0.00dB] to 600[0.00dB]
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: balance range=0 to 200
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: fade range=0 to 200
+[id-minimal-dash5.qvmconf:195] virtio_audio_control: VDEV_CTRL_OPTIONS_START
+[id-minimal-dash5.qvmconf:195] virtio_audio_control: VDEV_CTRL_OPTIONS_END
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel info channel 0: pcm path pcmC1D0p, pcm caps 33024, audio_type=
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel info channel 1: pcm path pcmC1D0c, pcm caps 32768, audio_type=
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel config for channel 0: rates=0xdffe; formats=0x10; min/max fragsize=2048/86016
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel config for channel 0: min/max voices = 2/2; fragment_align = 2048; max_buffersize = 258048
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[0]=Front left
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[1]=Front right
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel config for channel 1: rates=0xdffe; formats=0x10; min/max fragsize=64/65536
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel config for channel 1: min/max voices = 2/2; fragment_align = 1; max_buffersize = 262144
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel config for channel 1: chmap_pos[0]=Front left
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel config for channel 1: chmap_pos[1]=Front right
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: mixer control PCM Playback Volume info: mixer path /dev/snd/mixerC1D0
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: mixer control PCM Playback Volume config: capabilities=0x1d, voices=2
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[0]=Front left
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[1]=Front right
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: mixer control PCM Playback Volume config: vol range=0[0.00dB] to 600[0.00dB]
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: mixer control PCM Playback Volume config: balance range=0 to 200
+[id-minimal-dash5.qvmconf:207] virtio_audio_control: VDEV_CTRL_OPTIONS_START
+[id-minimal-dash5.qvmconf:207] virtio_audio_control: VDEV_CTRL_OPTIONS_END
+[id-minimal-dash5.qvmconf:207] virtio_audio_pcm_open: snd_pcm_open_name failed for path pcmC3D0p - No such file or directory
+[id-minimal-dash5.qvmconf:174] virtio_audio_control: VDEV_CTRL_TERMINATE
+[id-minimal-dash5.qvmconf:195] virtio_audio_control: VDEV_CTRL_TERMINATE
+====================================================================================================================
+system/media/alsa_utils/alsa_device_profile
+======================================================================================================================
+dash5dv-qnx#cat /data/slog1.txt | grep -irn pcmC0D0p
+-:91113:Dec 31 20:51:45.104                io_audio.589858                 slog      0  [14] ado_pcm_close_internal(2878): Closing SW Mixer pcmC0D0p subchn 0x10195bf0
+-:91117:Dec 31 20:51:45.104                io_audio.589858                 slog      0  [14] ado_pcm_close_internal(2878): Closing Hardware pcmC0D0p subchn 0x10195490
+-:91628:Dec 31 19:00:03.278                io_audio.589846                 slog      0  [14] ado_pcm_open_internal(75): Open SW Mixer pcmC0D0p subchn 0x10196c10
+-:91632:Dec 31 19:00:03.285                io_audio.589846                 slog      0  [14] ado_pcm_close_internal(2878): Closing SW Mixer pcmC0D0p subchn 0x10196c10
+-:91646:Dec 31 19:00:03.288                io_audio.589846                 slog      0  [14] ado_pcm_open_internal(75): Open SW Mixer pcmC0D0p subchn 0x10196c10
+-:91656:Dec 31 19:00:03.289                io_audio.589846                 slog      0  [14] ado_pcm_open_internal(75): Open Hardware pcmC0D0p subchn 0x101964b0
+-:91674:Dec 31 19:00:03.293                io_audio.589846                 slog      0  [14] ado_pcm_close_internal(2878): Closing SW Mixer pcmC0D0p subchn 0x10196c10
+-:91678:Dec 31 19:00:03.294                io_audio.589846                 slog      0  [14] ado_pcm_close_internal(2878): Closing Hardware pcmC0D0p subchn 0x101964b0
+-:93742:Dec 31 19:00:19.490                io_audio.589846                 slog      0  [14] ado_pcm_open_internal(75): Open SW Mixer pcmC0D0p subchn 0x10195bf0
+-:93746:Dec 31 19:00:19.491                io_audio.589846                 slog      0  [14] ado_pcm_close_internal(2878): Closing SW Mixer pcmC0D0p subchn 0x10195bf0
+-:93760:Dec 31 19:00:19.491                io_audio.589846                 slog      0  [14] ado_pcm_open_internal(75): Open SW Mixer pcmC0D0p subchn 0x10195bf0
+-:93770:Dec 31 19:00:19.492                io_audio.589846                 slog      0  [14] ado_pcm_open_internal(75): Open Hardware pcmC0D0p subchn 0x10195490
+-:93788:Dec 31 19:00:19.493                io_audio.589846                 slog      0  [14] ado_pcm_close_internal(2878): Closing SW Mixer pcmC0D0p subchn 0x10195bf0
+-:93792:Dec 31 19:00:19.493                io_audio.589846                 slog      0  [14] ado_pcm_close_internal(2878): Closing Hardware pcmC0D0p subchn 0x10195490
+-:93858:Dec 31 19:00:25.094                io_audio.589846                 slog      0  [14] ado_pcm_open_internal(75): Open SW Mixer pcmC0D0p subchn 0x10195bf0
+-:93862:Dec 31 19:00:25.095                io_audio.589846                 slog      0  [14] ado_pcm_close_internal(2878): Closing SW Mixer pcmC0D0p subchn 0x10195bf0
+-:93876:Dec 31 19:00:25.096                io_audio.589846                 slog      0  [14] ado_pcm_open_internal(75): Open SW Mixer pcmC0D0p subchn 0x10195bf0
+-:93886:Dec 31 19:00:25.096                io_audio.589846                 slog      0  [14] ado_pcm_open_internal(75): Open Hardware pcmC0D0p subchn 0x10195490
+-:93904:Dec 31 19:00:25.097                io_audio.589846                 slog      0  [14] ado_pcm_close_internal(2878): Closing SW Mixer pcmC0D0p subchn 0x10195bf0
+-:93908:Dec 31 19:00:25.098                io_audio.589846                 slog      0  [14] ado_pcm_close_internal(2878): Closing Hardware pcmC0D0p subchn 0x10195490
+-:93974:Dec 31 19:00:32.302                io_audio.589846                 slog      0  [14] ado_pcm_open_internal(75): Open SW Mixer pcmC0D0p subchn 0x10195bf0
+-:93978:Dec 31 19:00:32.303                io_audio.589846                 slog      0  [14] ado_pcm_close_internal(2878): Closing SW Mixer pcmC0D0p subchn 0x10195bf0
+-:93992:Dec 31 19:00:32.303                io_audio.589846                 slog      0  [14] ado_pcm_open_internal(75): Open SW Mixer pcmC0D0p subchn 0x10195bf0
+-:94002:Dec 31 19:00:32.304                io_audio.589846                 slog      0  [14] ado_pcm_open_internal(75): Open Hardware pcmC0D0p subchn 0x10195490
+-:94020:Dec 31 19:00:32.305                io_audio.589846                 slog      0  [14] ado_pcm_close_internal(2878): Closing SW Mixer pcmC0D0p subchn 0x10195bf0
+-:94024:Dec 31 19:00:32.305                io_audio.589846                 slog      0  [14] ado_pcm_close_internal(2878): Closing Hardware pcmC0D0p subchn 0x10195490
+-:94166:Jan 04 12:42:28.911                io_audio.589846                 slog      0  [14] ado_pcm_open_internal(75): Open SW Mixer pcmC0D0p subchn 0x10195bf0
+-:94170:Jan 04 12:42:28.911                io_audio.589846                 slog      0  [14] ado_pcm_close_internal(2878): Closing SW Mixer pcmC0D0p subchn 0x10195bf0
+-:94184:Jan 04 12:42:28.913                io_audio.589846                 slog      0  [14] ado_pcm_open_internal(75): Open SW Mixer pcmC0D0p subchn 0x10195bf0
+-:94194:Jan 04 12:42:28.914                io_audio.589846                 slog      0  [14] ado_pcm_open_internal(75): Open Hardware pcmC0D0p subchn 0x10195490
+-:94212:Jan 04 12:42:28.915                io_audio.589846                 slog      0  [14] ado_pcm_close_internal(2878): Closing SW Mixer pcmC0D0p subchn 0x10195bf0
+-:94216:Jan 04 12:42:28.916                io_audio.589846                 slog      0  [14] ado_pcm_close_internal(2878): Closing Hardware pcmC0D0p subchn 0x10195490
+-:94282:Jan 04 12:42:33.090                io_audio.589846                 slog      0  [14] ado_pcm_open_internal(75): Open SW Mixer pcmC0D0p subchn 0x10195bf0
+-:94286:Jan 04 12:42:33.090                io_audio.589846                 slog      0  [14] ado_pcm_close_internal(2878): Closing SW Mixer pcmC0D0p subchn 0x10195bf0
+-:94300:Jan 04 12:42:33.092                io_audio.589846                 slog      0  [14] ado_pcm_open_internal(75): Open SW Mixer pcmC0D0p subchn 0x10195bf0
+-:94310:Jan 04 12:42:33.093                io_audio.589846                 slog      0  [14] ado_pcm_open_internal(75): Open Hardware pcmC0D0p subchn 0x10195490
+-:94328:Jan 04 12:42:33.094                io_audio.589846                 slog      0  [14] ado_pcm_close_internal(2878): Closing SW Mixer pcmC0D0p subchn 0x10195bf0
+-:94332:Jan 04 12:42:33.095                io_audio.589846                 slog      0  [14] ado_pcm_close_internal(2878): Closing Hardware pcmC0D0p subchn 0x10195490
+-:94900:Dec 31 19:00:03.257                io_audio.593953                 slog      0  [14] ado_pcm_open_internal(75): Open SW Mixer pcmC0D0p subchn 0x10196c10
+-:94904:Dec 31 19:00:03.261                io_audio.593953                 slog      0  [14] ado_pcm_close_internal(2878): Closing SW Mixer pcmC0D0p subchn 0x10196c10
+-:94918:Dec 31 19:00:03.266                io_audio.593953                 slog      0  [14] ado_pcm_open_internal(75): Open SW Mixer pcmC0D0p subchn 0x10196c10
+-:94928:Dec 31 19:00:03.267                io_audio.593953                 slog      0  [14] ado_pcm_open_internal(75): Open Hardware pcmC0D0p subchn 0x101964b0
+-:94946:Dec 31 19:00:03.270                io_audio.593953                 slog      0  [14] ado_pcm_close_internal(2878): Closing SW Mixer pcmC0D0p subchn 0x10196c10
+-:94950:Dec 31 19:00:03.270                io_audio.593953                 slog      0  [14] ado_pcm_close_internal(2878): Closing Hardware pcmC0D0p subchn 0x101964b0
+-:97012:Dec 31 19:00:19.324                io_audio.593953                 slog      0  [12] ado_pcm_open_internal(75): Open SW Mixer pcmC0D0p subchn 0x10195bf0
+-:97016:Dec 31 19:00:19.324                io_audio.593953                 slog      0  [12] ado_pcm_close_internal(2878): Closing SW Mixer pcmC0D0p subchn 0x10195bf0
+-:97030:Dec 31 19:00:19.326                io_audio.593953                 slog      0  [12] ado_pcm_open_internal(75): Open SW Mixer pcmC0D0p subchn 0x10195bf0
+-:97040:Dec 31 19:00:19.326                io_audio.593953                 slog      0  [12] ado_pcm_open_internal(75): Open Hardware pcmC0D0p subchn 0x10195490
+-:97058:Dec 31 19:00:19.327                io_audio.593953                 slog      0  [12] ado_pcm_close_internal(2878): Closing SW Mixer pcmC0D0p subchn 0x10195bf0
+-:97062:Dec 31 19:00:19.328                io_audio.593953                 slog      0  [12] ado_pcm_close_internal(2878): Closing Hardware pcmC0D0p subchn 0x10195490
+-:97130:Dec 31 19:01:35.279                io_audio.593953                 slog      0  [12] ado_pcm_open_internal(75): Open SW Mixer pcmC0D0p subchn 0x10195bf0
+-:97134:Dec 31 19:01:35.280                io_audio.593953                 slog      0  [12] ado_pcm_close_internal(2878): Closing SW Mixer pcmC0D0p subchn 0x10195bf0
+-:97148:Dec 31 19:01:35.280                io_audio.593953                 slog      0  [12] ado_pcm_open_internal(75): Open SW Mixer pcmC0D0p subchn 0x10195bf0
+-:97158:Dec 31 19:01:35.281                io_audio.593953                 slog      0  [12] ado_pcm_open_internal(75): Open Hardware pcmC0D0p subchn 0x10195490
+-:97176:Dec 31 19:01:35.282                io_audio.593953                 slog      0  [12] ado_pcm_close_internal(2878): Closing SW Mixer pcmC0D0p subchn 0x10195bf0
+-:97180:Dec 31 19:01:35.282                io_audio.593953                 slog      0  [12] ado_pcm_close_internal(2878): Closing Hardware pcmC0D0p subchn 0x10195490
+-:97282:Dec 31 20:47:34.278                io_audio.593953                 slog      0  [12] ado_pcm_open_internal(75): Open SW Mixer pcmC0D0p subchn 0x10195bf0
+-:97292:Dec 31 20:47:34.279                io_audio.593953                 slog      0  [12] ado_pcm_open_internal(75): Open Hardware pcmC0D0p subchn 0x10195490
+=====================================================================================================================================================================================
+dash5dv-qnx#cat /data/slog1.txt 
+Dec 31 20:44:21.096            rcar_dma_lib.589858  rcar_dma_lib_buffer*     0  audio DMA chan 31 status dump: DMACHCR=2e001810
+Dec 31 20:44:21.135            rcar_dma_lib.589858  rcar_dma_lib_buffer      0  audio DMA chan 31 status dump: DMACHCR=6e041811
+Dec 31 20:44:21.237                io_audio.589858                 slog*     0  [14] psw_trigger(4836): timed out flushing the sw mixer - parent frags_used = 2/2
+Dec 31 20:44:21.237                io_audio.589858                 slog      0  [14] psw_trigger(4866): trigger stop parent 0x10195490 - subchns_running = 0
+Dec 31 20:44:21.237                io_audio.589858                 slog      0  [14] rcar_playback_trigger(606): ADO_PCM_TRIGGER_STOP for SSI 3
+Dec 31 20:44:21.237                io_audio.589858                 slog      0  [14] rcar_playback_trigger(699): Stop CR.DMEN on SSI 3
+Dec 31 20:44:21.248                io_audio.589858                 slog      0  [14] ssi_stop_dma(342): SSI3 timeout waiting for DIRQ
+Dec 31 20:44:21.248                io_audio.589858                 slog      0  [14] rcar_playback_trigger(711): Stop CR.EN on SSI 3
+Dec 31 20:44:21.248                io_audio.589858                 slog      0  [14] rcar_playback_trigger(727): Waiting for IDST on SSI 3
+Dec 31 20:44:21.259                io_audio.589858                 slog      0  [14] ssi_wait_idle(372): SSI3 timeout waiting for IDST
+Dec 31 20:44:21.259                io_audio.589858                 slog      0  [14] rcar_playback_trigger(730): SSI 17499816 timed out waiting for IDST
+Dec 31 20:44:21.259                io_audio.589858                 slog      0  [14] rcar_playback_trigger(756): Stop Audio DMAC for SSI 3
+Dec 31 20:44:21.259                io_audio.589858                 slog      0  [14] rcar_playback_trigger(760): ADO_PCM_TRIGGER_STOP complete for SSI 3
+Dec 31 20:44:21.259                io_audio.589858                 slog      0  [14] ssiu_ssi_register_dump(1573): SSI3 status dump: CR=80cb0022 SR=10a002 WSR=1 SSIU CONTROL=0 STATUS=0
+Dec 31 20:44:21.259                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state RUNNING->READY, block id 0, signaled 0
+Dec 31 20:44:21.259                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state RUNNING->READY, block id 0, signaled 0
+Dec 31 20:44:21.259            rcar_dma_lib.589858  rcar_dma_lib_buffer      0  audio DMA chan 31 status dump: DMACHCR=2e001810
+Dec 31 20:44:21.261                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state READY->PREPARED, block id 0, signaled 0
+Dec 31 20:44:21.294                io_audio.589858                 slog      0  [14] psw_trigger(4647): trigger start sw mixer subchn 0x10195bf0, subchns_running = 0, mix_sc = 0x101858d0, mix_sc->active = 0,frags_used = 4, min_frags = 1, frags_max = 3, 4
+Dec 31 20:44:21.294                io_audio.589858                 slog      0  [14] psw_trigger(4663): Subchn 0x10195bf0 has mixing_delay=0
+Dec 31 20:44:21.294                io_audio.589858                 slog      0  [14] rcar_prepare(412): PREPARE
+Dec 31 20:44:21.294                io_audio.589858                 slog      0  [14] rcar_set_clock_rate_scu(3099): sample_rate=48000
+Dec 31 20:44:21.294                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state READY->PREPARED, block id 0, signaled 0
+Dec 31 20:44:21.294                io_audio.589858                 slog      0  [14] rcar_playback_trigger(469): ADO_PCM_TRIGGER_GO for SSI 3
+Dec 31 20:44:21.294                io_audio.589858                 slog      0  [14] rcar_playback_trigger(488): Start Audio DMAC for SSI 3
+Dec 31 20:44:21.294                io_audio.589858                 slog      0  [14] rcar_playback_trigger(566): Start CR.DMEN on SSI 3
+Dec 31 20:44:21.294                io_audio.589858                 slog      0  [14] rcar_playback_trigger(579): Start CR.EN on SSI 3
+Dec 31 20:44:21.294                io_audio.589858                 slog      0  [14] rcar_playback_trigger(601): ADO_PCM_TRIGGER_START complete for SSI 3
+Dec 31 20:44:21.294            rcar_dma_lib.589858  rcar_dma_lib_buffer      0  audio DMA chan 31 status dump: DMACHCR=6e041811
+Dec 31 20:44:21.295                io_audio.589858                 slog      0  [14] ssiu_ssi_register_dump(1573): SSI3 status dump: CR=9ccb0023 SR=10a002 WSR=1 SSIU CONTROL=0 STATUS=0
+Dec 31 20:44:21.295                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state PREPARED->RUNNING, block id 0, signaled 0
+Dec 31 20:44:21.295                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state PREPARED->RUNNING, block id 0, signaled 0
+Dec 31 20:44:21.295                io_audio.589858                 slog      0  [14] rcar_position(1104): position=0/16384
+Dec 31 20:44:21.356                io_audio.589858                 slog      0  [14] rcar_position(1104): position=0/16384
+Dec 31 20:44:21.356                io_audio.589858                 slog      0  [14] psw_trigger(4791): trigger stop sw mixer subchn 0x10195bf0, subchns_running = 0, mix_sc = 0x101858d0
+Dec 31 20:44:21.396                io_audio.589858                 slog      0  [14] psw_trigger(4836): timed out flushing the sw mixer - parent frags_used = 2/2
+Dec 31 20:44:21.396                io_audio.589858                 slog      0  [14] psw_trigger(4866): trigger stop parent 0x10195490 - subchns_running = 0
+Dec 31 20:44:21.396                io_audio.589858                 slog      0  [14] rcar_playback_trigger(606): ADO_PCM_TRIGGER_STOP for SSI 3
+Dec 31 20:44:21.396                io_audio.589858                 slog      0  [14] rcar_playback_trigger(699): Stop CR.DMEN on SSI 3
+Dec 31 20:44:21.406                io_audio.589858                 slog      0  [14] ssi_stop_dma(342): SSI3 timeout waiting for DIRQ
+Dec 31 20:44:21.406                io_audio.589858                 slog      0  [14] rcar_playback_trigger(711): Stop CR.EN on SSI 3
+Dec 31 20:44:21.406                io_audio.589858                 slog      0  [14] rcar_playback_trigger(727): Waiting for IDST on SSI 3
+Dec 31 20:44:21.416                io_audio.589858                 slog      0  [14] ssi_wait_idle(372): SSI3 timeout waiting for IDST
+Dec 31 20:44:21.416                io_audio.589858                 slog      0  [14] rcar_playback_trigger(730): SSI 17499816 timed out waiting for IDST
+Dec 31 20:44:21.416                io_audio.589858                 slog      0  [14] rcar_playback_trigger(756): Stop Audio DMAC for SSI 3
+Dec 31 20:44:21.416                io_audio.589858                 slog      0  [14] rcar_playback_trigger(760): ADO_PCM_TRIGGER_STOP complete for SSI 3
+Dec 31 20:44:21.416                io_audio.589858                 slog      0  [14] ssiu_ssi_register_dump(1573): SSI3 status dump: CR=80cb0022 SR=10a002 WSR=1 SSIU CONTROL=0 STATUS=0
+Dec 31 20:44:21.416                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state RUNNING->READY, block id 0, signaled 0
+Dec 31 20:44:21.416                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state RUNNING->READY, block id 0, signaled 0
+Dec 31 20:44:21.416            rcar_dma_lib.589858  rcar_dma_lib_buffer      0  audio DMA chan 31 status dump: DMACHCR=2e001810
+Dec 31 20:44:21.419                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state READY->PREPARED, block id 0, signaled 0
+Dec 31 20:44:21.452                io_audio.589858                 slog      0  [14] psw_trigger(4647): trigger start sw mixer subchn 0x10195bf0, subchns_running = 0, mix_sc = 0x101858d0, mix_sc->active = 0,frags_used = 4, min_frags = 1, frags_max = 3, 4
+Dec 31 20:44:21.452                io_audio.589858                 slog      0  [14] psw_trigger(4663): Subchn 0x10195bf0 has mixing_delay=0
+Dec 31 20:44:21.452                io_audio.589858                 slog      0  [14] rcar_prepare(412): PREPARE
+Dec 31 20:44:21.452                io_audio.589858                 slog      0  [14] rcar_set_clock_rate_scu(3099): sample_rate=48000
+Dec 31 20:44:21.452                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state READY->PREPARED, block id 0, signaled 0
+Dec 31 20:44:21.453                io_audio.589858                 slog      0  [14] rcar_playback_trigger(469): ADO_PCM_TRIGGER_GO for SSI 3
+Dec 31 20:44:21.453                io_audio.589858                 slog      0  [14] rcar_playback_trigger(488): Start Audio DMAC for SSI 3
+Dec 31 20:44:21.453                io_audio.589858                 slog      0  [14] rcar_playback_trigger(566): Start CR.DMEN on SSI 3
+Dec 31 20:44:21.453                io_audio.589858                 slog      0  [14] rcar_playback_trigger(579): Start CR.EN on SSI 3
+Dec 31 20:44:21.453                io_audio.589858                 slog      0  [14] rcar_playback_trigger(601): ADO_PCM_TRIGGER_START complete for SSI 3
+Dec 31 20:44:21.453                io_audio.589858                 slog      0  [14] ssiu_ssi_register_dump(1573): SSI3 status dump: CR=9ccb0023 SR=10a002 WSR=1 SSIU CONTROL=0 STATUS=0
+Dec 31 20:44:21.453                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state PREPARED->RUNNING, block id 0, signaled 0
+Dec 31 20:44:21.453                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state PREPARED->RUNNING, block id 0, signaled 0
+Dec 31 20:44:21.453                io_audio.589858                 slog      0  [14] rcar_position(1104): position=0/16384
+Dec 31 20:44:21.453            rcar_dma_lib.589858  rcar_dma_lib_buffer      0  audio DMA chan 31 status dump: DMACHCR=6e041811
+Dec 31 20:44:21.513                io_audio.589858                 slog      0  [14] rcar_position(1104): position=0/16384
+Dec 31 20:44:21.513                io_audio.589858                 slog      0  [14] psw_trigger(4791): trigger stop sw mixer subchn 0x10195bf0, subchns_running = 0, mix_sc = 0x101858d0
+Dec 31 20:44:21.554                io_audio.589858                 slog      0  [14] psw_trigger(4836): timed out flushing the sw mixer - parent frags_used = 2/2
+Dec 31 20:44:21.554                io_audio.589858                 slog      0  [14] psw_trigger(4866): trigger stop parent 0x10195490 - subchns_running = 0
+Dec 31 20:44:21.554                io_audio.589858                 slog      0  [14] rcar_playback_trigger(606): ADO_PCM_TRIGGER_STOP for SSI 3
+Dec 31 20:44:21.554                io_audio.589858                 slog      0  [14] rcar_playback_trigger(699): Stop CR.DMEN on SSI 3
+Dec 31 20:44:21.565                io_audio.589858                 slog      0  [14] ssi_stop_dma(342): SSI3 timeout waiting for DIRQ
+Dec 31 20:44:21.565                io_audio.589858                 slog      0  [14] rcar_playback_trigger(711): Stop CR.EN on SSI 3
+Dec 31 20:44:21.565                io_audio.589858                 slog      0  [14] rcar_playback_trigger(727): Waiting for IDST on SSI 3
+Dec 31 20:44:21.575                io_audio.589858                 slog      0  [14] ssi_wait_idle(372): SSI3 timeout waiting for IDST
+Dec 31 20:44:21.575                io_audio.589858                 slog      0  [14] rcar_playback_trigger(730): SSI 17499816 timed out waiting for IDST
+Dec 31 20:44:21.575                io_audio.589858                 slog      0  [14] rcar_playback_trigger(756): Stop Audio DMAC for SSI 3
+Dec 31 20:44:21.575                io_audio.589858                 slog      0  [14] rcar_playback_trigger(760): ADO_PCM_TRIGGER_STOP complete for SSI 3
+Dec 31 20:44:21.575                io_audio.589858                 slog      0  [14] ssiu_ssi_register_dump(1573): SSI3 status dump: CR=80cb0022 SR=10a002 WSR=1 SSIU CONTROL=0 STATUS=0
+Dec 31 20:44:21.575                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state RUNNING->READY, block id 0, signaled 0
+Dec 31 20:44:21.575                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state RUNNING->READY, block id 0, signaled 0
+Dec 31 20:44:21.575            rcar_dma_lib.589858  rcar_dma_lib_buffer      0  audio DMA chan 31 status dump: DMACHCR=2e001810
+Dec 31 20:44:21.578                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state READY->PREPARED, block id 0, signaled 0
+Dec 31 20:44:21.611                io_audio.589858                 slog      0  [14] psw_trigger(4647): trigger start sw mixer subchn 0x10195bf0, subchns_running = 0, mix_sc = 0x101858d0, mix_sc->active = 0,frags_used = 4, min_frags = 1, frags_max = 3, 4
+Dec 31 20:44:21.611                io_audio.589858                 slog      0  [14] psw_trigger(4663): Subchn 0x10195bf0 has mixing_delay=0
+Dec 31 20:44:21.611                io_audio.589858                 slog      0  [14] rcar_prepare(412): PREPARE
+Dec 31 20:44:21.611                io_audio.589858                 slog      0  [14] rcar_set_clock_rate_scu(3099): sample_rate=48000
+Dec 31 20:44:21.611                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state READY->PREPARED, block id 0, signaled 0
+Dec 31 20:44:21.611                io_audio.589858                 slog      0  [14] rcar_playback_trigger(469): ADO_PCM_TRIGGER_GO for SSI 3
+Dec 31 20:44:21.611                io_audio.589858                 slog      0  [14] rcar_playback_trigger(488): Start Audio DMAC for SSI 3
+Dec 31 20:44:21.611                io_audio.589858                 slog      0  [14] rcar_playback_trigger(566): Start CR.DMEN on SSI 3
+Dec 31 20:44:21.611                io_audio.589858                 slog      0  [14] rcar_playback_trigger(579): Start CR.EN on SSI 3
+Dec 31 20:44:21.611                io_audio.589858                 slog      0  [14] rcar_playback_trigger(601): ADO_PCM_TRIGGER_START complete for SSI 3
+Dec 31 20:44:21.611                io_audio.589858                 slog      0  [14] ssiu_ssi_register_dump(1573): SSI3 status dump: CR=9ccb0023 SR=10a002 WSR=1 SSIU CONTROL=0 STATUS=0
+Dec 31 20:44:21.611                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state PREPARED->RUNNING, block id 0, signaled 0
+Dec 31 20:44:21.611                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state PREPARED->RUNNING, block id 0, signaled 0
+Dec 31 20:44:21.611                io_audio.589858                 slog      0  [14] rcar_position(1104): position=0/16384
+Dec 31 20:44:21.611            rcar_dma_lib.589858  rcar_dma_lib_buffer      0  audio DMA chan 31 status dump: DMACHCR=6e041811
+Dec 31 20:44:21.671                io_audio.589858                 slog      0  [14] rcar_position(1104): position=0/16384
+Dec 31 20:44:21.671                io_audio.589858                 slog      0  [14] psw_trigger(4791): trigger stop sw mixer subchn 0x10195bf0, subchns_running = 0, mix_sc = 0x101858d0
+Dec 31 20:44:21.712                io_audio.589858                 slog      0  [14] psw_trigger(4836): timed out flushing the sw mixer - parent frags_used = 2/2
+Dec 31 20:44:21.712                io_audio.589858                 slog      0  [14] psw_trigger(4866): trigger stop parent 0x10195490 - subchns_running = 0
+Dec 31 20:44:21.712                io_audio.589858                 slog      0  [14] rcar_playback_trigger(606): ADO_PCM_TRIGGER_STOP for SSI 3
+Dec 31 20:44:21.712                io_audio.589858                 slog      0  [14] rcar_playback_trigger(699): Stop CR.DMEN on SSI 3
+Dec 31 20:44:21.722                io_audio.589858                 slog      0  [14] ssi_stop_dma(342): SSI3 timeout waiting for DIRQ
+Dec 31 20:44:21.722                io_audio.589858                 slog      0  [14] rcar_playback_trigger(711): Stop CR.EN on SSI 3
+Dec 31 20:44:21.722                io_audio.589858                 slog      0  [14] rcar_playback_trigger(727): Waiting for IDST on SSI 3
+Dec 31 20:44:21.734                io_audio.589858                 slog      0  [14] ssi_wait_idle(372): SSI3 timeout waiting for IDST
+Dec 31 20:44:21.734                io_audio.589858                 slog      0  [14] rcar_playback_trigger(730): SSI 17499816 timed out waiting for IDST
+Dec 31 20:44:21.734                io_audio.589858                 slog      0  [14] rcar_playback_trigger(756): Stop Audio DMAC for SSI 3
+Dec 31 20:44:21.734                io_audio.589858                 slog      0  [14] rcar_playback_trigger(760): ADO_PCM_TRIGGER_STOP complete for SSI 3
+Dec 31 20:44:21.734                io_audio.589858                 slog      0  [14] ssiu_ssi_register_dump(1573): SSI3 status dump: CR=80cb0022 SR=10a002 WSR=1 SSIU CONTROL=0 STATUS=0
+Dec 31 20:44:21.734                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state RUNNING->READY, block id 0, signaled 0
+Dec 31 20:44:21.734                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state RUNNING->READY, block id 0, signaled 0
+Dec 31 20:44:21.734            rcar_dma_lib.589858  rcar_dma_lib_buffer      0  audio DMA chan 31 status dump: DMACHCR=2e001810
+Dec 31 20:44:21.736                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state READY->PREPARED, block id 0, signaled 0
+Dec 31 20:44:21.769                io_audio.589858                 slog      0  [14] psw_trigger(4647): trigger start sw mixer subchn 0x10195bf0, subchns_running = 0, mix_sc = 0x101858d0, mix_sc->active = 0,frags_used = 4, min_frags = 1, frags_max = 3, 4
+Dec 31 20:44:21.769                io_audio.589858                 slog      0  [14] psw_trigger(4663): Subchn 0x10195bf0 has mixing_delay=0
+Dec 31 20:44:21.769                io_audio.589858                 slog      0  [14] rcar_prepare(412): PREPARE
+Dec 31 20:44:21.769                io_audio.589858                 slog      0  [14] rcar_set_clock_rate_scu(3099): sample_rate=48000
+Dec 31 20:44:21.769                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state READY->PREPARED, block id 0, signaled 0
+Dec 31 20:44:21.769                io_audio.589858                 slog      0  [14] rcar_playback_trigger(469): ADO_PCM_TRIGGER_GO for SSI 3
+Dec 31 20:44:21.769                io_audio.589858                 slog      0  [14] rcar_playback_trigger(488): Start Audio DMAC for SSI 3
+Dec 31 20:44:21.769                io_audio.589858                 slog      0  [14] rcar_playback_trigger(566): Start CR.DMEN on SSI 3
+Dec 31 20:44:21.769                io_audio.589858                 slog      0  [14] rcar_playback_trigger(579): Start CR.EN on SSI 3
+Dec 31 20:44:21.769                io_audio.589858                 slog      0  [14] rcar_playback_trigger(601): ADO_PCM_TRIGGER_START complete for SSI 3
+Dec 31 20:44:21.769                io_audio.589858                 slog      0  [14] ssiu_ssi_register_dump(1573): SSI3 status dump: CR=9ccb0023 SR=10a002 WSR=1 SSIU CONTROL=0 STATUS=0
+Dec 31 20:44:21.769                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state PREPARED->RUNNING, block id 0, signaled 0
+Dec 31 20:44:21.769                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state PREPARED->RUNNING, block id 0, signaled 0
+Dec 31 20:44:21.769                io_audio.589858                 slog      0  [14] rcar_position(1104): position=0/16384
+Dec 31 20:44:21.769            rcar_dma_lib.589858  rcar_dma_lib_buffer      0  audio DMA chan 31 status dump: DMACHCR=6e041811
+Dec 31 20:44:21.829                io_audio.589858                 slog      0  [14] rcar_position(1104): position=0/16384
+Dec 31 20:44:21.829                io_audio.589858                 slog      0  [14] psw_trigger(4791): trigger stop sw mixer subchn 0x10195bf0, subchns_running = 0, mix_sc = 0x101858d0
+Dec 31 20:44:21.870                io_audio.589858                 slog      0  [14] psw_trigger(4836): timed out flushing the sw mixer - parent frags_used = 2/2
+Dec 31 20:44:21.870                io_audio.589858                 slog      0  [14] psw_trigger(4866): trigger stop parent 0x10195490 - subchns_running = 0
+Dec 31 20:44:21.870                io_audio.589858                 slog      0  [14] rcar_playback_trigger(606): ADO_PCM_TRIGGER_STOP for SSI 3
+Dec 31 20:44:21.870                io_audio.589858                 slog      0  [14] rcar_playback_trigger(699): Stop CR.DMEN on SSI 3
+Dec 31 20:44:21.880                io_audio.589858                 slog      0  [14] ssi_stop_dma(342): SSI3 timeout waiting for DIRQ
+Dec 31 20:44:21.880                io_audio.589858                 slog      0  [14] rcar_playback_trigger(711): Stop CR.EN on SSI 3
+Dec 31 20:44:21.880                io_audio.589858                 slog      0  [14] rcar_playback_trigger(727): Waiting for IDST on SSI 3
+Dec 31 20:44:21.892                io_audio.589858                 slog      0  [14] ssi_wait_idle(372): SSI3 timeout waiting for IDST
+Dec 31 20:44:21.892                io_audio.589858                 slog      0  [14] rcar_playback_trigger(730): SSI 17499816 timed out waiting for IDST
+Dec 31 20:44:21.892                io_audio.589858                 slog      0  [14] rcar_playback_trigger(756): Stop Audio DMAC for SSI 3
+Dec 31 20:44:21.892                io_audio.589858                 slog      0  [14] rcar_playback_trigger(760): ADO_PCM_TRIGGER_STOP complete for SSI 3
+Dec 31 20:44:21.892                io_audio.589858                 slog      0  [14] ssiu_ssi_register_dump(1573): SSI3 status dump: CR=80cb0022 SR=10a002 WSR=1 SSIU CONTROL=0 STATUS=0
+Dec 31 20:44:21.892                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state RUNNING->READY, block id 0, signaled 0
+Dec 31 20:44:21.892                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state RUNNING->READY, block id 0, signaled 0
+Dec 31 20:44:21.892            rcar_dma_lib.589858  rcar_dma_lib_buffer      0  audio DMA chan 31 status dump: DMACHCR=2e001810
+Dec 31 20:44:21.894                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state READY->PREPARED, block id 0, signaled 0
+Dec 31 20:44:21.926                io_audio.589858                 slog      0  [14] psw_trigger(4647): trigger start sw mixer subchn 0x10195bf0, subchns_running = 0, mix_sc = 0x101858d0, mix_sc->active = 0,frags_used = 4, min_frags = 1, frags_max = 3, 4
+Dec 31 20:44:21.926                io_audio.589858                 slog      0  [14] psw_trigger(4663): Subchn 0x10195bf0 has mixing_delay=0
+Dec 31 20:44:21.926                io_audio.589858                 slog      0  [14] rcar_prepare(412): PREPARE
+Dec 31 20:44:21.926                io_audio.589858                 slog      0  [14] rcar_set_clock_rate_scu(3099): sample_rate=48000
+Dec 31 20:44:21.926                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state READY->PREPARED, block id 0, signaled 0
+Dec 31 20:44:21.926                io_audio.589858                 slog      0  [14] rcar_playback_trigger(469): ADO_PCM_TRIGGER_GO for SSI 3
+Dec 31 20:44:21.926                io_audio.589858                 slog      0  [14] rcar_playback_trigger(488): Start Audio DMAC for SSI 3
+Dec 31 20:44:21.926                io_audio.589858                 slog      0  [14] rcar_playback_trigger(566): Start CR.DMEN on SSI 3
+Dec 31 20:44:21.926                io_audio.589858                 slog      0  [14] rcar_playback_trigger(579): Start CR.EN on SSI 3
+Dec 31 20:44:21.926                io_audio.589858                 slog      0  [14] rcar_playback_trigger(601): ADO_PCM_TRIGGER_START complete for SSI 3
+Dec 31 20:44:21.926                io_audio.589858                 slog      0  [14] ssiu_ssi_register_dump(1573): SSI3 status dump: CR=9ccb0023 SR=10a002 WSR=1 SSIU CONTROL=0 STATUS=0
+Dec 31 20:44:21.926                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state PREPARED->RUNNING, block id 0, signaled 0
+Dec 31 20:44:21.926                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state PREPARED->RUNNING, block id 0, signaled 0
+Dec 31 20:44:21.926            rcar_dma_lib.589858  rcar_dma_lib_buffer      0  audio DMA chan 31 status dump: DMACHCR=6e041811
+Dec 31 20:44:21.927                io_audio.589858                 slog      0  [14] rcar_position(1104): position=0/16384
+Dec 31 20:44:21.987                io_audio.589858                 slog      0  [14] rcar_position(1104): position=0/16384
+Dec 31 20:44:21.987                io_audio.589858                 slog      0  [14] psw_trigger(4791): trigger stop sw mixer subchn 0x10195bf0, subchns_running = 0, mix_sc = 0x101858d0
+Dec 31 20:44:22.027                io_audio.589858                 slog      0  [14] psw_trigger(4836): timed out flushing the sw mixer - parent frags_used = 2/2
+Dec 31 20:44:22.027                io_audio.589858                 slog      0  [14] psw_trigger(4866): trigger stop parent 0x10195490 - subchns_running = 0
+Dec 31 20:44:22.027                io_audio.589858                 slog      0  [14] rcar_playback_trigger(606): ADO_PCM_TRIGGER_STOP for SSI 3
+Dec 31 20:44:22.027                io_audio.589858                 slog      0  [14] rcar_playback_trigger(699): Stop CR.DMEN on SSI 3
+Dec 31 20:44:22.037                io_audio.589858                 slog      0  [14] ssi_stop_dma(342): SSI3 timeout waiting for DIRQ
+Dec 31 20:44:22.037                io_audio.589858                 slog      0  [14] rcar_playback_trigger(711): Stop CR.EN on SSI 3
+Dec 31 20:44:22.037                io_audio.589858                 slog      0  [14] rcar_playback_trigger(727): Waiting for IDST on SSI 3
+Dec 31 20:44:22.048                io_audio.589858                 slog      0  [14] ssi_wait_idle(372): SSI3 timeout waiting for IDST
+Dec 31 20:44:22.048                io_audio.589858                 slog      0  [14] rcar_playback_trigger(730): SSI 17499816 timed out waiting for IDST
+Dec 31 20:44:22.048                io_audio.589858                 slog      0  [14] rcar_playback_trigger(756): Stop Audio DMAC for SSI 3
+Dec 31 20:44:22.048                io_audio.589858                 slog      0  [14] rcar_playback_trigger(760): ADO_PCM_TRIGGER_STOP complete for SSI 3
+Dec 31 20:44:22.048                io_audio.589858                 slog      0  [14] ssiu_ssi_register_dump(1573): SSI3 status dump: CR=80cb0022 SR=10a002 WSR=1 SSIU CONTROL=0 STATUS=0
+Dec 31 20:44:22.048                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state RUNNING->READY, block id 0, signaled 0
+Dec 31 20:44:22.048                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state RUNNING->READY, block id 0, signaled 0
+Dec 31 20:44:22.048            rcar_dma_lib.589858  rcar_dma_lib_buffer      0  audio DMA chan 31 status dump: DMACHCR=2e001810
+Dec 31 20:44:22.051                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state READY->PREPARED, block id 0, signaled 0
+Dec 31 20:44:22.084                io_audio.589858                 slog      0  [14] psw_trigger(4647): trigger start sw mixer subchn 0x10195bf0, subchns_running = 0, mix_sc = 0x101858d0, mix_sc->active = 0,frags_used = 4, min_frags = 1, frags_max = 3, 4
+Dec 31 20:44:22.084                io_audio.589858                 slog      0  [14] psw_trigger(4663): Subchn 0x10195bf0 has mixing_delay=0
+Dec 31 20:44:22.084                io_audio.589858                 slog      0  [14] rcar_prepare(412): PREPARE
+Dec 31 20:44:22.084                io_audio.589858                 slog      0  [14] rcar_set_clock_rate_scu(3099): sample_rate=48000
+Dec 31 20:44:22.084                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state READY->PREPARED, block id 0, signaled 0
+Dec 31 20:44:22.085                io_audio.589858                 slog      0  [14] rcar_playback_trigger(469): ADO_PCM_TRIGGER_GO for SSI 3
+Dec 31 20:44:22.085                io_audio.589858                 slog      0  [14] rcar_playback_trigger(488): Start Audio DMAC for SSI 3
+Dec 31 20:44:22.085                io_audio.589858                 slog      0  [14] rcar_playback_trigger(566): Start CR.DMEN on SSI 3
+Dec 31 20:44:22.085                io_audio.589858                 slog      0  [14] rcar_playback_trigger(579): Start CR.EN on SSI 3
+Dec 31 20:44:22.085                io_audio.589858                 slog      0  [14] rcar_playback_trigger(601): ADO_PCM_TRIGGER_START complete for SSI 3
+Dec 31 20:44:22.085                io_audio.589858                 slog      0  [14] ssiu_ssi_register_dump(1573): SSI3 status dump: CR=9ccb0023 SR=10a002 WSR=1 SSIU CONTROL=0 STATUS=0
+Dec 31 20:44:22.085                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state PREPARED->RUNNING, block id 0, signaled 0
+Dec 31 20:44:22.085                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state PREPARED->RUNNING, block id 0, signaled 0
+Dec 31 20:44:22.085                io_audio.589858                 slog      0  [14] rcar_position(1104): position=0/16384
+Dec 31 20:44:22.085            rcar_dma_lib.589858  rcar_dma_lib_buffer      0  audio DMA chan 31 status dump: DMACHCR=6e041811
+Dec 31 20:44:22.146                io_audio.589858                 slog      0  [14] rcar_position(1104): position=0/16384
+Dec 31 20:44:22.146                io_audio.589858                 slog      0  [14] psw_trigger(4791): trigger stop sw mixer subchn 0x10195bf0, subchns_running = 0, mix_sc = 0x101858d0
+Dec 31 20:44:22.187                io_audio.589858                 slog      0  [14] psw_trigger(4836): timed out flushing the sw mixer - parent frags_used = 2/2
+Dec 31 20:44:22.187                io_audio.589858                 slog      0  [14] psw_trigger(4866): trigger stop parent 0x10195490 - subchns_running = 0
+Dec 31 20:44:22.187                io_audio.589858                 slog      0  [14] rcar_playback_trigger(606): ADO_PCM_TRIGGER_STOP for SSI 3
+Dec 31 20:44:22.187                io_audio.589858                 slog      0  [14] rcar_playback_trigger(699): Stop CR.DMEN on SSI 3
+Dec 31 20:44:22.197                io_audio.589858                 slog      0  [14] ssi_stop_dma(342): SSI3 timeout waiting for DIRQ
+Dec 31 20:44:22.197                io_audio.589858                 slog      0  [14] rcar_playback_trigger(711): Stop CR.EN on SSI 3
+Dec 31 20:44:22.197                io_audio.589858                 slog      0  [14] rcar_playback_trigger(727): Waiting for IDST on SSI 3
+Dec 31 20:44:22.208                io_audio.589858                 slog      0  [14] ssi_wait_idle(372): SSI3 timeout waiting for IDST
+Dec 31 20:44:22.208                io_audio.589858                 slog      0  [14] rcar_playback_trigger(730): SSI 17499816 timed out waiting for IDST
+Dec 31 20:44:22.208                io_audio.589858                 slog      0  [14] rcar_playback_trigger(756): Stop Audio DMAC for SSI 3
+Dec 31 20:44:22.208                io_audio.589858                 slog      0  [14] rcar_playback_trigger(760): ADO_PCM_TRIGGER_STOP complete for SSI 3
+Dec 31 20:44:22.208                io_audio.589858                 slog      0  [14] ssiu_ssi_register_dump(1573): SSI3 status dump: CR=80cb0022 SR=10a002 WSR=1 SSIU CONTROL=0 STATUS=0
+Dec 31 20:44:22.208                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state RUNNING->READY, block id 0, signaled 0
+Dec 31 20:44:22.208                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state RUNNING->READY, block id 0, signaled 0
+Dec 31 20:44:22.208            rcar_dma_lib.589858  rcar_dma_lib_buffer      0  audio DMA chan 31 status dump: DMACHCR=2e001810
+Dec 31 20:44:22.211                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state READY->PREPARED, block id 0, signaled 0
+Dec 31 20:44:22.243                io_audio.589858                 slog      0  [14] psw_trigger(4647): trigger start sw mixer subchn 0x10195bf0, subchns_running = 0, mix_sc = 0x101858d0, mix_sc->active = 0,frags_used = 4, min_frags = 1, frags_max = 3, 4
+Dec 31 20:44:22.243                io_audio.589858                 slog      0  [14] psw_trigger(4663): Subchn 0x10195bf0 has mixing_delay=0
+Dec 31 20:44:22.243                io_audio.589858                 slog      0  [14] rcar_prepare(412): PREPARE
+Dec 31 20:44:22.243                io_audio.589858                 slog      0  [14] rcar_set_clock_rate_scu(3099): sample_rate=48000
+Dec 31 20:44:22.243                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state READY->PREPARED, block id 0, signaled 0
+Dec 31 20:44:22.245                io_audio.589858                 slog      0  [14] rcar_playback_trigger(469): ADO_PCM_TRIGGER_GO for SSI 3
+Dec 31 20:44:22.245                io_audio.589858                 slog      0  [14] rcar_playback_trigger(488): Start Audio DMAC for SSI 3
+Dec 31 20:44:22.245                io_audio.589858                 slog      0  [14] rcar_playback_trigger(566): Start CR.DMEN on SSI 3
+Dec 31 20:44:22.245                io_audio.589858                 slog      0  [14] rcar_playback_trigger(579): Start CR.EN on SSI 3
+Dec 31 20:44:22.245                io_audio.589858                 slog      0  [14] rcar_playback_trigger(601): ADO_PCM_TRIGGER_START complete for SSI 3
+Dec 31 20:44:22.245                io_audio.589858                 slog      0  [14] ssiu_ssi_register_dump(1573): SSI3 status dump: CR=9ccb0023 SR=10a002 WSR=1 SSIU CONTROL=0 STATUS=0
+Dec 31 20:44:22.245                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state PREPARED->RUNNING, block id 0, signaled 0
+Dec 31 20:44:22.245                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state PREPARED->RUNNING, block id 0, signaled 0
+Dec 31 20:44:22.245                io_audio.589858                 slog      0  [14] rcar_position(1104): position=0/16384
+Dec 31 20:44:22.245            rcar_dma_lib.589858  rcar_dma_lib_buffer      0  audio DMA chan 31 status dump: DMACHCR=6e041811
+Dec 31 20:44:22.305                io_audio.589858                 slog      0  [14] rcar_position(1104): position=0/16384
+Dec 31 20:44:22.305                io_audio.589858                 slog      0  [14] psw_trigger(4791): trigger stop sw mixer subchn 0x10195bf0, subchns_running = 0, mix_sc = 0x101858d0
+Dec 31 20:44:22.346                io_audio.589858                 slog      0  [14] psw_trigger(4836): timed out flushing the sw mixer - parent frags_used = 2/2
+Dec 31 20:44:22.346                io_audio.589858                 slog      0  [14] psw_trigger(4866): trigger stop parent 0x10195490 - subchns_running = 0
+Dec 31 20:44:22.346                io_audio.589858                 slog      0  [14] rcar_playback_trigger(606): ADO_PCM_TRIGGER_STOP for SSI 3
+Dec 31 20:44:22.346                io_audio.589858                 slog      0  [14] rcar_playback_trigger(699): Stop CR.DMEN on SSI 3
+Dec 31 20:44:22.356                io_audio.589858                 slog      0  [14] ssi_stop_dma(342): SSI3 timeout waiting for DIRQ
+Dec 31 20:44:22.356                io_audio.589858                 slog      0  [14] rcar_playback_trigger(711): Stop CR.EN on SSI 3
+Dec 31 20:44:22.356                io_audio.589858                 slog      0  [14] rcar_playback_trigger(727): Waiting for IDST on SSI 3
+Dec 31 20:44:22.367                io_audio.589858                 slog      0  [14] ssi_wait_idle(372): SSI3 timeout waiting for IDST
+Dec 31 20:44:22.367                io_audio.589858                 slog      0  [14] rcar_playback_trigger(730): SSI 17499816 timed out waiting for IDST
+Dec 31 20:44:22.367                io_audio.589858                 slog      0  [14] rcar_playback_trigger(756): Stop Audio DMAC for SSI 3
+Dec 31 20:44:22.367                io_audio.589858                 slog      0  [14] rcar_playback_trigger(760): ADO_PCM_TRIGGER_STOP complete for SSI 3
+Dec 31 20:44:22.367                io_audio.589858                 slog      0  [14] ssiu_ssi_register_dump(1573): SSI3 status dump: CR=80cb0022 SR=10a002 WSR=1 SSIU CONTROL=0 STATUS=0
+Dec 31 20:44:22.367                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state RUNNING->READY, block id 0, signaled 0
+Dec 31 20:44:22.367                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state RUNNING->READY, block id 0, signaled 0
+Dec 31 20:44:22.367            rcar_dma_lib.589858  rcar_dma_lib_buffer      0  audio DMA chan 31 status dump: DMACHCR=2e001810
+Dec 31 20:44:22.369                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state READY->PREPARED, block id 0, signaled 0
+Dec 31 20:44:22.402                io_audio.589858                 slog      0  [14] psw_trigger(4647): trigger start sw mixer subchn 0x10195bf0, subchns_running = 0, mix_sc = 0x101858d0, mix_sc->active = 0,frags_used = 4, min_frags = 1, frags_max = 3, 4
+Dec 31 20:44:22.402                io_audio.589858                 slog      0  [14] psw_trigger(4663): Subchn 0x10195bf0 has mixing_delay=0
+Dec 31 20:44:22.402                io_audio.589858                 slog      0  [14] rcar_prepare(412): PREPARE
+Dec 31 20:44:22.402                io_audio.589858                 slog      0  [14] rcar_set_clock_rate_scu(3099): sample_rate=48000
+Dec 31 20:44:22.402                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state READY->PREPARED, block id 0, signaled 0
+Dec 31 20:44:22.402                io_audio.589858                 slog      0  [14] rcar_playback_trigger(469): ADO_PCM_TRIGGER_GO for SSI 3
+Dec 31 20:44:22.402                io_audio.589858                 slog      0  [14] rcar_playback_trigger(488): Start Audio DMAC for SSI 3
+Dec 31 20:44:22.403                io_audio.589858                 slog      0  [14] rcar_playback_trigger(566): Start CR.DMEN on SSI 3
+Dec 31 20:44:22.403                io_audio.589858                 slog      0  [14] rcar_playback_trigger(579): Start CR.EN on SSI 3
+Dec 31 20:44:22.403                io_audio.589858                 slog      0  [14] rcar_playback_trigger(601): ADO_PCM_TRIGGER_START complete for SSI 3
+Dec 31 20:44:22.403                io_audio.589858                 slog      0  [14] ssiu_ssi_register_dump(1573): SSI3 status dump: CR=9ccb0023 SR=10a002 WSR=1 SSIU CONTROL=0 STATUS=0
+Dec 31 20:44:22.403                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state PREPARED->RUNNING, block id 0, signaled 0
+Dec 31 20:44:22.403                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state PREPARED->RUNNING, block id 0, signaled 0
+Dec 31 20:44:22.403                io_audio.589858                 slog      0  [14] rcar_position(1104): position=0/16384
+Dec 31 20:44:22.403            rcar_dma_lib.589858  rcar_dma_lib_buffer      0  audio DMA chan 31 status dump: DMACHCR=6e041811
+Dec 31 20:44:22.463                io_audio.589858                 slog      0  [14] rcar_position(1104): position=0/16384
+Dec 31 20:44:22.463                io_audio.589858                 slog      0  [14] psw_trigger(4791): trigger stop sw mixer subchn 0x10195bf0, subchns_running = 0, mix_sc = 0x101858d0
+Dec 31 20:44:22.503                io_audio.589858                 slog      0  [14] psw_trigger(4836): timed out flushing the sw mixer - parent frags_used = 2/2
+Dec 31 20:44:22.503                io_audio.589858                 slog      0  [14] psw_trigger(4866): trigger stop parent 0x10195490 - subchns_running = 0
+Dec 31 20:44:22.503                io_audio.589858                 slog      0  [14] rcar_playback_trigger(606): ADO_PCM_TRIGGER_STOP for SSI 3
+Dec 31 20:44:22.503                io_audio.589858                 slog      0  [14] rcar_playback_trigger(699): Stop CR.DMEN on SSI 3
+Dec 31 20:44:22.514                io_audio.589858                 slog      0  [14] ssi_stop_dma(342): SSI3 timeout waiting for DIRQ
+Dec 31 20:44:22.514                io_audio.589858                 slog      0  [14] rcar_playback_trigger(711): Stop CR.EN on SSI 3
+Dec 31 20:44:22.514                io_audio.589858                 slog      0  [14] rcar_playback_trigger(727): Waiting for IDST on SSI 3
+Dec 31 20:44:22.525                io_audio.589858                 slog      0  [14] ssi_wait_idle(372): SSI3 timeout waiting for IDST
+Dec 31 20:44:22.525                io_audio.589858                 slog      0  [14] rcar_playback_trigger(730): SSI 17499816 timed out waiting for IDST
+Dec 31 20:44:22.525                io_audio.589858                 slog      0  [14] rcar_playback_trigger(756): Stop Audio DMAC for SSI 3
+Dec 31 20:44:22.525                io_audio.589858                 slog      0  [14] rcar_playback_trigger(760): ADO_PCM_TRIGGER_STOP complete for SSI 3
+Dec 31 20:44:22.525            rcar_dma_lib.589858  rcar_dma_lib_buffer      0  audio DMA chan 31 status dump: DMACHCR=2e001810
+Dec 31 20:44:22.526                io_audio.589858                 slog      0  [14] ssiu_ssi_register_dump(1573): SSI3 status dump: CR=80cb0022 SR=10a002 WSR=1 SSIU CONTROL=0 STATUS=0
+Dec 31 20:44:22.526                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state RUNNING->READY, block id 0, signaled 0
+Dec 31 20:44:22.526                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state RUNNING->READY, block id 0, signaled 0
+Dec 31 20:44:22.527                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state READY->PREPARED, block id 0, signaled 0
+Dec 31 20:44:22.560                io_audio.589858                 slog      0  [14] psw_trigger(4647): trigger start sw mixer subchn 0x10195bf0, subchns_running = 0, mix_sc = 0x101858d0, mix_sc->active = 0,frags_used = 4, min_frags = 1, frags_max = 3, 4
+Dec 31 20:44:22.560                io_audio.589858                 slog      0  [14] psw_trigger(4663): Subchn 0x10195bf0 has mixing_delay=0
+Dec 31 20:44:22.560                io_audio.589858                 slog      0  [14] rcar_prepare(412): PREPARE
+Dec 31 20:44:22.560                io_audio.589858                 slog      0  [14] rcar_set_clock_rate_scu(3099): sample_rate=48000
+Dec 31 20:44:22.560                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state READY->PREPARED, block id 0, signaled 0
+Dec 31 20:44:22.561                io_audio.589858                 slog      0  [14] rcar_playback_trigger(469): ADO_PCM_TRIGGER_GO for SSI 3
+Dec 31 20:44:22.561                io_audio.589858                 slog      0  [14] rcar_playback_trigger(488): Start Audio DMAC for SSI 3
+Dec 31 20:44:22.561                io_audio.589858                 slog      0  [14] rcar_playback_trigger(566): Start CR.DMEN on SSI 3
+Dec 31 20:44:22.561                io_audio.589858                 slog      0  [14] rcar_playback_trigger(579): Start CR.EN on SSI 3
+Dec 31 20:44:22.561                io_audio.589858                 slog      0  [14] rcar_playback_trigger(601): ADO_PCM_TRIGGER_START complete for SSI 3
+Dec 31 20:44:22.561                io_audio.589858                 slog      0  [14] ssiu_ssi_register_dump(1573): SSI3 status dump: CR=9ccb0023 SR=10a002 WSR=1 SSIU CONTROL=0 STATUS=0
+Dec 31 20:44:22.561                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state PREPARED->RUNNING, block id 0, signaled 0
+Dec 31 20:44:22.561                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state PREPARED->RUNNING, block id 0, signaled 0
+Dec 31 20:44:22.561                io_audio.589858                 slog      0  [14] rcar_position(1104): position=0/16384
+Dec 31 20:44:22.561            rcar_dma_lib.589858  rcar_dma_lib_buffer      0  audio DMA chan 31 status dump: DMACHCR=6e041811
+Dec 31 20:44:22.620                io_audio.589858                 slog      0  [14] rcar_position(1104): position=0/16384
+Dec 31 20:44:22.621                io_audio.589858                 slog      0  [14] psw_trigger(4791): trigger stop sw mixer subchn 0x10195bf0, subchns_running = 0, mix_sc = 0x101858d0
+Dec 31 20:44:22.662                io_audio.589858                 slog      0  [14] psw_trigger(4836): timed out flushing the sw mixer - parent frags_used = 2/2
+Dec 31 20:44:22.662                io_audio.589858                 slog      0  [14] psw_trigger(4866): trigger stop parent 0x10195490 - subchns_running = 0
+Dec 31 20:44:22.662                io_audio.589858                 slog      0  [14] rcar_playback_trigger(606): ADO_PCM_TRIGGER_STOP for SSI 3
+Dec 31 20:44:22.662                io_audio.589858                 slog      0  [14] rcar_playback_trigger(699): Stop CR.DMEN on SSI 3
+Dec 31 20:44:22.673                io_audio.589858                 slog      0  [14] ssi_stop_dma(342): SSI3 timeout waiting for DIRQ
+Dec 31 20:44:22.673                io_audio.589858                 slog      0  [14] rcar_playback_trigger(711): Stop CR.EN on SSI 3
+Dec 31 20:44:22.673                io_audio.589858                 slog      0  [14] rcar_playback_trigger(727): Waiting for IDST on SSI 3
+Dec 31 20:44:22.683                io_audio.589858                 slog      0  [14] ssi_wait_idle(372): SSI3 timeout waiting for IDST
+Dec 31 20:44:22.683                io_audio.589858                 slog      0  [14] rcar_playback_trigger(730): SSI 17499816 timed out waiting for IDST
+Dec 31 20:44:22.683                io_audio.589858                 slog      0  [14] rcar_playback_trigger(756): Stop Audio DMAC for SSI 3
+Dec 31 20:44:22.683                io_audio.589858                 slog      0  [14] rcar_playback_trigger(760): ADO_PCM_TRIGGER_STOP complete for SSI 3
+Dec 31 20:44:22.683                io_audio.589858                 slog      0  [14] ssiu_ssi_register_dump(1573): SSI3 status dump: CR=80cb0022 SR=10a002 WSR=1 SSIU CONTROL=0 STATUS=0
+Dec 31 20:44:22.683                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state RUNNING->READY, block id 0, signaled 0
+Dec 31 20:44:22.683                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state RUNNING->READY, block id 0, signaled 0
+Dec 31 20:44:22.683            rcar_dma_lib.589858  rcar_dma_lib_buffer      0  audio DMA chan 31 status dump: DMACHCR=2e001810
+Dec 31 20:44:22.687                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state READY->PREPARED, block id 0, signaled 0
+Dec 31 20:44:22.719                io_audio.589858                 slog      0  [14] psw_trigger(4647): trigger start sw mixer subchn 0x10195bf0, subchns_running = 0, mix_sc = 0x101858d0, mix_sc->active = 0,frags_used = 4, min_frags = 1, frags_max = 3, 4
+Dec 31 20:44:22.719                io_audio.589858                 slog      0  [14] psw_trigger(4663): Subchn 0x10195bf0 has mixing_delay=0
+Dec 31 20:44:22.719                io_audio.589858                 slog      0  [14] rcar_prepare(412): PREPARE
+Dec 31 20:44:22.719                io_audio.589858                 slog      0  [14] rcar_set_clock_rate_scu(3099): sample_rate=48000
+Dec 31 20:44:22.719                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state READY->PREPARED, block id 0, signaled 0
+Dec 31 20:44:22.720                io_audio.589858                 slog      0  [14] rcar_playback_trigger(469): ADO_PCM_TRIGGER_GO for SSI 3
+Dec 31 20:44:22.720                io_audio.589858                 slog      0  [14] rcar_playback_trigger(488): Start Audio DMAC for SSI 3
+Dec 31 20:44:22.720                io_audio.589858                 slog      0  [14] rcar_playback_trigger(566): Start CR.DMEN on SSI 3
+Dec 31 20:44:22.720                io_audio.589858                 slog      0  [14] rcar_playback_trigger(579): Start CR.EN on SSI 3
+Dec 31 20:44:22.720                io_audio.589858                 slog      0  [14] rcar_playback_trigger(601): ADO_PCM_TRIGGER_START complete for SSI 3
+Dec 31 20:44:22.720                io_audio.589858                 slog      0  [14] ssiu_ssi_register_dump(1573): SSI3 status dump: CR=9ccb0023 SR=10a002 WSR=1 SSIU CONTROL=0 STATUS=0
+Dec 31 20:44:22.720                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state PREPARED->RUNNING, block id 0, signaled 0
+Dec 31 20:44:22.720                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state PREPARED->RUNNING, block id 0, signaled 0
+Dec 31 20:44:22.720                io_audio.589858                 slog      0  [14] rcar_position(1104): position=0/16384
+Dec 31 20:44:22.720            rcar_dma_lib.589858  rcar_dma_lib_buffer      0  audio DMA chan 31 status dump: DMACHCR=6e041811
+Dec 31 20:44:22.780                io_audio.589858                 slog      0  [14] rcar_position(1104): position=0/16384
+Dec 31 20:44:22.781                io_audio.589858                 slog      0  [14] psw_trigger(4791): trigger stop sw mixer subchn 0x10195bf0, subchns_running = 0, mix_sc = 0x101858d0
+Dec 31 20:44:22.822                io_audio.589858                 slog      0  [14] psw_trigger(4836): timed out flushing the sw mixer - parent frags_used = 2/2
+Dec 31 20:44:22.822                io_audio.589858                 slog      0  [14] psw_trigger(4866): trigger stop parent 0x10195490 - subchns_running = 0
+Dec 31 20:44:22.822                io_audio.589858                 slog      0  [14] rcar_playback_trigger(606): ADO_PCM_TRIGGER_STOP for SSI 3
+Dec 31 20:44:22.822                io_audio.589858                 slog      0  [14] rcar_playback_trigger(699): Stop CR.DMEN on SSI 3
+Dec 31 20:44:22.833                io_audio.589858                 slog      0  [14] ssi_stop_dma(342): SSI3 timeout waiting for DIRQ
+Dec 31 20:44:22.833                io_audio.589858                 slog      0  [14] rcar_playback_trigger(711): Stop CR.EN on SSI 3
+Dec 31 20:44:22.833                io_audio.589858                 slog      0  [14] rcar_playback_trigger(727): Waiting for IDST on SSI 3
+Dec 31 20:44:22.843                io_audio.589858                 slog      0  [14] ssi_wait_idle(372): SSI3 timeout waiting for IDST
+Dec 31 20:44:22.843                io_audio.589858                 slog      0  [14] rcar_playback_trigger(730): SSI 17499816 timed out waiting for IDST
+Dec 31 20:44:22.843                io_audio.589858                 slog      0  [1x10195bf0 has mixing_delay=0
+Dec 31 20:44:22.879                io_audio.589858                 slog      0  [14] rcar_prepare(412): PREPARE
+Dec 31 20:44:22.879                io_audio.589858                 slog      0  [14] rcar_set_clock_rate_scu(3099): sample_rate=48000
+Dec 31 20:44:22.879                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state READY->PREPARED, block id 0, signaled 0
+Dec 31 20:44:22.879                io_audio.589858                 slog      0  [14] rcar_playback_trigger(469): ADO_PCM_TRIGGER_GO for SSI 3
+Dec 31 20:44:22.879                io_audio.589858                 slog      0  [14] rcar_playback_trigger(488): Start Audio DMAC for SSI 3
+Dec 31 20:44:22.879                io_audio.589858                 slog      0  [14] rcar_playback_trigger(566): Start CR.DMEN on SSI 3
+Dec 31 20:44:22.879                io_audio.589858                 slog      0  [14] rcar_playback_trigger(579): Start CR.EN on SSI 3
+Dec 31 20:44:22.879                io_audio.589858                 slog      0  [14] rcar_playback_trigger(601): ADO_PCM_TRIGGER_START complete for SSI 3
+Dec 31 20:44:22.879                io_audio.589858                 slog      0  [14] ssiu_ssi_register_dump(1573): SSI3 status dump: CR=9ccb0023 SR=10a002 WSR=1 SSIU CONTROL=0 STATUS=0
+Dec 31 20:44:22.879                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195490 changing state PREPARED->RUNNING, block id 0, signaled 0
+Dec 31 20:44:22.879                io_audio.589858                 slog      0  [14] ado_subchn_change_state(3189): Subchn 0x10195bf0 changing state PREPARED->RUNNING, block id 0, signaled 0
+Dec 31 20:44:22.879                io_audio.589858                 slog      0  [14] rcar_position(1104): position=0/16384
+Dec 31 20:44:22.879            rcar_dma_lib.589858  rcar_dma_lib_buffer      0  audio DMA chan 31 status dump: DMACHCR=6e041811
+Dec 31 20:44:22.940                io_audio.589858     
+dash5dv-qnx#
+
+========================================Building and pushing audioflinger =========================================================================================
+mmm frameworks/av/services/audioflinger/
+
+/system/lib64/libaudioflinger.so
+
+adb push ~/audio/libaudioflinger.so /system/lib64/
+===================================================================================================================================================================
+https://github.com/changkun/modern-cpp-tutorial/blob/master/book/en-us/00-preface.md
+https://github.com/changkun
+=====================================================================================================================================================================
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0p
+virtio_audio_handle_pcm_write:OUTQ01_0000: Host channel has been triggered
+virtio_audio_outq_thread:OUTQ01_0000 marking channel as running
+virtio_audio_outq_thread:OUTQ01_0000: poll timed out for channel pcmC0D0p fd 12 timeout 42
+virtio_audio_defer_pcm_command:OUTQ01_0000: Deferring a DROP command
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000: DROP channel pcmC0D0p
+virtio_audio_handle_deferred_pcm_drop:OUTQ01_0000 DROP channel pcmC0D0p is complete
+=============================================================================================================================================
+1191:07-23 19:01:19.234  2400  2400 I AudioFlinger: Pankaj: openOutput() this 0xe0cc31a50000, module 18 Device 0x4000000, SamplingRate 0, Format 00000000, Channels 0, flags 0
+1192:07-23 19:01:19.234  2400  2400 W AudioFlinger: Pankaj: openOutput() this 0xe0cc31a50000, module 18 Device 0x4000000, SamplingRate 0, Format 00000000, Channels 0, flags 0
+1193:07-23 19:01:19.234  2400  2400 W AudioFlinger:  Pankaj :findSuitableHwDev_l() loading well know audio hw modules 18
+1194:07-23 19:01:19.234  2400  2400 W AudioFlinger: Pankaj : openOutput_l() openOutputStream_l tried to open addr card=2;device=0;
+1381:07-23 19:01:19.686  2400  2400 I AudioFlinger: Pankaj: openOutput() this 0xe0cc31a50000, module 18 Device 0x4000000, SamplingRate 48000, Format 0x000001, Channels 0x3, flags 0
+1382:07-23 19:01:19.686  2400  2400 W AudioFlinger: Pankaj: openOutput() this 0xe0cc31a50000, module 18 Device 0x4000000, SamplingRate 48000, Format 0x000001, Channels 0x3, flags 0
+1383:07-23 19:01:19.686  2400  2400 W AudioFlinger:  Pankaj :findSuitableHwDev_l() loading well know audio hw modules 18
+1384:07-23 19:01:19.686  2400  2400 W AudioFlinger: Pankaj : openOutput_l() openOutputStream_l tried to open addr card=2;device=0;
+1474:07-23 19:01:19.972  2400  2431 W AudioFlinger:  Pankaj :findSuitableHwDev_l() loading well know audio hw modules 18
+5164:07-23 19:01:29.757  2400  2400 W AudioFlinger:  Pankaj :findSuitableHwDev_l() loading well know audio hw modules 10
+12217:07-23 19:01:40.319  2400  2400 W AudioFlinger:  Pankaj :findSuitableHwDev_l() loading well know audio hw modules 18
+======================================================================================================================================================================================
+69:07-23 19:01:18.154  2400  2432 V AudioFlinger: AudioFlinger::setRecordSilenced(uid:10017, silenced:0)
+1187:07-23 19:01:19.233  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue card=2;connect=67108864;device=0, calling pid 2400 calling uid 1041
+1188:07-23 19:01:19.233  2400  2429 V AudioFlinger: setParameters: filtered keyvalue card=2;connect=67108864;device=0
+1191:07-23 19:01:19.234  2400  2400 I AudioFlinger: Pankaj: openOutput() this 0xe0cc31a50000, module 18 Device 0x4000000, SamplingRate 0, Format 00000000, Channels 0, flags 0
+1192:07-23 19:01:19.234  2400  2400 W AudioFlinger: Pankaj: openOutput() this 0xe0cc31a50000, module 18 Device 0x4000000, SamplingRate 0, Format 00000000, Channels 0, flags 0
+1193:07-23 19:01:19.234  2400  2400 W AudioFlinger:  Pankaj :findSuitableHwDev_l() loading well know audio hw modules 18
+1194:07-23 19:01:19.234  2400  2400 W AudioFlinger: Pankaj : openOutput_l() openOutputStream_l tried to open addr card=2;device=0;
+1359:07-23 19:01:19.678  2400  2400 I AudioFlinger: HAL output buffer size 960 frames, normal sink buffer size 960 frames
+1361:07-23 19:01:19.678  2400  2400 V AudioFlinger: openOutput_l() created mixer output: ID 77 thread 0xe0cc2f00df80
+1362:07-23 19:01:19.679  2400  2429 V AudioFlinger: setParameters(): io 77, keyvalue card=2;device=0;, calling pid 2400 calling uid 1041
+1363:07-23 19:01:19.679  2400  2429 V AudioFlinger: setParameters: filtered keyvalue card=2;device=0;
+1364:07-23 19:01:19.679  2400  3094 I AudioFlinger: AudioFlinger's thread 0xe0cc2f00df80 tid=3094 ready to run
+1367:07-23 19:01:19.682  2400  2400 V AudioFlinger: getParameters() io 77, keys sup_formats, calling pid 2400
+1369:07-23 19:01:19.683  2400  2400 V AudioFlinger: getParameters() io 77, keys format=1;sup_sampling_rates, calling pid 2400
+1371:07-23 19:01:19.683  2400  2400 V AudioFlinger: getParameters() io 77, keys format=1;sup_channels, calling pid 2400
+1373:07-23 19:01:19.684  2400  2429 V AudioFlinger: setParameters(): io 77, keyvalue closing=true, calling pid 2400 calling uid 1041
+1374:07-23 19:01:19.684  2400  2429 V AudioFlinger: setParameters: filtered keyvalue closing=true
+1378:07-23 19:01:19.685  2400  2400 V AudioFlinger: closeOutput() 77
+1381:07-23 19:01:19.686  2400  2400 I AudioFlinger: Pankaj: openOutput() this 0xe0cc31a50000, module 18 Device 0x4000000, SamplingRate 48000, Format 0x000001, Channels 0x3, flags 0
+1382:07-23 19:01:19.686  2400  2400 W AudioFlinger: Pankaj: openOutput() this 0xe0cc31a50000, module 18 Device 0x4000000, SamplingRate 48000, Format 0x000001, Channels 0x3, flags 0
+1383:07-23 19:01:19.686  2400  2400 W AudioFlinger:  Pankaj :findSuitableHwDev_l() loading well know audio hw modules 18
+1384:07-23 19:01:19.686  2400  2400 W AudioFlinger: Pankaj : openOutput_l() openOutputStream_l tried to open addr card=2;device=0;
+1413:07-23 19:01:19.936  2400  2400 I AudioFlinger: HAL output buffer size 960 frames, normal sink buffer size 960 frames
+1415:07-23 19:01:19.937  2400  2400 V AudioFlinger: openOutput_l() created mixer output: ID 85 thread 0xe0cc2f00d240
+1416:07-23 19:01:19.937  2400  3119 I AudioFlinger: AudioFlinger's thread 0xe0cc2f00d240 tid=3119 ready to run
+1426:07-23 19:01:19.943  2400  2429 V AudioFlinger: setParameters(): io 85, keyvalue mono_output=0, calling pid 2400 calling uid 1041
+1427:07-23 19:01:19.943  2400  2429 V AudioFlinger: setParameters: filtered keyvalue mono_output=0
+1428:07-23 19:01:19.943  2400  2400 V AudioFlinger: moveEffects() session 0, srcOutput 13, dstOutput 85
+1429:07-23 19:01:19.943  2400  2400 V AudioFlinger: moveEffectChain_l() session 0 from thread 0xe0cc31ae6000 to thread 0xe0cc2f00d240
+1430:07-23 19:01:19.943  2400  2400 W AudioFlinger: moveEffectChain_l() effect chain for session 0 not on source thread 0xe0cc31ae6000
+1432:07-23 19:01:19.944  2400  2400 I AudioFlinger: HAL output buffer size 960 frames, normal sink buffer size 960 frames
+1434:07-23 19:01:19.944  2400  3121 I AudioFlinger: AudioFlinger's thread 0xe0cc2f08e580 tid=3121 ready to run
+1438:07-23 19:01:19.946  2400  2429 V AudioFlinger: setParameters(): io 93, keyvalue mono_output=0, calling pid 2400 calling uid 1041
+1439:07-23 19:01:19.946  2400  2429 V AudioFlinger: setParameters: filtered keyvalue mono_output=0
+1440:07-23 19:01:19.946  2400  2400 V AudioFlinger: invalidateStream() stream 0
+1441:07-23 19:01:19.946  2400  2400 V AudioFlinger: invalidateStream() stream 6
+1442:07-23 19:01:19.946  2400  2400 V AudioFlinger: invalidateStream() stream 7
+1443:07-23 19:01:19.946  2400  2400 V AudioFlinger: invalidateStream() stream 2
+1444:07-23 19:01:19.946  2400  2400 V AudioFlinger: invalidateStream() stream 4
+1445:07-23 19:01:19.946  2400  2400 V AudioFlinger: invalidateStream() stream 5
+1446:07-23 19:01:19.946  2400  2400 V AudioFlinger: invalidateStream() stream 10
+1447:07-23 19:01:19.946  2400  2400 V AudioFlinger: invalidateStream() stream 1
+1448:07-23 19:01:19.946  2400  2400 V AudioFlinger: invalidateStream() stream 3
+1449:07-23 19:01:19.947  2400  2400 V AudioFlinger: invalidateStream() stream 8
+1450:07-23 19:01:19.947  2400  2400 V AudioFlinger: invalidateStream() stream 11
+================================================================native android logs================================================================================================================
+1469:07-23 19:01:19.971  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue card=2;connect=-2113929216;device=0, calling pid 2400 calling uid 1041
+1470:07-23 19:01:19.971  2400  2429 V AudioFlinger: setParameters: filtered keyvalue card=2;connect=-2113929216;device=0
+1474:07-23 19:01:19.972  2400  2431 W AudioFlinger:  Pankaj :findSuitableHwDev_l() loading well know audio hw modules 18
+1593:07-23 19:01:20.280  2400  2431 V AudioFlinger: openInput_l() openInputStream returned input 0xe0cc31413b40, devices 0x82000000, SamplingRate 48000, Format 0x1, Channels 0, flags 0, status 0 addr card=2;device=0;
+1597:07-23 19:01:20.283  2400  2431 V AudioFlinger: openInput_l() created record thread: ID 30 thread 0xe0cc3159b140
+1598:07-23 19:01:20.283  2400  3147 I AudioFlinger: AudioFlinger's thread 0xe0cc3159b140 tid=3147 ready to run
+1613:07-23 19:01:20.286  2400  2429 V AudioFlinger: setParameters(): io 30, keyvalue card=2;device=0;, calling pid 2400 calling uid 1041
+1614:07-23 19:01:20.286  2400  2429 V AudioFlinger: setParameters: filtered keyvalue card=2;device=0;
+1620:07-23 19:01:20.287  2400  2431 V AudioFlinger: getParameters() io 30, keys sup_formats, calling pid 2400
+1623:07-23 19:01:20.288  2400  2431 V AudioFlinger: getParameters() io 30, keys format=1;sup_sampling_rates, calling pid 2400
+1625:07-23 19:01:20.289  2400  2431 V AudioFlinger: getParameters() io 30, keys format=1;sup_channels, calling pid 2400
+1627:07-23 19:01:20.289  2400  2431 V AudioFlinger: closeInput() 30
+1791:07-23 19:01:20.488  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1792:07-23 19:01:20.488  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1795:07-23 19:01:20.491  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1796:07-23 19:01:20.491  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1800:07-23 19:01:20.491  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1801:07-23 19:01:20.491  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1804:07-23 19:01:20.492  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1805:07-23 19:01:20.493  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1809:07-23 19:01:20.493  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1810:07-23 19:01:20.493  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1813:07-23 19:01:20.494  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1814:07-23 19:01:20.494  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1817:07-23 19:01:20.495  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1818:07-23 19:01:20.495  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1821:07-23 19:01:20.495  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1822:07-23 19:01:20.495  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1825:07-23 19:01:20.496  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1826:07-23 19:01:20.496  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1830:07-23 19:01:20.496  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1831:07-23 19:01:20.497  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1837:07-23 19:01:20.499  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1838:07-23 19:01:20.499  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1841:07-23 19:01:20.500  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1842:07-23 19:01:20.500  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1845:07-23 19:01:20.501  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1846:07-23 19:01:20.501  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1849:07-23 19:01:20.503  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1850:07-23 19:01:20.503  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1856:07-23 19:01:20.505  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1857:07-23 19:01:20.505  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1860:07-23 19:01:20.505  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1861:07-23 19:01:20.505  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1864:07-23 19:01:20.506  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1865:07-23 19:01:20.506  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1868:07-23 19:01:20.507  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1869:07-23 19:01:20.507  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1872:07-23 19:01:20.507  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1873:07-23 19:01:20.507  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1877:07-23 19:01:20.508  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1878:07-23 19:01:20.508  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1889:07-23 19:01:20.517  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1890:07-23 19:01:20.517  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1893:07-23 19:01:20.517  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1894:07-23 19:01:20.517  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1897:07-23 19:01:20.518  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1898:07-23 19:01:20.518  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1901:07-23 19:01:20.520  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1902:07-23 19:01:20.520  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1905:07-23 19:01:20.521  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1906:07-23 19:01:20.521  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1910:07-23 19:01:20.522  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1911:07-23 19:01:20.522  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1914:07-23 19:01:20.523  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1915:07-23 19:01:20.523  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1920:07-23 19:01:20.527  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1921:07-23 19:01:20.527  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1924:07-23 19:01:20.528  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1925:07-23 19:01:20.528  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1929:07-23 19:01:20.528  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+1930:07-23 19:01:20.528  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+1963:07-23 19:01:20.554  2400  2431 V AudioFlinger: AudioFlinger::setRecordSilenced(uid:10000, silenced:0)
+2145:07-23 19:01:20.881  2400  2431 V AudioFlinger: setParameters(): io 0, keyvalue A2dpSuspended=false, calling pid 2657 calling uid 1000
+2146:07-23 19:01:20.881  2400  2431 V AudioFlinger: setParameters: filtered keyvalue A2dpSuspended=false
+2152:07-23 19:01:20.885  2400  2431 V AudioFlinger: setParameters(): io 0, keyvalue BT_SCO=off, calling pid 2657 calling uid 1000
+2153:07-23 19:01:20.885  2400  2431 V AudioFlinger: setParameters: filtered keyvalue BT_SCO=off
+2833:07-23 19:01:23.374  2400  2400 V AudioFlinger: AudioFlinger::setRecordSilenced(uid:10002, silenced:0)
+2859:07-23 19:01:23.474  2400  2431 V AudioFlinger: AudioFlinger::setRecordSilenced(uid:10001, silenced:0)
+2895:07-23 19:01:23.552  2400  2431 V AudioFlinger: registerClient() client 0xe0cc31ae4260, pid 2903
+2896:07-23 19:01:23.553  2400  2431 V AudioFlinger: acquiring 9 from 2903, for -1
+2897:07-23 19:01:23.553  2400  2431 V AudioFlinger:  added new entry for 9
+3233:07-23 19:01:24.618  2400  2431 V AudioFlinger: AudioFlinger::setRecordSilenced(uid:1110022, silenced:0)
+3268:07-23 19:01:24.681  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3269:07-23 19:01:24.682  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3272:07-23 19:01:24.685  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3273:07-23 19:01:24.685  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3278:07-23 19:01:24.690  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3279:07-23 19:01:24.690  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3283:07-23 19:01:24.697  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3284:07-23 19:01:24.697  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3287:07-23 19:01:24.697  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3288:07-23 19:01:24.697  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3291:07-23 19:01:24.698  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3292:07-23 19:01:24.698  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3295:07-23 19:01:24.699  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3296:07-23 19:01:24.699  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3299:07-23 19:01:24.700  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3300:07-23 19:01:24.700  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3303:07-23 19:01:24.701  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3304:07-23 19:01:24.701  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3308:07-23 19:01:24.702  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3309:07-23 19:01:24.702  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3316:07-23 19:01:24.706  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3317:07-23 19:01:24.706  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3321:07-23 19:01:24.707  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3322:07-23 19:01:24.707  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3325:07-23 19:01:24.709  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3326:07-23 19:01:24.709  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3329:07-23 19:01:24.710  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3330:07-23 19:01:24.710  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3334:07-23 19:01:24.711  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3335:07-23 19:01:24.711  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3338:07-23 19:01:24.711  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3339:07-23 19:01:24.711  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3342:07-23 19:01:24.712  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3343:07-23 19:01:24.712  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3346:07-23 19:01:24.713  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3347:07-23 19:01:24.713  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3350:07-23 19:01:24.714  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3351:07-23 19:01:24.714  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3355:07-23 19:01:24.715  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3356:07-23 19:01:24.715  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3375:07-23 19:01:24.736  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3376:07-23 19:01:24.737  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3379:07-23 19:01:24.737  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3380:07-23 19:01:24.738  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3383:07-23 19:01:24.738  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3384:07-23 19:01:24.738  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3387:07-23 19:01:24.739  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3388:07-23 19:01:24.739  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3391:07-23 19:01:24.739  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3392:07-23 19:01:24.739  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+3395:07-23 19:01:24.740  2400  2429 V AudioFlinger: setParameters(): io 0, keyvalue __defvolume__=1.0000000000, calling pid 2400 calling uid 1041
+3396:07-23 19:01:24.740  2400  2429 V AudioFlinger: setParameters: filtered keyvalue __defvolume__=1.0000000000
+
+==================================================================================================================================
+adb pull /vendor/etc/audio_policy_configuration.xml .
+
+1|dash5dv:/vendor $ find . -name audio_*                                                                           
+find: No ./lost+found: Permission denied
+./lib64/hw/audio_org.usb.default.so
+./etc/audio_policy_configuration.xml
+./etc/audio_effects.xml
+./etc/audio_policy_volumes.xml
+1|dash5dv:/vendor $               
+
+========================================Conversion.cpp change at audio hal level====================================================
+
+the build made is /vendor/bin/hw/android.hardware.audio@4.0-service.dash5dv
+
+=====================Finding an .so file shared object in android ==================================================================
+
+find / -name \*.so
+find / -name \libaudiopolicymanagerdefault.so
+mm showcommands
+out/target/product/dash5dv/obj/SHARED_LIBRARIES/libaudiopolicymanagerdefault_intermediates/PACKED/libaudiopolicymanagerdefault.so
+
+=====================================================================================================================================
 
 
