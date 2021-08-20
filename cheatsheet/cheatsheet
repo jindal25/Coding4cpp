@@ -2510,7 +2510,137 @@ find / -name \*.so
 find / -name \libaudiopolicymanagerdefault.so
 mm showcommands
 out/target/product/dash5dv/obj/SHARED_LIBRARIES/libaudiopolicymanagerdefault_intermediates/PACKED/libaudiopolicymanagerdefault.so
-
+/system/lib64/libaudiopolicymanagerdefault.so
+system/lib64/libaudiopolicymanager.so
+system/lib64/libaudiopolicyservice.so
 =====================================================================================================================================
+audio hal code
+device/renesas/dash5dv/hal/audio
+hardware/libhardware/modules/usbaudio
+=================================================================================================================================
+
+
+62 # Audio
+63 USE_XML_AUDIO_POLICY_CONF := 1
+64 AUDIO_HAL_INTERFACE_VERSION := V4_0
+65 
+66 DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
+67 
+68 PRODUCT_PACKAGES += \
+69     audio.primary.dash5dv \
+70     audio.usb.default \
+71     android.hardware.automotive.audiocontrol@1.0-service.dash5dv
+72 
+73 ifeq ($(AUDIO_HAL_INTERFACE_VERSION),V4_0)
+74     PRODUCT_PACKAGES += \
+75         android.hardware.audio@4.0-service.dash5dv
+76 else ifeq ($(AUDIO_HAL_INTERFACE_VERSION),V2_0)
+77     PRODUCT_PACKAGES += \
+78         android.hardware.audio@2.0-service.dash5dv
+79 else
+80     $(error "AUDIO_HAL_INTERFACE_VERSION isn't set to V2_0 nor V4_0")
+81 endif
+82 LOCAL_CFLAGS += -DAUDIO_HAL_VERSION=$(AUDIO_HAL_INTERFACE_VERSION)
+83 
+84 PRODUCT_COPY_FILES += \
+85     device/renesas/dash5dv/hal/audio/audio_policy_configuration.xml:vendor/etc/audio_policy_configuration.xml \
+86     device/renesas/dash5dv/hal/audio/audio_policy_volumes.xml:vendor/etc/audio_policy_volumes.xml \
+87     device/renesas/dash5dv/hal/audio/default_volume_tables.xml:vendor/etc/default_volume_tables.xml \
+88     device/renesas/dash5dv/hal/audio/usb_audio_policy_configuration.xml:vendor/etc/usb_audio_policy_configuration.xml
+
+======================================================================================================================================
+
+[id-minimal-dash5.qvmconf:174] virtio_audio_control: VDEV_CTRL_OPTIONS_END
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel info channel 0: pcm path pcmC0D0p, pcm caps 33024, audio_type=
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel info channel 1: pcm path pcmC0D0c, pcm caps+-----------------------------+
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: rates=0x80; formats=0|                             |0
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: min/max voices = 8/8;|  Cannot open /dev/ttyUSB0!  |fersize = 245760
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[0]=Front le|                             |
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[1]=Front ri+-----------------------------+
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[2]=Front center
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[3]=LFE/Woofer
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[4]=Rear left
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[5]=Rear right
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[6]=Side left
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[7]=Side right
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 1: rates=0x80; formats=0x10; min/max fragsize=64/65536
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 1: min/max voices = 2/2; fragment_align = 1; max_buffersize = 262144
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 1: chmap_pos[0]=Front left
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 1: chmap_pos[1]=Front right
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume info: mixer path /dev/snd/mixerC0D0
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: capabilities=0x3d, voices=8
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[0]=Front left
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[1]=Front right
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[2]=Front center
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[3]=Rear left
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[4]=Rear right
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[5]=LFE/Woofer
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[6]=Side left
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[7]=Side right
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: vol range=0[0.00dB] to 600[0.00dB]
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: balance range=0 to 200
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: fade range=0 to 200
+[id-minimal-dash5.qvmconf:195] virtio_audio_control: VDEV_CTRL_OPTIONS_START
+[id-minimal-dash5.qvmconf:195] virtio_audio_control: VDEV_CTRL_OPTIONS_END
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel info channel 0: pcm path pcmC1D0p, pcm caps 33024, audio_type=
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel info channel 1: pcm path pcmC1D0c, pcm caps 32768, audio_type=
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel config for channel 0: rates=0xdffe; formats=0x10; min/max fragsize=2048/86016
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel config for channel 0: min/max voices = 2/2; fragment_align = 2048; max_buffersize = 258048
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[0]=Front left
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[1]=Front right
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel config for channel 1: rates=0xdffe; formats=0x10; min/max fragsize=64/65536
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel config for channel 1: min/max voices = 2/2; fragment_align = 1; max_buffersize = 262144
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel config for channel 1: chmap_pos[0]=Front left
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel config for channel 1: chmap_pos[1]=Front right
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: mixer control PCM Playback Volume info: mixer path /dev/snd/mixerC1D0
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: mixer control PCM Playback Volume config: capabilities=0x1d, voices=2
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[0]=Front left
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[1]=Front right
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: mixer control PCM Playback Volume config: vol range=0[0.00dB] to 600[0.00dB]
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: mixer control PCM Playback Volume config: balance range=0 to 200
+[id-minimal-dash5.qvmconf:195] virtio_audio_control: VDEV_CTRL_GUEST_CONFIGURED
+[id-minimal-dash5.qvmconf:195] virtio_audio_cmdq_thread: Thread for command queue is running
+[id-minimal-dash5.qvmconf:195] virtio_audio_outq_thread: Thread for output queue is running
+[id-minimal-dash5.qvmconf:195] virtio_audio_channel_cmd_thread: Command thread for channel 0 is running
+[id-minimal-dash5.qvmconf:195] virtio_audio_inq_thread: Thread for input queue is running
+[id-minimal-dash5.qvmconf:174] virtio_audio_control: VDEV_CTRL_GUEST_CONFIGURED
+[id-minimal-dash5.qvmconf:174] virtio_audio_channel_cmd_thread: Command thread for channel 1 is running
+[id-minimal-dash5.qvmconf:174] virtio_audio_cmdq_thread: Thread for command queue is running
+[id-minimal-dash5.qvmconf:174] virtio_audio_outq_thread: Thread for output queue is running
+[id-minimal-dash5.qvmconf:174] virtio_audio_channel_cmd_thread: Command thread for channel 0 is running
+[id-minimal-dash5.qvmconf:174] virtio_audio_inq_thread: Thread for input queue is running
+[id-minimal-dash5.qvmconf:141] virtio_audio_channel_cmd_thread: Command thread for channel 1 is running
+=======================================================================================================================================================================================
+[   82.858508] ffs_data_put(): freeing
+[   82.863793] ffs_data_put(): freeing
+[   82.879351] type=1400 audit(1474903467.995:4): avc: granted { read } for pid=1 comm="init" name="ttyAMA0" dev="tmpfs" ino=14344 scontext=u:r:init:s0 tcontext=u:object_r:tty_device:s0 tclass=chr_file
+[   82.908257] type=1400 audit(1474903467.995:4): avc: granted { read } for pid=1 comm="init" name="ttyAMA0" dev="tmpfs" ino=14344 scontext=u:r:init:s0 tcontext=u:object_r:tty_device:s0 tclass=chr_file
+[   82.940678] type=1400 audit(1474903468.011:5): avc: granted { read open } for pid=1 comm="init" path="/dev/ttyAMA0" dev="tmpfs" ino=14344 scontext=u:r:init:s0 tcontext=u:object_r:tty_device:s0 tclass=chr_file
+[   82.968804] read descriptors
+console:/ $ [   82.974985] read strings
+[   82.977782] type=1400 audit(1474903468.011:5): avc: granted { read open } for pid=1 comm="init" path="/dev/ttyAMA0" dev="tmpfs" ino=14344 scontext=u:r:init:s0 tcontext=u:object_r:tty_device:s0 tclass=chr_file
+[   83.007816] type=1400 audit(1474903468.019:6): avc: granted { read } for pid=1913 comm="init" name="ttyAMA0" dev="tmpfs" ino=14344 scontext=u:r:init:s0 tcontext=u:object_r:tty_device:s0 tclass=chr_file
+[   83.040139] type=1400 audit(1474903468.019:6): avc: granted { read } for pid=1913 comm="init" name="ttyAMA0" dev="tmpfs" ino=14344 scontext=u:r:init:s0 tcontext=u:object_r:tty_device:s0 tclass=chr_file
+[   83.054350] usb 2-1: New USB device found, idVendor=046d, idProduct=0a37
+[   83.070090] type=1400 audit(1474903468.019:7): avc: granted { read open } for pid=1913 comm="init" path="/dev/ttyAMA0" dev="tmpfs" ino=14344 scontext=u:r:init:s0 tcontext=u:object_r:tty_device:s0 tclass=chr_file
+[   83.083792] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[   83.112927] usb 2-1: Product: Logitech USB Headset H540
+[   83.123051] usb 2-1: Manufacturer: Logitech Inc 
+[   83.128515] usb 2-1: SerialNumber: 00000000
+[   83.309515] usb 2-1: Warning! Unlikely big volume range (=4096), cval->res is probably wrong.
+[   83.318739] usb 2-1: [11] FU [Sidetone Playback Volume] ch = 1, val = 0/4096/1
+[   83.414082] input: Logitech Inc  Logitech USB Headset H540 as /devices/platform/soc/ee0a0000.usb/usb2/2-1/2-1:1.3/0003:046D:0A37.0001/input/input2
+[   83.428748] hid-generic 0003:046D:0A37.0001: input,hidraw0: USB HID v1.11 Device [Logitech Inc  Logitech USB Headset H540] on usb-ee0a0000.usb-1/input3
+[   84.116738] capability: warning: `main' uses 32-bit capabilities (legacy support in use)
+
+===================================================================================================================================================
+
+[   82.732077] usb 2-1: new full-speed USB device number 2 using ohci-platform
+[   82.766424] usbcore: registered new interface driver snd-usb-audio
+[   82.792067] usbcore: registered new interface driver rtl8150
+[   82.812663] usbcore: registered new interface driver r8152
+========================================================================================
+dash5dv:/ # tinyplay /data/t44.wav  -D 1 -d 0 -p 1024 -n 2 2                                                              
+Playing sample: 2 ch, 44100 hz, 16 bit
 
 
