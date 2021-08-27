@@ -339,7 +339,7 @@ fastboot
 ==============================CCC audio playback from USB DEVICE================================================================================
 tinyplay t44.wav  -D 2 -d 0  -p 1024 -n 2  
 tinyplay t44.wav  -D 2 -d 0 -p 1024 -n 2      
-===============================================================================================================================
+===========================================================================================================================y===
 USB audio module:
 Output Profile:
   card:2, device:0 - OUT
@@ -2642,5 +2642,691 @@ console:/ $ [   82.974985] read strings
 ========================================================================================
 dash5dv:/ # tinyplay /data/t44.wav  -D 1 -d 0 -p 1024 -n 2 2                                                              
 Playing sample: 2 ch, 44100 hz, 16 bit
+============================================================================================
+[    2.337759] ALSA device list:
+[    2.341008]   #0: Loopback 1
+
+[    8.650622] usb 2-1: new full-speed USB device number 2 using ohci-platform
+[    8.676682] usbcore: registered new interface driver snd-usb-audio
+[    8.698099] usbcore: registered new interface driver rtl8150
+[    8.717255] usbcore: registered new interface driver r8152
+[    8.732115] usbcore: registered new interface driver cdc_ncm
+
+======================================================================================
+[id-minimal-dash5.qvmconf:174] virtio_audio_control: VDEV_CTRL_OPTIONS_END
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel info channel 0: pcm path pcmC0D0p, pcm caps 33024, audi=
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel info channel 1: pcm path pcmC0D0c, pcm caps 32768, audi=
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: rates=0x80; formats=0x10; min/max0
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: min/max voices = 8/8; fragment_al0
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[0]=Front left
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[1]=Front right
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[2]=Front center
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[3]=LFE/Woofer
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[4]=Rear left
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[5]=Rear right
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[6]=Side left
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[7]=Side right
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 1: rates=0x80; formats=0x10; min/max6
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 1: min/max voices = 2/2; fragment_al4
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 1: chmap_pos[0]=Front left
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: channel config for channel 1: chmap_pos[1]=Front right
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume info: mixer path /dev/snd/mix0
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: capabilities=0x3d, vo8
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[0]=Front let
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[1]=Front rit
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[2]=Front cer
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[3]=Rear left
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[4]=Rear rigt
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[5]=LFE/Woofr
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[6]=Side left
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[7]=Side rigt
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: vol range=0[0.00dB] t]
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: balance range=0 to 200
+[id-minimal-dash5.qvmconf:174] virtio_audio_init_vdev: mixer control PCM Playback Volume config: fade range=0 to 200
+[id-minimal-dash5.qvmconf:195] virtio_audio_control: VDEV_CTRL_OPTIONS_START
+[id-minimal-dash5.qvmconf:195] virtio_audio_control: VDEV_CTRL_OPTIONS_END
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel info channel 0: pcm path pcmC1D0p, pcm caps 33024, audi=
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel info channel 1: pcm path pcmC1D0c, pcm caps 32768, audi=
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel config for channel 0: rates=0xdffe; formats=0x10; min/m6
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel config for channel 0: min/max voices = 2/2; fragment_al8
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[0]=Front left
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel config for channel 0: chmap_pos[1]=Front right
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel config for channel 1: rates=0xdffe; formats=0x10; min/m6
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel config for channel 1: min/max voices = 2/2; fragment_al4
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel config for channel 1: chmap_pos[0]=Front left
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: channel config for channel 1: chmap_pos[1]=Front right
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: mixer control PCM Playback Volume info: mixer path /dev/snd/mix0
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: mixer control PCM Playback Volume config: capabilities=0x1d, vo2
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[0]=Front let
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: mixer control PCM Playback Volume config: chmap_pos[1]=Front rit
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: mixer control PCM Playback Volume config: vol range=0[0.00dB] t]
+[id-minimal-dash5.qvmconf:195] virtio_audio_init_vdev: mixer control PCM Playback Volume config: balance range=0 to 200
+[id-minimal-dash5.qvmconf:195] virtio_audio_control: VDEV_CTRL_GUEST_CONFIGURED
+[id-minimal-dash5.qvmconf:195] virtio_audio_cmdq_thread: Thread for command queue is running
+[id-minimal-dash5.qvmconf:195] virtio_audio_outq_thread: Thread for output queue is running
+[id-minimal-dash5.qvmconf:195] virtio_audio_channel_cmd_thread: Command thread for channel 0 is running
+[id-minimal-dash5.qvmconf:195] virtio_audio_inq_thread: Thread for input queue is running
+[id-minimal-dash5.qvmconf:174] virtio_audio_control: VDEV_CTRL_GUEST_CONFIGURED
+[id-minimal-dash5.qvmconf:174] virtio_audio_channel_cmd_thread: Command thread for channel 1 is running
+[id-minimal-dash5.qvmconf:174] virtio_audio_cmdq_thread: Thread for command queue is running
+[id-minimal-dash5.qvmconf:174] virtio_audio_outq_thread: Thread for output queue is running
+[id-minimal-dash5.qvmconf:174] virtio_audio_channel_cmd_thread: Command thread for channel 0 is running
+[id-minimal-dash5.qvmconf:174] virtio_audio_inq_thread: Thread for input queue is running
+[id-minimal-dash5.qvmconf:141] virtio_audio_channel_cmd_thread: Command thread for channel 1 is running
+
+virtio_audio_pcm_open: snd_pcm_open_name failed for path pcmC3D0p - No such file or diry
+
+==================================================================================
+127|dash5dv:/vendor/etc # cat usb_port_configuration.xml                                                                 
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generic USB port configuration for all boards -->
+<!-- Possible values for port:
+    name - port name
+    id - port identifier in /sys/devices/platform/soc/
+    mode - port mode (host, device, dual)
+    noswitch - explicitly denies role switch attempts -->
+<usbports>
+    <port name="usb2_0" id="ee080200.usb-phy" mode="dual" noswitch="true" />
+    <port name="usb2_1" id="ee0a0100.usb" mode="host"/>
+    <port name="usb2_2" id="ee0c0100.usb" mode="host"/>
+    <port name="usb3_0" id="ee000000.usb" mode="host"/>
+    <!-- Dash5dv XS H3 2.0 -->
+    <port name="usb2_3" id="ee0e0200.usb-phy" mode="dual"/>
+</usbports>
+dash5dv:/vendor/etc # cat /proc/asound/cards                                                                             
+ 0 [Loopback       ]: Loopback - Loopback
+                      Loopback 1
+ 1 [virtaudio      ]: virtaudio - virtaudio
+                      virtaudio 0
+ 2 [virtaudio_1    ]: virtaudio - virtaudio
+                      virtaudio 1
+ 3 [H540           ]: USB-Audio - Logitech USB Headset H540
+                      Logitech Inc Logitech USB Headset H540 at usb-ee0a0000.usb-1, full speed
+
+==================================QNX logs=============================================================================
+there are two files
+/data/slog1.txt
+/data/slog2.txt
+=====================================================================================================================
+io-audio -dusb -daudiopci
+====================================keep directory out of find===================================================
+find . -name audio -not -path "*/out/*"
+===========================majority of hardware audio hal is here==================================================
+pankajjindal@hqdevbld01:/local2/pankajjindal/android_JDI_build_0814/dash5dv/hardware/interfaces/audio/common/all-versions/default/include/common/all-versions/default$ vi 
+EffectMap.h       HidlUtils.h       HidlUtils.impl.h  
+vi 
+
+=====================================================================================================================
+08-05 13:25:29.620  1967  2059 V EventHub: add device 3: /dev/input/event2
+08-05 13:25:29.620  1967  2059 V EventHub:   bus:        0003
+08-05 13:25:29.620  1967  2059 V EventHub:   vendor      046d
+08-05 13:25:29.620  1967  2059 V EventHub:   product     0a37
+08-05 13:25:29.620  1967  2059 V EventHub:   version     0111
+08-05 13:25:29.620  1967  2059 V EventHub:   name:       "Logitech Inc  Logitech USB Headset H540"
+08-05 13:25:29.620  1967  2059 V EventHub:   location:   "usb-ee0a0000.usb-1/input3"
+08-05 13:25:29.620  1967  2059 V EventHub:   unique id:  "00000000"
+08-05 13:25:29.620  1967  2059 V EventHub:   descriptor: "2afb70cf44d8093065f5ea50bcd855b4837533c4"
+08-05 13:25:29.620  1967  2059 V EventHub:   driver:     v1.0.1
+=================================USB when plugged after booting=======================================================================
+console:/ $ [ 1305.883451] usb 1-1: USB disconnect, device number 3
+[ 1305.889410] sd 0:0:0:0: [sda] Synchronizing SCSI cache
+[ 1305.892772] sd 0:0:0:0: [sda] Synchronize Cache(10) failed: Result: hostbyte=0x01 driverbyte=0x00
+[ 1309.274277] usb 2-1: new full-speed USB device number 2 using ohci-platform
+[ 1309.590348] usb 2-1: New USB device found, idVendor=046d, idProduct=0a37
+[ 1309.593527] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 1309.596504] usb 2-1: Product: Logitech USB Headset H540
+[ 1309.598658] usb 2-1: Manufacturer: Logitech Inc 
+[ 1309.600693] usb 2-1: SerialNumber: 00000000
+[ 1309.767089] usb 2-1: Warning! Unlikely big volume range (=4096), cval->res is probably wrong.
+[ 1309.771431] usb 2-1: [11] FU [Sidetone Playback Volume] ch = 1, val = 0/4096/1
+[ 1309.860892] input: Logitech Inc  Logitech USB Headset H540 as /devices/platform/soc/ee0a0000.usb/usb2/2-1/2-1:1.3/002
+[ 1309.870598] hid-generic 0003:046D:0A37.0001: input,hidraw0: USB HID v1.11 Device [Logitech Inc  Logitech USB Headset3
+[ 1463.266591] android_work: sent uevent USB_STATE=DISCONNECTED
+[ 1463.268868] init: Service 'adbd' (pid 1908) exited with status 1
+[ 1463.273107] init: Sending signal 9 to service 'adbd' (pid 1908) process group...
+[ 1463.278932] libprocessgroup: Successfully killed process cgroup uid 0 pid 1908 in 0ms
+[ 1463.283182] init: Untracked pid 7636 received signal 1
+[ 1463.285947] init: starting service 'adbd'...
+[ 1463.296961] init: Created socket '/dev/socket/adbd', mode 660, user 1000, group 1000
+[ 1463.313438] read descriptors
+[ 1463.315188] read strings
+[ 1463.317558] init: processing action (sys.usb.config=mtp,adb && sys.usb.configfs=1 && sys.usb.ffs.ready=1) from (/ini)
+[ 1463.620492] android_work: sent uevent USB_STATE=CONNECTED
+[ 1463.772084] configfs-gadget gadget: high-speed config #1: b
+[ 1463.776490] android_work: sent uevent USB_STATE=CONFIGURED
+[ 1466.575462] EXT4-fs (vda20): re-mounted. Opts: (null)
+[ 1466.580139] EXT4-fs (vda24): re-mounted. Opts: (null)
+[ 1466.584553] EXT4-fs (vda22): re-mounted. Opts: (null)
+[ 1469.136126] configfs-gadget gadget: high-speed config #1: b
+[ 1469.142460] android_work: sent uevent USB_STATE=CONFIGURED
+[ 1507.572948] type=1400 audit(1628193854.375:10): avc: denied { write } for pid=2472 comm="cid.car.service" name="syst0
+[ 1507.586747] type=1400 audit(1628195327.263:11): avc: denied { write } for pid=1657 comm="iptables-restor" name="etc"0
+[ 8191.572493] configfs-gadget gadget: high-speed config #1: b
+[ 8191.581839] android_work: sent uevent USB_STATE=CONFIGURED
+==========================================================================================================================
+out/target/product/dash5dv/system/lib/libaudiohal.so
+xref: /lucid_dash5dv_9r35/hardware/interfaces/audio/common/all-versions/default/include/common/all-versions/default/HidlUtils.impl.h 
+==============================================================================================================================
+193:09-26 08:23:12.292  1695  1695 I ServiceManagement: Removing namespace from process name android.hardware.usb@1.0-service.renesas to usb@1.0-service.renesas.
+202:09-26 08:23:12.294  1695  1695 I android.hardware.usb@1.0-service.renesas: USB HAL Ready.
+360:09-26 08:23:13.624  1698  1698 I AudioFlinger: loadHwModule() Loaded usb audio interface, handle 10
+440:09-26 08:23:14.272  1856  1872 I adbd    : opening control endpoint /dev/usb-ffs/adb/ep0
+497:09-26 08:23:14.406  1856  1872 I adbd    : registering usb transport
+498:09-26 08:23:14.436  1518  1518 W hwservicemanager: getTransport: Cannot find entry android.hardware.usb.gadget@1.0::IUsbGadget/default in either framework or device manifest.
+499:09-26 08:23:14.437  1878  1878 I usbd    : Usb HAL not found
+628:09-26 08:23:17.804  1937  1937 E UsbAlsaJackDetectorJNI: Can't register UsbAlsaJackDetector native methods
+758:09-26 08:23:18.093  1937  1937 V RescueParty: Disabled because of active USB connection
+936:09-26 08:23:20.205  1856  1886 E adbd    : remote usb: read terminated (message): Cannot send after transport endpoint shutdown
+954:08-05 13:04:09.077  1856  1872 I adbd    : registering usb transport
+1019:08-05 13:04:09.247  1937  2007 V EventHub:   name:       "Logitech Inc  Logitech USB Headset H540"
+1020:08-05 13:04:09.247  1937  2007 V EventHub:   location:   "usb-ee0a0000.usb-1/input3"
+=============================================================================================================================================
+ W WiredAccessoryManager: This kernel does not have usb audio support
+================================================================================================================================================
+[  378.926450] usb 2-1: new full-speed USB device number 2 using ohci-platform
+[  379.246528] usb 2-1: New USB device found, idVendor=046d, idProduct=0a37
+[  379.253246] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[  379.260394] usb 2-1: Product: Logitech USB Headset H540
+[  379.265617] usb 2-1: Manufacturer: Logitech Inc 
+[  379.270238] usb 2-1: SerialNumber: 00000000
+[  379.439228] usb 2-1: Warning! Unlikely big volume range (=4096), cval->res is probably wrong.
+[  379.447792] usb 2-1: [11] FU [Sidetone Playback Volume] ch = 1, val = 0/4096/1
+[  379.536403] input: Logitech Inc  Logitech USB Headset H540 as /devices/platform/soc/ee0a0000.usb/usb2/2-1/2-1:1.3/002
+[  379.552276] hid-generic 0003:046D:0A37.0001: input,hidraw0: USB HID v1.11 Device [Logitech Inc  Logitech USB Headset3
+[  379.644262] type=1400 audit(1627067221.313:580): avc: denied { connect } for pid=2331 comm="HwBinder:2331_1" laddr=11
+[  379.666683] type=1400 audit(1627067243.125:581): avc: denied { write } for pid=2184 comm="vehicle@2.0-ser" laddr=1921
+[  379.774756] snd_pcm_attach_substream:1033  substream 000000007752ec72 runtime 0000000087e6def7 02-00: USB Audio : USo
+[  379.791666] snd_pcm_open_substream: pcmC2D0p:0
+[  379.792097] snd_pcm_attach_substream:1033  substream 000000007752ec72 runtime 0000000087e6def7 02-00: USB Audio : USo
+[  379.793497] type=1400 audit(1627067243.125:581): avc: denied { write } for pid=2184 comm="vehicle@2.0-ser" laddr=1921
+[  379.796628] snd_pcm_open_substream: pcmC2D0p:0
+[  379.796716] snd_pcm_attach_substream:1033  substream 000000007752ec72 runtime 000000007b17a932 02-00: USB Audio : USo
+[  379.808175] type=1400 audit(1627067243.273:582): avc: denied { read } for pid=2331 comm="HwBinder:2331_7" name="u:ob1
+[  379.832311] snd_pcm_open_substream: pcmC2D0p:0
+[  379.836654] type=1400 audit(1627067243.273:582): avc: denied { read } for pid=2331 comm="HwBinder:2331_7" name="u:ob1
+[  379.897487] type=1400 audit(1627067243.273:583): avc: denied { open } for pid=2331 comm="HwBinder:2331_7" path="/dev1
+[  379.897520] snd_pcm_attach_substream:1033  substream 000000007752ec72 runtime 000000002ec9e491 02-00: USB Audio : USo
+[  379.922285] type=1400 audit(1627067243.273:583): avc: denied { open } for pid=2331 comm="HwBinder:2331_7" path="/dev1
+[  379.934323] snd_pcm_open_substream: pcmC2D0p:0
+[  379.957429] type=1400 audit(1627067243.273:584): avc: denied { getattr } for pid=2331 comm="HwBinder:2331_7" path="/1
+[  379.986827] type=1400 audit(1627067243.273:584): avc: denied { getattr } for pid=2331 comm="HwBinder:2331_7" path="/1
+[  380.011712] type=1400 audit(1627067243.273:585): avc: denied { map } for pid=2331 comm="HwBinder:2331_7" path="/dev/1
+[  380.011864] snd_pcm_attach_substream:1033  substream 000000007752ec72 runtime 000000002ec9e491 02-00: USB Audio : USo
+[  380.048331] snd_pcm_open_substream: pcmC2D0p:0
+[  380.053435] snd_pcm_attach_substream:1033  substream 000000007752ec72 runtime 0000000003515315 02-00: USB Audio : USo
+[  380.069059] snd_pcm_open_substream: pcmC2D0p:0
+[  380.073445] snd_pcm_attach_substream:1033  substream 000000007752ec72 runtime 0000000003515315 02-00: USB Audio : USo
+[  380.089031] snd_pcm_open_substream: pcmC2D0p:0
+[  380.089108] snd_pcm_attach_substream:1033  substream 000000007752ec72 runtime 0000000003515315 02-00: USB Audio : USo
+[  380.105210] snd_pcm_open_substream: pcmC2D0p:0
+[  380.110292] snd_pcm_attach_substream:1033  substream 000000007752ec72 runtime 00000000adf8e04b 02-00: USB Audio : USo
+[  380.125927] snd_pcm_open_substream: pcmC2D0p:0
+[  380.126007] snd_pcm_attach_substream:1033  substream 000000007752ec72 runtime 00000000712865c1 02-00: USB Audio : USo
+[  380.141705] snd_pcm_open_substream: pcmC2D0p:0
+[  380.141780] snd_pcm_attach_substream:1033  substream 000000007752ec72 runtime 00000000712865c1 02-00: USB Audio : USo
+[  380.157365] snd_pcm_open_substream: pcmC2D0p:0
+[  380.162256] snd_pcm_attach_substream:1033  substream 000000007752ec72 runtime 00000000db630b79 02-00: USB Audio : USo
+[  380.177865] snd_pcm_open_substream: pcmC2D0p:0
+[  380.192877] snd_pcm_attach_substream:1033  substream 000000007752ec72 runtime 00000000712865c1 02-00: USB Audio : USo
+[  380.208526] snd_pcm_open_substream: pcmC2D0p:0
+[  380.208615] snd_pcm_attach_substream:1033  substream 000000007752ec72 runtime 00000000712865c1 02-00: USB Audio : USo
+[  380.224274] snd_pcm_open_substream: pcmC2D0p:0
+[  380.224343] snd_pcm_attach_substream:1033  substream 000000007752ec72 runtime 00000000267154fd 02-00: USB Audio : USo
+[  380.239932] snd_pcm_open_substream: pcmC2D0p:0
+[  380.245083] snd_pcm_attach_substream:1033  substream 000000007752ec72 runtime 00000000db630b79 02-00: USB Audio : USo
+[  380.260692] snd_pcm_open_substream: pcmC2D0p:0
+[  380.265045] snd_pcm_attach_substream:1033  substream 000000007752ec72 runtime 00000000db630b79 02-00: USB Audio : USo
+[  380.280646] snd_pcm_open_substream: pcmC2D0p:0
+[  380.284990] snd_pcm_attach_substream:1033  substream 000000007752ec72 runtime 00000000db630b79 02-00: USB Audio : USo
+[  380.300576] snd_pcm_open_substream: pcmC2D0p:0
+[  380.304956] snd_pcm_attach_substream:1033  substream 000000007752ec72 runtime 00000000db630b79 02-00: USB Audio : USo
+[  380.320537] snd_pcm_open_substream: pcmC2D0p:0
+[  380.320584] snd_pcm_attach_substream:1033  substream 000000007752ec72 runtime 00000000db630b79 02-00: USB Audio : USo
+[  380.336164] snd_pcm_open_substream: pcmC2D0p:0
+[  380.340901] snd_pcm_attach_substream:1033  substream 000000007752ec72 runtime 00000000db630b79 02-00: USB Audio : USo
+[  380.356484] snd_pcm_open_substream: pcmC2D0p:0
+[  380.356529] snd_pcm_attach_substream:1033  substream 000000007752ec72 runtime 00000000db630b79 02-00: USB Audio : USo
+[  380.372121] snd_pcm_open_substream: pcmC2D0p:0
+[  380.372178] snd_pcm_attach_substream:1033  substream 000000007752ec72 runtime 00000000db630b79 02-00: USB Audio : USo
+[  380.387759] snd_pcm_open_substream: pcmC2D0p:0
+[  380.392854] snd_pcm_attach_substream:1033  substream 000000007752ec72 runtime 00000000db630b79 02-00: USB Audio : USo
+[  380.408439] snd_pcm_open_substream: pcmC2D0p:0
+[  380.460974] snd_pcm_attach_substream:1033  substream 000000000d920891 runtime 000000006cf108fa 02-00: USB Audio : USo
+[  380.476818] snd_pcm_open_substream: pcmC2D0c:0
+[  380.476977] snd_pcm_attach_substream:1033  substream 000000000d920891 runtime 000000006cf108fa 02-00: USB Audio : USo
+[  380.492634] snd_pcm_open_substream: pcmC2D0c:0
+[  380.492749] snd_pcm_attach_substream:1033  substream 000000000d920891 runtime 000000006cf108fa 02-00: USB Audio : USo
+[  380.508349] snd_pcm_open_substream: pcmC2D0c:0
+[  380.512703] snd_pcm_attach_substream:1033  substream 000000000d920891 runtime 00000000db630b79 02-00: USB Audio : USo
+[  380.519996] audit: audit_lost=342 audit_rate_limit=5 audit_backlog_limit=64
+[  380.528432] snd_pcm_open_substream: pcmC2D0c:0
+[  380.535287] audit: rate limit exceeded
+[  380.548646] snd_pcm_attach_substream:1033  substream 000000000d920891 runtime 00000000db630b79 02-00: USB Audio : USo
+[  380.559920] snd_pcm_open_substream: pcmC2D0c:0
+[  380.564603] snd_pcm_attach_substream:1033  substream 000000000d920891 runtime 00000000db630b79 02-00: USB Audio : USo
+[  380.580261] snd_pcm_open_substream: pcmC2D0c:0
+[  380.584574] snd_pcm_attach_substream:1033  substream 000000000d920891 runtime 00000000db630b79 02-00: USB Audio : USo
+[  380.600179] snd_pcm_open_substream: pcmC2D0c:0
+[  380.600250] snd_pcm_attach_substream:1033  substream 000000000d920891 runtime 00000000db630b79 02-00: USB Audio : USo
+[  380.615921] snd_pcm_open_substream: pcmC2D0c:0
+[  380.620491] snd_pcm_attach_substream:1033  substream 000000000d920891 runtime 00000000db630b79 02-00: USB Audio : USo
+[  380.636082] snd_pcm_open_substream: pcmC2D0c:0
+[  380.636136] snd_pcm_attach_substream:1033  substream 000000000d920891 runtime 00000000db630b79 02-00: USB Audio : USo
+[  380.651722] snd_pcm_open_substream: pcmC2D0c:0
+[  380.651771] snd_pcm_attach_substream:1033  substream 000000000d920891 runtime 00000000db630b79 02-00: USB Audio : USo
+[  380.667397] snd_pcm_open_substream: pcmC2D0c:0
+[  380.672498] snd_pcm_attach_substream:1033  substream 000000000d920891 runtime 00000000db630b79 02-00: USB Audio : USo
+=====================================================USB Instertion on android=============================================================================
+console:/ $ [  485.630453] usb 2-1: new full-speed USB device number 3 using ohci-platform
+[  485.950682] usb 2-1: New USB device found, idVendor=046d, idProduct=0a37
+[  485.957397] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[  485.964546] usb 2-1: Product: Logitech USB Headset H540
+[  485.969768] usb 2-1: Manufacturer: Logitech Inc 
+[  485.974386] usb 2-1: SerialNumber: 00000000
+[  486.143293] usb 2-1: Warning! Unlikely big volume range (=4096), cval->res is probably wrong.
+[  486.151832] usb 2-1: [11] FU [Sidetone Playback Volume] ch = 1, val = 0/4096/1
+[  486.240386] input: Logitech Inc  Logitech USB Headset H540 as /devices/platform/soc/ee0a0000.usb/usb2/2-1/2-1:1.3/0003:046D:0A37.0002/input/input3
+[  486.256167] hid-generic 0003:046D:0A37.0002: input,hidraw0: USB HID v1.11 Device [Logitech Inc  Logitech USB Headset H540] on usb-ee0a0000.usb-1/input3
+[  486.436155] snd_pcm_attach_substream:1033  substream 000000001e9ae056 runtime 0000000073e9e8c4 02-00: USB Audio : USB Audio
+[  486.449990] snd_pcm_open_substream: pcmC2D0p:0
+[  486.450151] snd_pcm_attach_substream:1033  substream 000000001e9ae056 runtime 0000000073e9e8c4 02-00: USB Audio : USB Audio
+[  486.465845] snd_pcm_open_substream: pcmC2D0p:0
+[  486.465953] snd_pcm_attach_substream:1033  substream 000000001e9ae056 runtime 0000000073e9e8c4 02-00: USB Audio : USB Audio
+[  486.481546] snd_pcm_open_substream: pcmC2D0p:0
+[  486.485850] snd_pcm_attach_substream:1033  substream 000000001e9ae056 runtime 0000000073e9e8c4 02-00: USB Audio : USB Audio
+[  486.501421] snd_pcm_open_substream: pcmC2D0p:0
+[  486.505896] snd_pcm_attach_substream:1033  substream 000000001e9ae056 runtime 0000000055995b3a 02-00: USB Audio : USB Audio
+[  486.521486] snd_pcm_open_substream: pcmC2D0p:0
+[  486.525766] snd_pcm_attach_substream:1033  substream 000000001e9ae056 runtime 0000000055995b3a 02-00: USB Audio : USB Audio
+[  486.541357] snd_pcm_open_substream: pcmC2D0p:0
+[  486.545848] snd_pcm_attach_substream:1033  substream 000000001e9ae056 runtime 0000000055995b3a 02-00: USB Audio : USB Audio
+[  486.561552] snd_pcm_open_substream: pcmC2D0p:0
+[  486.561653] snd_pcm_attach_substream:1033  substream 000000001e9ae056 runtime 0000000055995b3a 02-00: USB Audio : USB Audio
+[  486.577322] snd_pcm_open_substream: pcmC2D0p:0
+[  486.581691] snd_pcm_attach_substream:1033  substream 000000001e9ae056 runtime 0000000055995b3a 02-00: USB Audio : USB Audio
+[  486.597288] snd_pcm_open_substream: pcmC2D0p:0
+[  486.597348] snd_pcm_attach_substream:1033  substream 000000001e9ae056 runtime 0000000055995b3a 02-00: USB Audio : USB Audio
+[  486.612933] snd_pcm_open_substream: pcmC2D0p:0
+[  486.612976] snd_pcm_attach_substream:1033  substream 000000001e9ae056 runtime 0000000055995b3a 02-00: USB Audio : USB Audio
+[  486.628588] snd_pcm_open_substream: pcmC2D0p:0
+[  486.633614] snd_pcm_attach_substream:1033  substream 000000001e9ae056 runtime 0000000055995b3a 02-00: USB Audio : USB Audio
+[  486.649202] snd_pcm_open_substream: pcmC2D0p:0
+[  486.663504] snd_pcm_attach_substream:1033  substream 000000001e9ae056 runtime 00000000267154fd 02-00: USB Audio : USB Audio
+[  486.679191] snd_pcm_open_substream: pcmC2D0p:0
+[  486.679320] snd_pcm_attach_substream:1033  substream 000000001e9ae056 runtime 00000000267154fd 02-00: USB Audio : USB Audio
+[  486.694933] snd_pcm_open_substream: pcmC2D0p:0
+[  486.695008] snd_pcm_attach_substream:1033  substream 000000001e9ae056 runtime 00000000267154fd 02-00: USB Audio : USB Audio
+[  486.710606] snd_pcm_open_substream: pcmC2D0p:0
+[  486.715498] snd_pcm_attach_substream:1033  substream 000000001e9ae056 runtime 00000000267154fd 02-00: USB Audio : USB Audio
+[  486.731110] snd_pcm_open_substream: pcmC2D0p:0
+[  486.735547] snd_pcm_attach_substream:1033  substream 000000001e9ae056 runtime 00000000267154fd 02-00: USB Audio : USB Audio
+[  486.751183] snd_pcm_open_substream: pcmC2D0p:0
+[  486.755429] snd_pcm_attach_substream:1033  substream 000000001e9ae056 runtime 00000000267154fd 02-00: USB Audio : USB Audio
+[  486.771053] snd_pcm_open_substream: pcmC2D0p:0
+[  486.775384] snd_pcm_attach_substream:1033  substream 000000001e9ae056 runtime 00000000267154fd 02-00: USB Audio : USB Audio
+[  486.790988] snd_pcm_open_substream: pcmC2D0p:0
+[  486.791045] snd_pcm_attach_substream:1033  substream 000000001e9ae056 runtime 00000000267154fd 02-00: USB Audio : USB Audio
+[  486.806637] snd_pcm_open_substream: pcmC2D0p:0
+[  486.811325] snd_pcm_attach_substream:1033  substream 000000001e9ae056 runtime 00000000267154fd 02-00: USB Audio : USB Audio
+[  486.826900] snd_pcm_open_substream: pcmC2D0p:0
+[  486.826945] snd_pcm_attach_substream:1033  substream 000000001e9ae056 runtime 00000000267154fd 02-00: USB Audio : USB Audio
+[  486.842529] snd_pcm_open_substream: pcmC2D0p:0
+[  486.842570] snd_pcm_attach_substream:1033  substream 000000001e9ae056 runtime 00000000267154fd 02-00: USB Audio : USB Audio
+[  486.856047] type=1400 audit(1627067343.897:619): avc: denied { shutdown } for pid=2184 comm="vehicle@2.0-ser" laddr=192.168.1.12 lport=38978 faddr=192.168.1.70 fport=8081 scontext=u:r:hal_vehicle_default:s0 tcontext=u:r:hal_vehicle_default1
+[  486.858276] snd_pcm_open_substream: pcmC2D0p:0
+[  486.882385] type=1400 audit(1627067350.337:620): avc: denied { node_bind } for pid=2331 comm="HwBinder:2331_1" saddr=192.168.1.12 scontext=u:r:hal_audio_default:s0 tcontext=u:object_r:node:s0 tclass=tcp_socket permissive=1
+[  486.906699] type=1400 audit(1627067350.337:620): avc: denied { node_bind } for pid=2331 comm="HwBinder:2331_1" saddr=192.168.1.12 scontext=u:r:hal_audio_default:s0 tcontext=u:object_r:node:s0 tclass=tcp_socket permissive=1
+[  486.926517] type=1400 audit(1627067350.341:621): avc: denied { name_connect } for pid=2331 comm="HwBinder:2331_1" dest=8080 scontext=u:r:hal_audio_default:s0 tcontext=u:object_r:port:s0 tclass=tcp_socket permissive=1
+[  486.926585] snd_pcm_attach_substream:1033  substream 000000001e9ae056 runtime 0000000012b0058d 02-00: USB Audio : USB Audio
+[  486.956863] snd_pcm_open_substream: pcmC2D0p:0
+[  486.991288] snd_pcm_attach_substream:1033  substream 00000000a35e3d3c runtime 0000000030c8e6bf 02-00: USB Audio : USB Audio
+[  487.007305] snd_pcm_open_substream: pcmC2D0c:0
+[  487.007417] snd_pcm_attach_substream:1033  substream 00000000a35e3d3c runtime 0000000030c8e6bf 02-00: USB Audio : USB Audio
+[  487.023344] snd_pcm_open_substream: pcmC2D0c:0
+[  487.023439] snd_pcm_attach_substream:1033  substream 00000000a35e3d3c runtime 0000000030c8e6bf 02-00: USB Audio : USB Audio
+[  487.039204] snd_pcm_open_substream: pcmC2D0c:0
+[  487.044006] snd_pcm_attach_substream:1033  substream 00000000a35e3d3c runtime 000000004ae8d7b2 02-00: USB Audio : USB Audio
+[  487.059678] snd_pcm_open_substream: pcmC2D0c:0
+[  487.064019] snd_pcm_attach_substream:1033  substream 00000000a35e3d3c runtime 000000004ae8d7b2 02-00: USB Audio : USB Audio
+[  487.079642] snd_pcm_open_substream: pcmC2D0c:0
+[  487.083934] snd_pcm_attach_substream:1033  substream 00000000a35e3d3c runtime 000000004ae8d7b2 02-00: USB Audio : USB Audio
+[  487.099527] snd_pcm_open_substream: pcmC2D0c:0
+[  487.103908] snd_pcm_attach_substream:1033  substream 00000000a35e3d3c runtime 000000004ae8d7b2 02-00: USB Audio : USB Audio
+[  487.119496] snd_pcm_open_substream: pcmC2D0c:0
+[  487.119554] snd_pcm_attach_substream:1033  substream 00000000a35e3d3c runtime 000000004ae8d7b2 02-00: USB Audio : USB Audio
+[  487.135135] snd_pcm_open_substream: pcmC2D0c:0
+[  487.139832] snd_pcm_attach_substream:1033  substream 00000000a35e3d3c runtime 000000004ae8d7b2 02-00: USB Audio : USB Audio
+[  487.155430] snd_pcm_open_substream: pcmC2D0c:0
+[  487.155495] snd_pcm_attach_substream:1033  substream 00000000a35e3d3c runtime 000000004ae8d7b2 02-00: USB Audio : USB Audio
+[  487.171086] snd_pcm_open_substream: pcmC2D0c:0
+[  487.171131] snd_pcm_attach_substream:1033  substream 00000000a35e3d3c runtime 000000004ae8d7b2 02-00: USB Audio : USB Audio
+[  487.186746] snd_pcm_open_substream: pcmC2D0c:0
+[  487.191829] snd_pcm_attach_substream:1033  substream 00000000a35e3d3c runtime 000000004ae8d7b2 02-00: USB Audio : USB Audio
+[  487.207536] snd_pcm_open_substream: pcmC2D0c:0
+[  492.659190] CFG80211-ERROR) wl_run_escan : 
+[  492.663660]  LEGACY E-SCAN START
+[  492.698973] CFG80211-ERROR) wl_run_escan : 
+[  492.698979] LEGACY_SCAN sync ID: 4660, bssidx: 0
+[  493.511975] type=1400 audit(1627067350.341:621): avc: denied { name_connect } for pid=2331 comm="HwBinder:2331_1" dest=8080 scontext=u:r:hal_audio_default:s0 tcontext=u:object_r:port:s0 tclass=tcp_socket permissive=1
+[  493.531292] type=1400 audit(1627067356.993:622): avc: denied { write } for pid=2184 comm="vehicle@2.0-ser" name="fwmarkd" dev="tmpfs" ino=11305 scontext=u:r:hal_vehicle_default:s0 tcontext=u:object_r:fwmarkd_socket:s0 tclass=sock_file perm1
+[  493.553406] type=1400 audit(1627067356.993:622): avc: denied { write } for pid=2184 comm="vehicle@2.0-ser" name="fwmarkd" dev="tmpfs" ino=11305 scontext=u:r:hal_vehicle_default:s0 tcontext=u:object_r:fwmarkd_socket:s0 tclass=sock_file perm1
+[  493.575432] type=1400 audit(1627067357.013:623): avc: denied { read write } for pid=2314 comm="netd" path="socket:[56330]" dev="sockfs" ino=56330 scontext=u:r:netd:s0 tcontext=u:r:hal_vehicle_default:s0 tclass=tcp_socket permissive=1
+[  493.596532] type=1400 audit(1627067357.013:623): avc: denied { read write } for pid=2314 comm="netd" path="socket:[56330]" dev="sockfs" ino=56330 scontext=u:r:netd:s0 tcontext=u:r:hal_vehicle_default:s0 tclass=tcp_socket permissive=1
+[  493.617325] type=1400 audit(1627067357.013:624): avc: denied { getopt } for pid=2314 comm="netd" scontext=u:r:netd:s0 tcontext=u:r:hal_vehicle_default:s0 tclass=tcp_socket permissive=1
+[  493.634008] type=1400 audit(1627067357.013:624): avc: denied { getopt } for pid=2314 comm="netd" scontext=u:r:netd:s0 tcontext=u:r:hal_vehicle_default:s0 tclass=tcp_socket permissive=1
+[  493.650479] type=1400 audit(1627067357.013:625): avc: denied { setopt } for pid=2314 comm="netd" scontext=u:r:netd:s0 tcontext=u:r:hal_vehicle_default:s0 tclass=tcp_socket permissive=1
+==============================================================================================================================================================================================
+27997:07-23 19:09:09.803  2640  2738 I InputReader: Device added: id=4, name='Logitech Inc  Logitech USB Headset H540', sources=0x00000101
+27998:07-23 19:09:09.833  2640  2794 D UsbHostManager: USB device attached: vidpid 046d:0a37 mfg/product/ver/serial Logitech Inc /Logitech USB Headset H540/1.22/00000000 hasAudio/HID/Storage: true/true/false
+27999:07-23 19:09:09.909  2640  2794 D UsbDeviceDescriptor:   1 configs
+28000:07-23 19:09:09.910  2640  2794 D UsbHostManager: Added device UsbDevice[mName=/dev/bus/usb/002/003,mVendorId=1133,mProductId=2615,mClass=0,mSubclass=0,mProtocol=0,mManufacturerName=Logitech Inc ,mProductName=Logitech USB Headset H540,mVersion=1.22,mSerialNumber=00000000,mConfigurations=[
+28001:07-23 19:09:09.910  2640  2794 D UsbHostManager: UsbConfiguration[mId=1,mName=null,mAttributes=160,mMaxPower=50,mInterfaces=[
+28002:07-23 19:09:09.910  2640  2794 D UsbHostManager: UsbInterface[mId=0,mAlternateSetting=0,mName=null,mClass=1,mSubclass=1,mProtocol=0,mEndpoints=[]
+28003:07-23 19:09:09.910  2640  2794 D UsbHostManager: UsbInterface[mId=1,mAlternateSetting=0,mName=null,mClass=1,mSubclass=2,mProtocol=0,mEndpoints=[]
+28004:07-23 19:09:09.910  2640  2794 D UsbHostManager: UsbInterface[mId=1,mAlternateSetting=1,mName=null,mClass=1,mSubclass=2,mProtocol=0,mEndpoints=[
+28005:07-23 19:09:09.910  2640  2794 D UsbHostManager: UsbEndpoint[mAddress=129,mAttributes=5,mMaxPacketSize=200,mInterval=1]]
+28006:07-23 19:09:09.910  2640  2794 D UsbHostManager: UsbInterface[mId=2,mAlternateSetting=0,mName=null,mClass=1,mSubclass=2,mProtocol=0,mEndpoints=[]
+28007:07-23 19:09:09.910  2640  2794 D UsbHostManager: UsbInterface[mId=2,mAlternateSetting=1,mName=null,mClass=1,mSubclass=2,mProtocol=0,mEndpoints=[
+28008:07-23 19:09:09.910  2640  2794 D UsbHostManager: UsbEndpoint[mAddress=1,mAttributes=9,mMaxPacketSize=192,mInterval=1]]
+28009:07-23 19:09:09.910  2640  2794 D UsbHostManager: UsbInterface[mId=3,mAlternateSetting=0,mName=null,mClass=3,mSubclass=0,mProtocol=0,mEndpoints=[
+28010:07-23 19:09:09.910  2640  2794 D UsbHostManager: UsbEndpoint[mAddress=132,mAttributes=3,mMaxPacketSize=37,mInterval=1]]]]
+28011:07-23 19:09:09.911  2640  2794 W UsbProfileGroupSettingsManager: no meta-data for ResolveInfo{8a06971 com.android.car.systemupdater/.SystemUpdaterActivity m=0x108000}
 
 
+28013:07-23 19:09:09.914  4373  4425 D RemoteUIDeviceListener_2.4:  =>USB Handler processing Message ..
+28014:07-23 19:09:09.914  4373  4425 D RemoteUIDeviceListener_2.4:  =>USBEventListener Event [ android.hardware.usb.action.USB_DEVICE_ATTACHED] Received 
+28015:07-23 19:09:09.914  4373  4425 D RemoteUIDeviceListener_2.4:  =>handleAAUsbConnection
+28016:07-23 19:09:09.914  4373  4425 D RemoteUIDeviceListener_2.4:  =>[handleAAUSBDeviceStateForConnection]
+28017:07-23 19:09:09.914  4646  4646 D MirroringControlService:  =>########Received intent android.hardware.usb.action.USB_DEVICE_ATTACHED
+28018:07-23 19:09:09.914  4646  4646 E MirroringControlService:  =>#######Received intent android.hardware.usb.action.USB_DEVICE_ATTACHED
+28019:07-23 19:09:09.914  2640  2794 I UsbAlsaDevice: INPUT JACK connected: true
+28020:07-23 19:09:09.915  4646  4646 E MirroringControlService:  =>#######Received intent deviceUsbDevice[mName=/dev/bus/usb/002/003,mVendorId=1133,mProductId=2615,mClass=0,mSubclass=0,mProtocol=0,mManufacturerName=Logitech Inc ,mProductName=Logitech USB Headset H540,mVersion=1.22,mSerialNumber=00000000,mConfigurations=[
+28021:07-23 19:09:09.915  4646  4646 E MirroringControlService: UsbConfiguration[mId=1,mName=null,mAttributes=160,mMaxPower=50,mInterfaces=[
+28022:07-23 19:09:09.915  4646  4646 E MirroringControlService: UsbInterface[mId=0,mAlternateSetting=0,mName=null,mClass=1,mSubclass=1,mProtocol=0,mEndpoints=[]
+28023:07-23 19:09:09.915  4646  4646 E MirroringControlService: UsbInterface[mId=1,mAlternateSetting=0,mName=null,mClass=1,mSubclass=2,mProtocol=0,mEndpoints=[]
+28024:07-23 19:09:09.915  4646  4646 E MirroringControlService: UsbInterface[mId=1,mAlternateSetting=1,mName=null,mClass=1,mSubclass=2,mProtocol=0,mEndpoints=[
+28025:07-23 19:09:09.915  4646  4646 E MirroringControlService: UsbEndpoint[mAddress=129,mAttributes=5,mMaxPacketSize=200,mInterval=1]]
+28026:07-23 19:09:09.915  4646  4646 E MirroringControlService: UsbInterface[mId=2,mAlternateSetting=0,mName=null,mClass=1,mSubclass=2,mProtocol=0,mEndpoints=[]
+28027:07-23 19:09:09.915  4646  4646 E MirroringControlService: UsbInterface[mId=2,mAlternateSetting=1,mName=null,mClass=1,mSubclass=2,mProtocol=0,mEndpoints=[
+28028:07-23 19:09:09.915  4646  4646 E MirroringControlService: UsbEndpoint[mAddress=1,mAttributes=9,mMaxPacketSize=192,mInterval=1]]
+28029:07-23 19:09:09.915  4646  4646 E MirroringControlService: UsbInterface[mId=3,mAlternateSetting=0,mName=null,mClass=3,mSubclass=0,mProtocol=0,mEndpoints=[
+28030:07-23 19:09:09.915  4646  4646 E MirroringControlService: UsbEndpoint[mAddress=132,mAttributes=3,mMaxPacketSize=37,mInterval=1]]]]
+28031:07-23 19:09:09.916  2382  5585 V APM_AudioPolicyManager: setDeviceConnectionStateInt() device: 0x4000000, state 1, address card=2;device=0; name USB-Audio - Logitech USB Headset H540
+28033:07-23 19:09:09.916  2640  2661 D UsbDeviceManager: Clear notification
+28034:07-23 19:09:09.920  4373  4425 D RemoteUIDeviceListener_2.4:  =>[handleAAUSBDeviceStateForConnection]:AoapSupportCheckService : Permission for the device: true
+28039:07-23 19:09:09.921  2382  5585 V APM_AudioPolicyManager: checkOutputsForDevice(): adding profile 1 from module usb
+28041:07-23 19:09:09.921  2382  5585 V APM_AudioPolicyManager: opening output for device 04000000 with params card=2;device=0; profile 0xe58305eca800 name usb_device output
+28047:07-23 19:09:09.921  2331  5590 E         : Pankaj : Audio HAL card=2;device=0 for USB 
+28048:07-23 19:09:09.921  2331  5590 V modules.usbaudio.audio_hal: adev_open_output_stream() handle:0x65, devicesSpec:0x4000000, flags:0x0, addr:card=2;device=0
+28051:07-23 19:09:09.926  4373  4425 D RemoteUIDeviceListener_2.4:  =>[handleAAUsbConnection] serialIdOfUSBDeviceConnected:00000000
+28062:07-23 19:09:10.139  2331  3702 V modules.usbaudio.audio_hal: out_get_sample_rate() = 48000
+28064:07-23 19:09:10.141  2331  3702 V modules.usbaudio.audio_hal: out_get_sample_rate() = 48000
+28066:07-23 19:09:10.142  2331  3702 V modules.usbaudio.audio_hal: out_get_sample_rate() = 48000
+28072:07-23 19:09:10.146  2331  3702 V modules.usbaudio.audio_hal: out_set_parameters() keys:card=2;device=0
+28075:07-23 19:09:10.146  2331  3702 V modules.usbaudio.audio_hal: device_get_parameters = sup_formats=AUDIO_FORMAT_PCM_16_BIT
+28078:07-23 19:09:10.147  2331  3702 V modules.usbaudio.audio_hal: device_get_parameters = sup_sampling_rates=48000|44100|32000|24000|16000|8000
+28081:07-23 19:09:10.147  2331  3702 V modules.usbaudio.audio_hal: device_get_parameters = sup_channels=AUDIO_CHANNEL_OUT_STEREO|AUDIO_CHANNEL_INDEX_MASK_2
+28085:07-23 19:09:10.147  2331  3702 V modules.usbaudio.audio_hal: out_set_parameters() keys:closing=true
+28088:07-23 19:09:10.148  2331  3702 V modules.usbaudio.audio_hal: out_set_parameters() keys:exiting=1
+28093:07-23 19:09:10.149  2331  3702 V modules.usbaudio.audio_hal: adev_close_output_stream(c:2 d:0)
+28095:07-23 19:09:10.149  2331  5590 E         : Pankaj : Audio HAL card=2;device=0 for USB 
+28096:07-23 19:09:10.149  2331  5590 V modules.usbaudio.audio_hal: adev_open_output_stream() handle:0x6D, devicesSpec:0x4000000, flags:0x0, addr:card=2;device=0
+28115:07-23 19:09:10.447  2331  3702 V modules.usbaudio.audio_hal: out_get_sample_rate() = 48000
+28116:07-23 19:09:10.448  2331  3702 V modules.usbaudio.audio_hal: out_get_sample_rate() = 48000
+28118:07-23 19:09:10.449  2331  3702 V modules.usbaudio.audio_hal: out_get_sample_rate() = 48000
+28146:07-23 19:09:10.453  2331  3702 V modules.usbaudio.audio_hal: out_get_sample_rate() = 48000
+28488:07-23 19:09:10.468  4244  4724 D BluetoothActiveDeviceManager: Audio device added: USB-Audio - Logitech USB Headset H540 type: 22
+28635:07-23 19:09:10.476  2382  2382 V APM_AudioPolicyManager: setDeviceConnectionStateInt() device: 0x82000000, state 1, address card=2;device=0; name USB-Audio - Logitech USB Headset H540
+28639:07-23 19:09:10.476  2382  2382 V APM_AudioPolicyManager: checkInputsForDevice(): adding profile 0 from module usb
+28642:07-23 19:09:10.477  2331  5590 E         : Pankaj : Audio HAL card=2;device=0 for USB 
+28643:07-23 19:09:10.477  2331  5590 V modules.usbaudio.audio_hal: adev_open_input_stream() rate:0, chanMask:0x0, fmt:0
+28650:07-23 19:09:10.697  2331  3702 V modules.usbaudio.audio_hal: in_get_sample_rate() = 48000
+28652:07-23 19:09:10.698  2331  3702 V modules.usbaudio.audio_hal: in_get_sample_rate() = 48000
+28654:07-23 19:09:10.699  2331  3702 V modules.usbaudio.audio_hal: in_get_sample_rate() = 48000
+28659:07-23 19:09:10.702  2331  3702 V modules.usbaudio.audio_hal: in_set_parameters() keys:card=2;device=0
+28661:07-23 19:09:10.702  2331  3702 V modules.usbaudio.audio_hal: device_get_parameters = sup_formats=AUDIO_FORMAT_PCM_16_BIT
+28664:07-23 19:09:10.703  2331  3702 V modules.usbaudio.audio_hal: device_get_parameters = sup_sampling_rates=48000|44100|32000|24000|16000|8000
+28667:07-23 19:09:10.703  2331  3702 V modules.usbaudio.audio_hal: device_get_parameters = sup_channels=AUDIO_CHANNEL_IN_STEREO|AUDIO_CHANNEL_INDEX_MASK_2
+28671:07-23 19:09:10.704  2331  3702 V modules.usbaudio.audio_hal: adev_close_input_stream(c:2 d:0)
+28681:07-23 19:09:10.707  4244  4724 D BluetoothActiveDeviceManager: Audio device added: USB-Audio - Logitech USB Headset H540 type: 22
+28690:07-23 19:09:10.713  2640  2640 V MediaRouter: Audio routes updated: AudioRoutesInfo{ type=USB }, a2dp=false
+28704:07-23 19:09:10.713  2640  2640 V MediaRouter: Selecting route: RouteInfo{ name=USB, description=null, status=null, category=RouteCategory{ name=System types=ROUTE_TYPE_LIVE_AUDIO ROUTE_TYPE_LIVE_VIDEO  groupable=false }, supportedTypes=ROUTE_TYPE_LIVE_AUDIO ROUTE_TYPE_LIVE_VIDEO , presentationDisplay=Display id 1: DisplayInfo{"HDMI Screen", uniqueId "local:1", app 1280 x 1622, real 1280 x 1622, largest app 1622 x 1622, smallest app 1280 x 1280, mode 2, defaultMode 2, modes [{id=2, width=1280, height=1622, fps=60.0}], colorMode 0, supportedColorModes [], hdrCapabilities android.view.Display$HdrCapabilities@40f16308, rotation 0, density 165 (379.0 x 379.0) dpi, layerStack 1, appVsyncOff 1000000, presDeadline 16666667, type HDMI, state ON, FLAG_SECURE, FLAG_SUPPORTS_PROTECTED_BUFFERS, FLAG_PRESENTATION, removeMode 0}, DisplayMetrics{density=1.03125, width=1280, height=1622, scaledDensity=1.03125, xdpi=379.0, ydpi=379.0}, isValid=true }
+28705:07-23 19:09:10.714  2834  2834 V MediaRouter: Audio routes updated: AudioRoutesInfo{ type=USB }, a2dp=false
+28707:07-23 19:09:10.715  2834  2834 V MediaRouter: Selecting route: RouteInfo{ name=USB, description=null, status=null, category=RouteCategory{ name=System types=ROUTE_TYPE_LIVE_AUDIO ROUTE_TYPE_LIVE_VIDEO  groupable=false }, supportedTypes=ROUTE_TYPE_LIVE_AUDIO ROUTE_TYPE_LIVE_VIDEO , presentationDisplay=Display id 1: DisplayInfo{"HDMI Screen", uniqueId "local:1", app 1280 x 1622, real 1280 x 1622, largest app 1622 x 1622, smallest app 1280 x 1280, mode 2, defaultMode 2, modes [{id=2, width=1280, height=1622, fps=60.0}], colorMode 0, supportedColorModes [], hdrCapabilities android.view.Display$HdrCapabilities@40f16308, rotation 0, density 165 (379.0 x 379.0) dpi, layerStack 1, appVsyncOff 1000000, presDeadline 16666667, type HDMI, state ON, FLAG_SECURE, FLAG_SUPPORTS_PROTECTED_BUFFERS, FLAG_PRESENTATION, removeMode 0}, DisplayMetrics{density=1.03125, width=1280, height=1622, scaledDensity=1.03125, xdpi=379.0, ydpi=379.0}, isValid=true }
+28859:07-23 19:09:10.720  4282  4282 V MediaRouter: Audio routes updated: AudioRoutesInfo{ type=USB }, a2dp=false
+28860:07-23 19:09:10.721  4282  4282 V MediaRouter: Selecting route: RouteInfo{ name=USB, description=null, status=null, category=RouteCategory{ name=System types=ROUTE_TYPE_LIVE_AUDIO ROUTE_TYPE_LIVE_VIDEO  groupable=false }, supportedTypes=ROUTE_TYPE_LIVE_AUDIO ROUTE_TYPE_LIVE_VIDEO , presentationDisplay=Display id 1: DisplayInfo{"HDMI Screen", uniqueId "local:1", app 1280 x 1622, real 1280 x 1622, largest app 1622 x 1622, smallest app 1280 x 1280, mode 2, defaultMode 2, modes [{id=2, width=1280, height=1622, fps=60.0}], colorMode 0, supportedColorModes [], hdrCapabilities android.view.Display$HdrCapabilities@40f16308, rotation 0, density 165 (379.0 x 379.0) dpi, layerStack 1, appVsyncOff 1000000, presDeadline 16666667, type HDMI, state ON, FLAG_SECURE, FLAG_SUPPORTS_PROTECTED_BUFFERS, FLAG_PRESENTATION, removeMode 0}, DisplayMetrics{density=1.03125, width=1280, height=1622
+
+
+
+=====================================================================================USB insertion=======================================================================================
+07-23 19:19:41.212  2360  2766 I android.hardware.usb@1.0-service.renesas: uevent received SUBSYSTEM=usb
+07-23 19:19:41.213  2640  6492 I UsbPortManager: ClientCallback: usb2_1
+07-23 19:19:41.213  2640  6492 I UsbPortManager: ClientCallback: usb3_0
+07-23 19:19:41.217  2640  6492 I UsbPortManager: ClientCallback: usb2_1
+07-23 19:19:41.217  2640  6492 I UsbPortManager: ClientCallback: usb3_0
+07-23 19:19:41.216  2360  2766 I android.hardware.usb@1.0-service.renesas: uevent received SUBSYSTEM=usb
+07-23 19:19:41.449  2360  2766 I android.hardware.usb@1.0-service.renesas: uevent received SUBSYSTEM=usb
+07-23 19:19:41.449  2640  6492 I UsbPortManager: ClientCallback: usb2_1
+07-23 19:19:41.449  2640  6492 I UsbPortManager: ClientCallback: usb3_0
+07-23 19:19:41.450  2640  6492 I UsbPortManager: ClientCallback: usb2_1
+07-23 19:19:41.450  2640  6492 I UsbPortManager: ClientCallback: usb3_0
+07-23 19:19:41.450  2640  6492 I UsbPortManager: ClientCallback: usb2_1
+07-23 19:19:41.450  2640  6492 I UsbPortManager: ClientCallback: usb3_0
+07-23 19:19:41.450  2640  6492 I UsbPortManager: ClientCallback: usb2_1
+07-23 19:19:41.450  2640  6492 I UsbPortManager: ClientCallback: usb3_0
+07-23 19:19:41.450  2640  6492 I UsbPortManager: ClientCallback: usb2_1
+07-23 19:19:41.450  2640  6492 I UsbPortManager: ClientCallback: usb3_0
+07-23 19:19:41.451  2640  2727 I UsbPortManager: ClientCallback: usb2_1
+07-23 19:19:41.451  2640  2727 I UsbPortManager: ClientCallback: usb3_0
+07-23 19:19:41.504  2640  2727 I UsbPortManager: ClientCallback: usb2_1
+07-23 19:19:41.504  2640  2727 I UsbPortManager: ClientCallback: usb3_0
+07-23 19:19:41.505  2640  2727 I UsbPortManager: ClientCallback: usb2_1
+07-23 19:19:41.505  2640  2727 I UsbPortManager: ClientCallback: usb3_0
+07-23 19:19:41.504  2360  2766 I chatty  : uid=1000(system) usb@1.0-service identical 6 lines
+07-23 19:19:41.505  2360  2766 I android.hardware.usb@1.0-service.renesas: uevent received SUBSYSTEM=usb
+07-23 19:19:41.658  2640  2794 D UsbHostManager: Added device UsbDevice[mName=/dev/bus/usb/002/004,mVendorId=1133,mProductId=2615,mClass=0,mSubclass=0,mProtocol=0,mManufacturerName=Logitech Inc ,mProductName=Logitech USB Headset H540,mVersion=1.22,mSerialNumber=00000000,mConfigurations=[
+07-23 19:19:41.662  4646  4646 D MirroringControlService:  =>########Received intent android.hardware.usb.action.USB_DEVICE_ATTACHED
+07-23 19:19:41.662  4646  4646 E MirroringControlService:  =>#######Received intent android.hardware.usb.action.USB_DEVICE_ATTACHED
+07-23 19:19:41.662  4646  4646 E MirroringControlService:  =>#######Received intent deviceUsbDevice[mName=/dev/bus/usb/002/004,mVendorId=1133,mProductId=2615,mClass=0,mSubclass=0,mProtocol=0,mManufacturerName=Logitech Inc ,mProductName=Logitech USB Headset H540,mVersion=1.22,mSerialNumber=00000000,mConfigurations=[
+07-23 19:19:41.662  4373  4425 D RemoteUIDeviceListener_2.4:  =>USBEventListener Event [ android.hardware.usb.action.USB_DEVICE_ATTACHED] Received 
+07-23 19:19:41.670  2382  5585 V APM_AudioPolicyManager: checkOutputsForDevice(): adding profile 1 from module usb
+07-23 19:19:41.670  2382  5585 V APM_AudioPolicyManager: opening output for device 04000000 with params card=2;device=0; profile 0xe58305eca800 name usb_device output
+07-23 19:19:41.671  2331  3702 V modules.usbaudio.audio_hal: adev_open_output_stream() handle:0x7D, devicesSpec:0x4000000, flags:0x0, addr:card=2;device=0
+07-23 19:19:41.887  2331  5590 V modules.usbaudio.audio_hal: out_get_sample_rate() = 48000
+07-23 19:19:41.890  2331  5590 V modules.usbaudio.audio_hal: out_get_sample_rate() = 48000
+07-23 19:19:41.891  2331  5590 V modules.usbaudio.audio_hal: out_get_sample_rate() = 48000
+07-23 19:19:41.893  2331  5590 V modules.usbaudio.audio_hal: out_set_parameters() keys:card=2;device=0
+07-23 19:19:41.895  2331  5590 V modules.usbaudio.audio_hal: device_get_parameters = sup_formats=AUDIO_FORMAT_PCM_16_BIT
+07-23 19:19:41.895  2331  5590 V modules.usbaudio.audio_hal: device_get_parameters = sup_sampling_rates=48000|44100|32000|24000|16000|8000
+07-23 19:19:41.896  2331  5590 V modules.usbaudio.audio_hal: device_get_parameters = sup_channels=AUDIO_CHANNEL_OUT_STEREO|AUDIO_CHANNEL_INDEX_MASK_2
+07-23 19:19:41.896  2331  5590 V modules.usbaudio.audio_hal: out_set_parameters() keys:closing=true
+07-23 19:19:41.898  2331  5590 V modules.usbaudio.audio_hal: out_set_parameters() keys:exiting=1
+07-23 19:19:41.899  2331  3702 V modules.usbaudio.audio_hal: adev_open_output_stream() handle:0x85, devicesSpec:0x4000000, flags:0x0, addr:card=2;device=0
+07-23 19:19:41.900  2331  5590 V modules.usbaudio.audio_hal: adev_close_output_stream(c:2 d:0)
+07-23 19:19:42.119  2331  5590 V modules.usbaudio.audio_hal: out_get_sample_rate() = 48000
+07-23 19:19:42.120  2331  2331 V modules.usbaudio.audio_hal: out_get_sample_rate() = 48000
+07-23 19:19:42.121  2331  2331 V modules.usbaudio.audio_hal: out_get_sample_rate() = 48000
+07-23 19:19:42.128  2331  5590 V modules.usbaudio.audio_hal: out_get_sample_rate() = 48000
+07-23 19:19:42.146  2382  2822 V APM_AudioPolicyManager: checkInputsForDevice(): adding profile 0 from module usb
+07-23 19:19:42.146  2331  5590 V modules.usbaudio.audio_hal: adev_open_input_stream() rate:0, chanMask:0x0, fmt:0
+07-23 19:19:42.369  2331  2331 V modules.usbaudio.audio_hal: in_get_sample_rate() = 48000
+07-23 19:19:42.370  2331  5590 V modules.usbaudio.audio_hal: in_get_sample_rate() = 48000
+07-23 19:19:42.371  2331  2331 V modules.usbaudio.audio_hal: in_get_sample_rate() = 48000
+07-23 19:19:42.375  2331  2331 V modules.usbaudio.audio_hal: in_set_parameters() keys:card=2;device=0
+07-23 19:19:42.375  2331  2331 V modules.usbaudio.audio_hal: device_get_parameters = sup_formats=AUDIO_FORMAT_PCM_16_BIT
+07-23 19:19:42.376  2331  2331 V modules.usbaudio.audio_hal: device_get_parameters = sup_sampling_rates=48000|44100|32000|24000|16000|8000
+07-23 19:19:42.376  2331  2331 V modules.usbaudio.audio_hal: device_get_parameters = sup_channels=AUDIO_CHANNEL_IN_STEREO|AUDIO_CHANNEL_INDEX_MASK_2
+07-23 19:19:42.378  2331  2331 V modules.usbaudio.audio_hal: adev_close_input_stream(c:2 d:0)
+====================================================================usb insertion on QNX=============================================================================================================
+console:/ $ [  121.819724] usb 2-1: new full-speed USB device number 2 using ohci-platform
+[  122.135920] usb 2-1: New USB device found, idVendor=046d, idProduct=0a37
+[  122.140910] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[  122.145413] usb 2-1: Product: Logitech USB Headset H540
+[  122.148179] usb 2-1: Manufacturer: Logitech Inc 
+[  122.150902] usb 2-1: SerialNumber: 00000000
+[  122.318622] usb 2-1: Warning! Unlikely big volume range (=4096), cval->res is probably wrong.
+[  122.324542] usb 2-1: [11] FU [Sidetone Playback Volume] ch = 1, val = 0/4096/1
+[  122.412486] input: Logitech Inc  Logitech USB Headset H540 as /devices/platform/soc/ee0a0000.usb/usb2/2-1/2-1:1.3/002
+[  122.422119] hid-generic 0003:046D:0A37.0001: input,hidraw0: USB HID v1.11 Device [Logitech Inc  Logitech USB Headset
+
+---------------------------------------------------------------------------------
+[  209.284994] usb 2-1: New USB device found, idVendor=046d, idProduct=0a37
+[  209.289254] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[  209.294413] usb 2-1: Product: Logitech USB Headset H540
+[  209.297516] usb 2-1: Manufacturer: Logitech Inc 
+[  209.300214] usb 2-1: SerialNumber: 00000000
+[  209.308826] usb 2-1: can't set config #1, error -62
+[  209.316326] usb 2-1: USB disconnect, device number 4
+[  222.251734] usb 2-1: new full-speed USB device number 5 using ohci-platform
+[  222.568035] usb 2-1: New USB device found, idVendor=046d, idProduct=0a37
+[  222.571701] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[  222.575968] usb 2-1: Product: Logitech USB Headset H540
+[  222.579040] usb 2-1: Manufacturer: Logitech Inc 
+[  222.582043] usb 2-1: SerialNumber: 00000000
+[  222.752701] usb 2-1: Warning! Unlikely big volume range (=4096), cval->res is probably wrong.
+[  222.757553] usb 2-1: [11] FU [Sidetone Playback Volume] ch = 1, val = 0/4096/1
+[  222.845310] input: Logitech Inc  Logitech USB Headset H540 as /devices/platform/soc/ee0a0000.usb/usb2/2-1/2-1:1.3/004
+[  222.854374] hid-generic 0003:046D:0A37.0003: input,hidraw0: USB HID v1.11 Device [Logitech Inc  Logitech USB Headset3
+[  225.505070] CFG80211-ERROR) wl_run_escan : 
+----------------------------------------------------------------------------------------------------------------------------------
+09-26 08:23:15.152  1519  1519 W hwservicemanager: getTransport: Cannot find entry android.hardware.usb.gadget@1.0::IUsbGadget/default in either framework or device manifest.
+09-26 08:23:15.154  1876  1876 I usbd    : Usb HAL not found
+
+08-25 12:05:23.965  1915  1984 V EventHub:   location:   "usb-ee0a0000.usb-1/input3"
+---------------------------------------------------------------------------------------------------------------------------------------
+08-25 12:06:28.252  1915  1984 V EventHub: Opening device: /dev/input/event2
+08-25 12:06:28.309  1915  1984 V EventHub: Created descriptor: raw=:046d:0a37:uniqueId:00000000, cooked=2afb70cf44d8093065f5ea50bcd855b4837533c4
+08-25 12:06:28.309  1915  1984 V EventHub: add device 8: /dev/input/event2
+08-25 12:06:28.309  1915  1984 V EventHub:   bus:        0003
+08-25 12:06:28.309  1915  1984 V EventHub:   vendor      046d
+08-25 12:06:28.309  1915  1984 V EventHub:   product     0a37
+08-25 12:06:28.309  1915  1984 V EventHub:   version     0111
+08-25 12:06:28.309  1915  1984 V EventHub:   name:       "Logitech Inc  Logitech USB Headset H540"
+08-25 12:06:28.309  1915  1984 V EventHub:   location:   "usb-ee0a0000.usb-1/input3"
+08-25 12:06:28.309  1915  1984 V EventHub:   unique id:  "00000000"
+08-25 12:06:28.309  1915  1984 V EventHub:   descriptor: "2afb70cf44d8093065f5ea50bcd855b4837533c4"
+08-25 12:06:28.309  1915  1984 V EventHub:   driver:     v1.0.1
+08-25 12:06:28.309  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/odm/usr/idc/Vendor_046d_Product_0a37_Version_0111.idc'
+08-25 12:06:28.309  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/vendor/usr/idc/Vendor_046d_Product_0a37_Version_0111.idc'
+08-25 12:06:28.309  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/system/usr/idc/Vendor_046d_Product_0a37_Version_0111.idc'
+08-25 12:06:28.309  1915  1984 E InputDevice: Probing for system user input device configuration file: path='/data/system/devices/idc/Vendor_046d_Product_0a37_Version_0111.idc'
+08-25 12:06:28.309  1915  1984 E InputDevice: Probe failed to find input device configuration file: name='Vendor_046d_Product_0a37_Version_0111', type=0
+08-25 12:06:28.309  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/odm/usr/idc/Vendor_046d_Product_0a37.idc'
+08-25 12:06:28.309  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/vendor/usr/idc/Vendor_046d_Product_0a37.idc'
+08-25 12:06:28.309  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/system/usr/idc/Vendor_046d_Product_0a37.idc'
+08-25 12:06:28.309  1915  1984 E InputDevice: Probing for system user input device configuration file: path='/data/system/devices/idc/Vendor_046d_Product_0a37.idc'
+08-25 12:06:28.309  1915  1984 E InputDevice: Probe failed to find input device configuration file: name='Vendor_046d_Product_0a37', type=0
+08-25 12:06:28.309  1915  1984 E InputDevice: xinguang, productPath= 
+08-25 12:06:28.309  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/odm/usr/idc/Logitech_Inc__Logitech_USB_Headset_H540.idc'
+08-25 12:06:28.309  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/vendor/usr/idc/Logitech_Inc__Logitech_USB_Headset_H540.idc'
+08-25 12:06:28.309  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/system/usr/idc/Logitech_Inc__Logitech_USB_Headset_H540.idc'
+08-25 12:06:28.309  1915  1984 E InputDevice: Probing for system user input device configuration file: path='/data/system/devices/idc/Logitech_Inc__Logitech_USB_Headset_H540.idc'
+08-25 12:06:28.309  1915  1984 E InputDevice: Probe failed to find input device configuration file: name='Logitech Inc  Logitech USB Headset H540', type=0
+08-25 12:06:28.309  1915  1984 D EventHub: No input device configuration file found for device 'Logitech Inc  Logitech USB Headset H540'.
+08-25 12:06:28.309  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/odm/usr/keylayout/Vendor_046d_Product_0a37_Version_0111.kl'
+08-25 12:06:28.309  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/vendor/usr/keylayout/Vendor_046d_Product_0a37_Version_0111.kl'
+08-25 12:06:28.309  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/system/usr/keylayout/Vendor_046d_Product_0a37_Version_0111.kl'
+08-25 12:06:28.310  1915  1984 E InputDevice: Probing for system user input device configuration file: path='/data/system/devices/keylayout/Vendor_046d_Product_0a37_Version_0111.kl'
+08-25 12:06:28.310  1915  1984 E InputDevice: Probe failed to find input device configuration file: name='Vendor_046d_Product_0a37_Version_0111', type=1
+08-25 12:06:28.310  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/odm/usr/keylayout/Vendor_046d_Product_0a37.kl'
+08-25 12:06:28.310  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/vendor/usr/keylayout/Vendor_046d_Product_0a37.kl'
+08-25 12:06:28.310  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/system/usr/keylayout/Vendor_046d_Product_0a37.kl'
+08-25 12:06:28.310  1915  1984 E InputDevice: Probing for system user input device configuration file: path='/data/system/devices/keylayout/Vendor_046d_Product_0a37.kl'
+08-25 12:06:28.310  1915  1984 E InputDevice: Probe failed to find input device configuration file: name='Vendor_046d_Product_0a37', type=1
+08-25 12:06:28.310  1915  1984 E InputDevice: xinguang, productPath= 
+08-25 12:06:28.310  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/odm/usr/keylayout/Logitech_Inc__Logitech_USB_Headset_H540.kl'
+08-25 12:06:28.310  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/vendor/usr/keylayout/Logitech_Inc__Logitech_USB_Headset_H540.kl'
+08-25 12:06:28.310  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/system/usr/keylayout/Logitech_Inc__Logitech_USB_Headset_H540.kl'
+08-25 12:06:28.310  1915  1984 E InputDevice: Probing for system user input device configuration file: path='/data/system/devices/keylayout/Logitech_Inc__Logitech_USB_Headset_H540.kl'
+08-25 12:06:28.310  1915  1984 E InputDevice: Probe failed to find input device configuration file: name='Logitech Inc  Logitech USB Headset H540', type=1
+08-25 12:06:28.310  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/odm/usr/keychars/Vendor_046d_Product_0a37_Version_0111.kcm'
+08-25 12:06:28.310  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/vendor/usr/keychars/Vendor_046d_Product_0a37_Version_0111.kcm'
+08-25 12:06:28.310  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/system/usr/keychars/Vendor_046d_Product_0a37_Version_0111.kcm'
+08-25 12:06:28.310  1915  1984 E InputDevice: Probing for system user input device configuration file: path='/data/system/devices/keychars/Vendor_046d_Product_0a37_Version_0111.kcm'
+08-25 12:06:28.310  1915  1984 E InputDevice: Probe failed to find input device configuration file: name='Vendor_046d_Product_0a37_Version_0111', type=2
+08-25 12:06:28.310  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/odm/usr/keychars/Vendor_046d_Product_0a37.kcm'
+08-25 12:06:28.310  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/vendor/usr/keychars/Vendor_046d_Product_0a37.kcm'
+08-25 12:06:28.310  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/system/usr/keychars/Vendor_046d_Product_0a37.kcm'
+08-25 12:06:28.310  1915  1984 E InputDevice: Probing for system user input device configuration file: path='/data/system/devices/keychars/Vendor_046d_Product_0a37.kcm'
+08-25 12:06:28.310  1915  1984 E InputDevice: Probe failed to find input device configuration file: name='Vendor_046d_Product_0a37', type=2
+08-25 12:06:28.310  1915  1984 E InputDevice: xinguang, productPath= 
+08-25 12:06:28.310  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/odm/usr/keychars/Logitech_Inc__Logitech_USB_Headset_H540.kcm'
+08-25 12:06:28.310  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/vendor/usr/keychars/Logitech_Inc__Logitech_USB_Headset_H540.kcm'
+08-25 12:06:28.310  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/system/usr/keychars/Logitech_Inc__Logitech_USB_Headset_H540.kcm'
+08-25 12:06:28.310  1915  1984 E InputDevice: Probing for system user input device configuration file: path='/data/system/devices/keychars/Logitech_Inc__Logitech_USB_Headset_H540.kcm'
+08-25 12:06:28.310  1915  1984 E InputDevice: Probe failed to find input device configuration file: name='Logitech Inc  Logitech USB Headset H540', type=2
+08-25 12:06:28.310  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/odm/usr/keylayout/Generic.kl'
+08-25 12:06:28.310  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/vendor/usr/keylayout/Generic.kl'
+08-25 12:06:28.310  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/system/usr/keylayout/Generic.kl'
+08-25 12:06:28.310  1915  1984 E InputDevice: Found
+08-25 12:06:28.311  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/odm/usr/keychars/Generic.kcm'
+08-25 12:06:28.311  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/vendor/usr/keychars/Generic.kcm'
+08-25 12:06:28.311  1915  1984 E InputDevice: Probing for system provided input device configuration file: path='/system/usr/keychars/Generic.kcm'
+08-25 12:06:28.311  1915  1984 E InputDevice: Found
+08-25 12:06:28.312  1915  1984 W EventHub: Unable to disable kernel key repeat for /dev/input/event2: Function not implemented
+08-25 12:06:28.312  1915  1984 I EventHub: wakeMechanism=EPOLLWAKEUP, usingClockIoctl=true
+08-25 12:06:28.312  1915  1984 I EventHub: New device: id=8, fd=149, path='/dev/input/event2', name='Logitech Inc  Logitech USB Headset H540', classes=0x80000001, configuration='', keyLayout='/system/usr/keylayout/Generic.kl', keyCharacterMap='/system/usr/keychars/Generic.kcm', builtinKeyboard=false, 
+08-25 12:06:28.312  1915  1984 V EventHub: Reporting device opened: id=8, name=/dev/input/event2
+08-25 12:06:28.313  1915  1984 I InputReader: Device added: id=8, name='Logitech Inc  Logitech USB Headset H540', sources=0x00000101
+08-25 12:06:28.313  1915  1984 D InputDispatcher: notifyDeviceReset - eventTime=2816931857615, deviceId=8
+08-25 12:06:28.313  1915  1984 D InputDispatcher: notifyConfigurationChanged - eventTime=2816931857615
+08-25 12:06:28.313  1915  1983 D InputDispatcher: dispatchDeviceReset - eventTime=2816931857615, deviceId=8
+08-25 12:06:28.313  1915  1983 D InputDispatcher: dispatchConfigurationChanged - eventTime=2816931857615
+08-25 12:06:28.811  3210  3210 D MEDIA_DEBUG: rssi: -63, Level is 81 out of 100
+08-25 12:06:28.870  2958  2958 D LucidSysUiService: schedule time from TCU0
+08-25 12:06:28.870  2958  2958 D LucidSysUiService: Scheduled time in minutes-27165306
+08-25 12:06:29.121  2990  3229 D MainActivity: maintainNavTilesNow(): calling navViewModel.maintainTiles with current location: LocationData{latLong=[0.0, 0.0]}
+08-25 12:06:29.121  2990  3229 D NavViewModel: MaintainTilesAsyncTask constructor
+08-25 12:06:29.121  2990  3496 D NavViewModel: MaintainTilesAsyncTask.doInBackground: [
+08-25 12:06:29.121  2990  3496 D NavViewModel: NavigationTile{, locationDescription='Home', locationDescription2='Tap to setup shortcut', tileType=TYPE_ITEM_SHORTCUT_HOME, isAddressSet=false, hasArrived=false}, 
+08-25 12:06:29.121  2990  3496 D NavViewModel: NavigationTile{, locationDescription='Work', locationDescription2='Tap to setup shortcut', tileType=TYPE_ITEM_SHORTCUT_WORK, isAddressSet=false, hasArrived=false}]
+08-25 12:06:29.122  2990  3496 D NavViewModel: calling requestRouteForTiles(dataShortcuts)
+08-25 12:06:29.122  2990  3496 D NavViewModel: MaintainTilesAsyncTask.doInBackground:requestRouteForTiles: tiles.size()=2
+08-25 12:06:29.122  2990  3496 E NavViewModel: MaintainTilesAsyncTask.doInBackground:requestRouteForTiles: previous call to getLocation() did not find current location; cannot proceed with requestRouteForTiles()
+08-25 12:06:29.122  2990  3496 D NavViewModel: calling requestRouteForTiles(dataSharedToCar)
+08-25 12:06:29.122  2990  3496 D NavViewModel: MaintainTilesAsyncTask.doInBackground:requestRouteForTiles: tiles.size()=0
+08-25 12:06:29.122  2990  3496 E NavViewModel: MaintainTilesAsyncTask.doInBackground:requestRouteForTiles: previous call to getLocation() did not find current location; cannot proceed with requestRouteForTiles()
+08-25 12:06:29.122  2990  3496 D NavViewModel: calling requestRouteForTiles(dataRecents)
+08-25 12:06:29.122  2990  3496 D NavViewModel: MaintainTilesAsyncTask.doInBackground:requestRouteForTiles: tiles.size()=0
+08-25 12:06:29.122  2990  3496 E NavViewModel: MaintainTilesAsyncTask.doInBackground:requestRouteForTiles: previous call to getLocation() did not find current location; cannot proceed with requestRouteForTiles()
+08-25 12:06:29.122  2990  2990 D NavViewModel: MaintainTilesAsyncTask.onPostExecute
+08-25 12:06:29.249  1915  1998 E WifiVendorHal: getWifiLinkLayerStats(l.937) failed {.code = ERROR_NOT_AVAILABLE, .description = }
+08-25 12:06:31.928  2535  2604 I ProfileDataService: service uptime=2800000ms, rng value = 76
+08-25 12:06:32.122  2990  3229 D MainActivity: maintainNavTilesNow(): calling navViewModel.maintainTiles with current location: LocationData{latLong=[0.0, 0.0]}
+08-25 12:06:32.122  2990  3229 D NavViewModel: MaintainTilesAsyncTask constructor
+08-25 12:06:32.122  2990  3227 D NavViewModel: MaintainTilesAsyncTask.doInBackground: [
+08-25 12:06:32.122  2990  3227 D NavViewModel: NavigationTile{, locationDescription='Home', locationDescription2='Tap to setup shortcut', tileType=TYPE_ITEM_SHORTCUT_HOME, isAddressSet=false, hasArrived=false}, 
+08-25 12:06:32.122  2990  3227 D NavViewModel: NavigationTile{, locationDescription='Work', locationDescription2='Tap to setup shortcut', tileType=TYPE_ITEM_SHORTCUT_WORK, isAddressSet=false, hasArrived=false}]
+08-25 12:06:32.122  2990  3227 D NavViewModel: calling requestRouteForTiles(dataShortcuts)
+08-25 12:06:32.122  2990  3227 D NavViewModel: MaintainTilesAsyncTask.doInBackground:requestRouteForTiles: tiles.size()=2
+08-25 12:06:32.122  2990  3227 E NavViewModel: MaintainTilesAsyncTask.doInBackground:requestRouteForTiles: previous call to getLocation() did not find current location; cannot proceed with requestRouteForTiles()
+08-25 12:06:32.122  2990  3227 D NavViewModel: calling requestRouteForTiles(dataSharedToCar)
+08-25 12:06:32.122  2990  3227 D NavViewModel: MaintainTilesAsyncTask.doInBackground:requestRouteForTiles: tiles.size()=0
+08-25 12:06:32.122  2990  3227 E NavViewModel: MaintainTilesAsyncTask.doInBackground:requestRouteForTiles: previous call to getLocation() did not find current location; cannot proceed with requestRouteForTiles()
+08-25 12:06:32.122  2990  3227 D NavViewModel: calling requestRouteForTiles(dataRecents)
+08-25 12:06:32.122  2990  3227 D NavViewModel: MaintainTilesAsyncTask.doInBackground:requestRouteForTiles: tiles.size()=0
+08-25 12:06:32.122  2990  3227 E NavViewModel: MaintainTilesAsyncTask.doInBackground:requestRouteForTiles: previous call to getLocation() did not find current location; cannot proceed with requestRouteForTiles()
+08-25 12:06:32.122  2990  2990 D NavViewModel: MaintainTilesAsyncTask.onPostExecute
+08-25 12:06:32.256  1915  1998 E WifiVendorHal: getWifiLinkLayerStats(l.937) failed {.code = ERROR_NOT_AVAILABLE, .description = }
+
+======================================================================================================================================================
+/lucid_dash5dv_9r35/frameworks/base/services/usb/java/com/android/server/usb/
+/lucid_dash5dv_9r35/frameworks/base/services/usb/java/com/android/server/usb/
+=========================================================================================================================================================
+./device/renesas/kernel/arch/arm64/boot/dts/renesas/r8a77980.dtsi
+./device/renesas/kernel/arch/arm64/boot/dts/renesas/r8a7795.dtsi
+./device/renesas/kernel/arch/arm64/boot/dts/renesas/r8a7796.dtsi
+./device/renesas/kernel/arch/arm64/boot/dts/renesas/ulcb.dtsi
+./device/renesas/kernel/arch/arm64/boot/dts/renesas/r8a7796-es1.dtsi
+=====================================================================debugging mics==============================================================
+dash5dv-qnx#cat /data/ccc_mics.log
+
+execute lucidAndroid2x4mic
+ 
+
+CCC Dsc Successful
+
+Mic 1 Dsc Successful
+
+Mic 2 Dsc Failed
+==============================================================================================================================================
