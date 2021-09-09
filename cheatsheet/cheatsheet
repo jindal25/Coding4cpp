@@ -14,6 +14,8 @@ globalprotect connect --portal sg1.atieva.com
 git clone ssh://git@gitlab.atieva.com/issw/android-scripts.git
 ../android-scripts/build_dash5dv_9r35_full.sh -f
 <android-script>/build_dash5dv_9r35_full.sh -f
+android-scripts/build_dash5dv_9r35_QNX.sh -f
+
 source build/envsetup.sh
 lunch 56
 make -j${nproc}
@@ -55,7 +57,7 @@ Android_guest 125 https://jenkins.infotainment.prod.atieva.com/view/1.2-CCC-Main
 aplay -D hw:1,2 /opt/atieva/audioweaver/sounds/welcome.wav
 ===============================================================================================================================
 QNX - cat /etc/qnx_build_info.txt
-Android - adb shell getprop ro.build.fingerprint.8. 
+Android - adb shell getprop ro.build.fingerprint
 =====================================================================================================
 ./adb shell service call bluetooth_manager 6
 ./adb shell am start -a android.bluetooth.adapter.action.REQUEST_ENABLE
@@ -3769,4 +3771,136 @@ Found 138 services:
 135	netd: [android.net.INetd]
 136	com.android.car.procfsinspector: [com.android.car.procfsinspector.IProcfsInspector]
 137	vold: [android.os.IVold]
-====================================================================================================================================
+===============================================================inoput text=====================================================================
+adb shell input text "17501750"
+
+========================================tinycap usage on android================================================================================
+tinycap /data/test.wav -D 3 -d 0 -c 2 -r 48000 -b 16  
+==========================================bringing up mics========================================================================================
+sh -v lucidAndroid4mic.sh
+sony_base_a2bstart.sh
+==================================================================================================================
+https://developer.amazon.com/en-US/docs/alexa/avs-device-sdk/raspberry-pi-script.html
+==============================================loopback========================================================================
+arecord -D hw:1,5 -c8 -r 48000 -f S16_LE -d1 | aplay -D hw:1,2 -d1
+===========================================================================================================================
+cat /proc/boot/ravb_vlan.sh 
+setup_vlan ravb0 100 192.168.100.11 
+setup_vlan ravb0 100 192.168.100.11 
+==============================================================================================================================
+irtio_audio_inq_thread:INQ01_0000: poll timed out for channel pcmC0D0c fd 12 timeout 32
+[  335.645718] virtio_audio virtio1: virtaudio_data_done: 'INQ' rx_seqno 1 expected response len 3076 received 4
+virtio_audio_defer_pcm_command:INQ01_0000: Deferring a DRAIN command
+virtio_audio_inq_thread:INQ01_0000: poll timed out for channel pcmC0D0c fd 12 timeout 32
+[  335.680222] virtio_audio virtio1: virtaudio_data_done: 'INQ' rx_seqno 2 expected response len 3076 received 4
+virtio_audio_inq_thread:INQ01_0000: poll timed out for channel pcmC0D0c fd 12 timeout 32
+[  335.715218] virtio_audio virtio1: virtaudio_data_done: 'INQ' rx_seqno 3 expected response len 3076 received 4
+virtio_audio_inq_thread:INQ01_0000: poll timed out for channel pcmC0D0c fd 12 timeout 32
+virtio_audio_handle_deferred_pcm_drain:INQ01_0000: DRAIN channel pcmC0D0c
+[  335.750598] virtio_audio virtio1: virtaudio_data_done: 'INQ' rx_seqno 4 expected response len 3076 received 4
+virtio_audio_handle_deferred_pcm_drain:INQ01_0000: DRAIN channel pcmC0D0c is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0c
+virtio_audio_inq_thread:INQ01_0000 marking channel as running
+virtio_audio_inq_thread:INQ01_0000: poll timed out for channel pcmC0D0c fd 12 timeout 32
+[  335.798321] virtio_audio virtio1: virtaudio_data_done: 'INQ' rx_seqno 1 expected response len 3076 received 4
+virtio_audio_defer_pcm_command:INQ01_0000: Deferring a DRAIN command
+virtio_audio_inq_thread:INQ01_0000: poll timed out for channel pcmC0D0c fd 12 timeout 32
+[  335.831820] virtio_audio virtio1: virtaudio_data_done: 'INQ' rx_seqno 2 expected response len 3076 received 4
+virtio_audio_inq_thread:INQ01_0000: poll timed out for channel pcmC0D0c fd 12 timeout 32
+[  335.866243] virtio_audio virtio1: virtaudio_data_done: 'INQ' rx_seqno 3 expected response len 3076 received 4
+virtio_audio_inq_thread:INQ01_0000: poll timed out for channel pcmC0D0c fd 12 timeout 32
+virtio_audio_handle_deferred_pcm_drain:INQ01_0000: DRAIN channel pcmC0D0c
+[  335.901644] virtio_audio virtio1: virtaudio_data_done: 'INQ' rx_seqno 4 expected response len 3076 received 4
+virtio_audio_handle_deferred_pcm_drain:INQ01_0000: DRAIN channel pcmC0D0c is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0c
+virtio_audio_inq_thread:INQ01_0000 marking channel as running
+virtio_audio_inq_thread:INQ01_0000: poll timed out for channel pcmC0D0c fd 12 timeout 32
+[  335.950900] virtio_audio virtio1: virtaudio_data_done: 'INQ' rx_seqno 1 expected response len 3076 received 4
+virtio_audio_defer_pcm_command:INQ01_0000: Deferring a DRAIN command
+virtio_audio_inq_thread:INQ01_0000: poll timefind out for channel pcmC0D0c fd 12 timeout 32
+[  335.986812] virtio_audio virtio1: virtaudio_data_done: 'INQ' rx_seqno 2 expected response len 3076 received 4
+virtio_audio_inq_thread:INQ01_0000: poll timed out for channel pcmC0D0c fd 12 timeout 32
+[  336.021891] virtio_audio virtio1: virtaudio_data_done: 'INQ' rx_seqno 3 expected response len 3076 received 4
+virtio_audio_inq_thread:INQ01_0000: poll timed out for channel pcmC0D0c fd 12 timeout 32
+virtio_audio_handle_deferred_pcm_drain:INQ01_0000: DRAIN channel pcmC0D0c
+[  336.057883] virtio_audio virtio1: virtaudio_data_done: 'INQ' rx_seqno 4 expected response len 3076 received 4
+virtio_audio_handle_deferred_pcm_drain:INQ01_0000: DRAIN channel pcmC0D0c is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0c
+virtio_audio_inq_thread:INQ01_0000 marking channel as running
+virtio_audio_inq_thread:INQ01_0000: poll timed out for channel pcmC0D0c fd 12 timeout 32
+[  336.105648] virtio_audio virtio1: virtaudio_data_done: 'INQ' rx_seqno 1 expected response len 3076 received 4
+virtio_audio_defer_pcm_command:INQ01_0000: Deferring a DRAIN command
+virtio_audio_inq_thread:INQ01_0000: poll timed out for channel pcmC0D0c fd 12 timeout 32
+[  336.140117] virtio_audio virtio1: virtaudio_data_done: 'INQ' rx_seqno 2 expected response len 3076 received 4
+[  336.148707] android_work: sent uevent USB_STATE=CONNECTED
+virtio_audio_inq_thread:INQ01_0000: poll timed out for channel pcmC0D0c fd 12 timeout 32
+[  336.174892] virtio_audio virtio1: virtaudio_data_done: 'INQ' rx_seqno 3 expected response len 3076 received 4
+virtio_audio_inq_thread:INQ01_0000: poll timed out for channel pcmC0D0c fd 12 timeout 32
+virtio_audio_handle_deferred_pcm_drain:INQ01_0000: DRAIN channel pcmC0D0c
+[  336.210385] virtio_audio virtio1: virtaudio_data_done: 'INQ' rx_seqno 4 expected response len 3076 received 4
+virtio_audio_handle_deferred_pcm_drain:INQ01_0000: DRAIN channel pcmC0D0c is complete
+virtio_audio_handle_pcm_prepare: PREPARE channel pcmC0D0c
+virtio_audio_inq_thread:INQ01_0000 marking channel as running
+virtio_audio_inq_thread:INQ01_0000: poll timed out for channel pcmC0D0c fd 12 timeout 32
+[  336.259548] virtio_audio virtio1: virtaudio_data_done: 'INQ' rx_seqno 1 expected response len 3076 received 4
+virtio_audio_defer_pcm_command:INQ01_0000: Deferring a DRAIN command
+virtio_audio_inq_thread:INQ01_0000: poll timed out for channel pcmC0D0c fd 12 timeout 32
+[  336.294996] virtio_audio virtio1: virtaudio_data_done: 'INQ' rx_seqno 2 expected response len 3076 received 4
+[  336.304607] configfs-gadget gadget: high-speed config #1: b
+[  336.309927] android_work: sent uevent USB_STATE=CONFIGURED
+
+============================================================================================================================================
+mount / -o remount,rw 
+systemctl disable dashapp2 
+systemctl disable weston 
+systemctl disable icapp 
+systemctl disable audioweaver 
+mount / -o remount,ro
+===============================================================================================================================
+root@dash5dv:/# cd /sys/kernel/debug/
+root@dash5dv:/sys/kernel/debug# cat gpio
+gpiochip7: GPIOs 356-359, parent: platform/e6055800.gpio, e6055800.gpio:
+
+gpiochip6: GPIOs 360-391, parent: platform/e6055400.gpio, e6055400.gpio:
+ gpio-372 (                    |WIFI_WAKE           ) out hi    
+ gpio-376 (                    |pcie_perst          ) out hi    
+ gpio-385 (                    |COAX_POW_EN         ) out hi    
+ gpio-391 (                    |COM_WAKE            ) out hi    
+
+gpiochip5: GPIOs 392-417, parent: platform/e6055000.gpio, e6055000.gpio:
+ gpio-413 (                    |ub948 413           ) out hi    
+ gpio-414 (                    |Phantom Gpio        ) out hi    
+ gpio-417 (                    |ub948 417           ) out hi    
+
+gpiochip4: GPIOs 418-435, parent: platform/e6054000.gpio, e6054000.gpio:
+
+gpiochip3: GPIOs 436-451, parent: platform/e6053000.gpio, e6053000.gpio:
+
+gpiochip2: GPIOs 452-466, parent: platform/e6052000.gpio, e6052000.gpio:
+
+gpiochip1: GPIOs 467-495, parent: platform/e6051000.gpio, e6051000.gpio:
+
+gpiochip0: GPIOs 496-511, parent: platform/e6050000.gpio, e6050000.gpio:
+ gpio-497 (                    |BT_EN               ) out hi    
+ gpio-498 (                    |WIFI_EN             ) out hi    
+ gpio-501 (                    |ub948 501           ) out hi    
+ gpio-502 (                    |ub948 502           ) out hi    
+ ====================================================================================================================================================
+ pankajjindal@pankaj-ThinkPad-T470:~/android_guest$ ./adb shell service call bluetooth_manager 6
+Result: Parcel(00000000 00000000   '........')
+pankajjindal@pankaj-ThinkPad-T470:~/android_guest$ ./adb shell am start -a android.bluetooth.adapter.action.REQUEST_ENABLE
+Starting: Intent { act=android.bluetooth.adapter.action.REQUEST_ENABLE }
+pankajjindal@pankaj-ThinkPad-T470:~/android_guest$ ./adb shell am start -a android.bluetooth.adapter.action.REQUEST_DISCOVERABLE
+error: device offline
+==================================================================================================================================================
+root@dash5dv:~# ls /dev/gpiochip*
+/dev/gpiochip0  /dev/gpiochip2  /dev/gpiochip4  /dev/gpiochip6
+/dev/gpiochip1  /dev/gpiochip3  /dev/gpiochip5  /dev/gpiochip7
+===================================================here is how to change gpio======================================================
+# echo 504 > /sys/class/gpio/export
+# echo out > /sys/class/gpio/gpio504/direction
+# echo 1   > /sys/class/gpio/gpio504/value
+=============================================================================================================
+sound/vdev-virtio-audio/io_audio_ccc.conf 
+https://gitlab.corp.atieva.com/issw/qnx/drivers/-/tree/JBN436-s21.8/sound/vdev-virtio-audio
+=================================================================================================================
