@@ -471,7 +471,10 @@ export LD_LIBRAY_PATH=/opt/atieva/audioweaver/lib/
 /opt/atieva/audioweaver/LucidAudioApp --qnx_guest 1
 ==========================================================================================================
 Car-Lucid-VIN-165@lucidmotors.com
+Car-Lucid-VIN-155@lucidmotors.com
 Car-Lucid-VIN-172@lucidmotors.com
+Car-Lucid-VIN-171@lucidmotors.com
+Car-Lucid-VIN-134@lucidmotors.com
 ======================================================================================================
 adb shell dumpsys -l
  ./adb shell dumpsys audio > audio_dumpsys.txt
@@ -3904,3 +3907,383 @@ root@dash5dv:~# ls /dev/gpiochip*
 sound/vdev-virtio-audio/io_audio_ccc.conf 
 https://gitlab.corp.atieva.com/issw/qnx/drivers/-/tree/JBN436-s21.8/sound/vdev-virtio-audio
 =================================================================================================================
+  config.inputAudioDevice = "hw:1,4";
+  config.outputAudioDevice[0] = "hw:1,0";
+  config.outputAudioDevice[1] = "hw:1,1";
+  config.outputAudioDevice[2] = "hw:1,2";
+  // Data coming to AudioWeaver - SSI9
+  config.playbackInputAudioDevice = "hw:1,5";
+  // This is the processed mic data going to Android
+  config.vuiOutputAudioDevice = "hw:1,3";
+  
+  # Start the master clocks SSI3 and SSI0
+arecord -D hw:1,5 -c8 -r 48000 -f S16_LE -d1 | aplay -D hw:1,2 -d1
+This means that data is recroded from SSI9 and send to SSI2 from where its played.
+============================rcar driver============================================
+ xref: /lucid_dash5dv_9r35/device/renesas/kernel/sound/soc/sh/rcar/ 
+ ============================================ccc pidin ar========================================
+ dash5dv-qnx#pidin ar               
+     pid Arguments
+       1 procnto-smp-instr -ae 
+       2 slogger2 
+       3 pipe 
+       4 random -t 
+       5 wdtkick -W 0x0:0x5A5AFF00 
+       6 devc-serscif -e -F -b115200 -t 14 scif2 
+       7 i2c-rcar-A -p0xe6500000 -i319 -v 
+       8 i2c-rcar-A -p0xe6508000 -i320 -v 
+       9 i2c-rcar-A -p0xe6510000 -i318 -v 
+      10 i2c-rcar-A -p0xe66D8000 -i51 -v 
+      11 i2c-rcar-A -p0xe66e0000 -i52 -v 
+      12 i2c-rcar-A -p0xe66e8000 -i53 -v 
+      13 i2c-rcar-B -p0xe60b0000 -i205 
+      14 devb-sdmmc-rcar_gen3 blk cache=32m,maxio=256,commit=none,memory=below4G cam cache,async,ma 
+      15 ksh 
+    8209 /bin/smmuman @/etc/rcar3-h3_r30.smmu 
+  143379 pps -p /tmp -C 
+  147479 screen -c /usr/lib/graphics/rcarh3/graphics-lucid.conf 
+  155672 devc-pty -n32 
+  196638 io-pkt-v6-hc -D -d ravb mac=020000030200 -ptcpip pkt_typed_mem=below4G 
+  274464 /usr/bin/sshd 
+  319509 dumper -b -d /data/core_dumps 
+  339984 resarb 
+  339996 io-audio -c /etc/io_audio.conf 
+  356383 mmngr 
+  372770 /usr/bin/guest_a2b_trigger 
+  397345 vspm_if 
+  426022 uvcs_drv 
+  430120 mm-renderer -ck -vvvv 
+ 1335333 sh /opt/atieva/icapp/icapp.sh /opt/atieva/icapp/icapp.sh /opt/atieva/icapp/icapp.sh /opt/a 
+ 1437744 rpcbind 
+ 1454131 mtouch -c /proc/boot/mtouch_IC-L.conf 
+ 1499154 restart /opt/atieva/bin/qmlshow --resource=/opt/atieva/icapp/res/beta2/clusterImages.rcc - 
+ 1507364 /opt/atieva/bin/qmlshow --resource=/opt/atieva/icapp/res/beta2/clusterImages.rcc --resourc 
+ 1511469 /bin/sh /disk-dos/vm_termination_monitor.sh 
+ 1548334 nngcat --listen tcp://192.168.1.11:8082 --sub0 --subscribe=OTA --quoted 
+ 1548335 dtach -n /tmp/lvc -r winch on qvm @/disk-dos/linux.qvmconf logger info,error slog 
+ 1556505 /bin/sh /disk-dos/vm_termination_monitor.sh 
+ 1556530 qvm @/disk-dos/linux.qvmconf logger info,error slog 
+ 1593396 mtouch -c /proc/boot/mtouch_REAR.conf 
+ 1613867 atmel-buttons 
+ 1613873 nfsd 
+ 7483412 pidin ar
+ 
+ ===============================================================================================================================================================
+ 
+ /opt/atieva/qtcp	server/qt_tcp 192.168.1.11 
+ ===================================================ccc pidin ar========================================================================================= 
+ 
+ dash5dv-qnx#pidin ar
+     pid Arguments
+       1 procnto-smp-instr -ae 
+       2 slogger2 
+       3 pipe 
+       4 random -t -p -i8 -i17 -i18 
+       5 wdtkick -W 0x0:0x5A5AFF00 
+       6 devc-serscif -e -F -b115200 -t 14 scif2 
+       7 i2c-rcar-A -p0xe6500000 -i319 -v 
+       8 i2c-rcar-A -p0xe6508000 -i320 -v 
+       9 i2c-rcar-A -p0xe6510000 -i318 -v 
+      10 i2c-rcar-A -p0xe66D8000 -i51 -v 
+      12 i2c-rcar-A -p0xe66e8000 -i53 -v 
+      13 i2c-rcar-B -p0xe60b0000 -i205 
+      14 devb-sdmmc-rcar_gen3 blk cache=32m,maxio=256,commit=none,memory=below4G cam cache,async,ma 
+      15 ksh 
+    8209 /bin/smmuman @/etc/rcar3-h3_r30.smmu 
+  135187 pps -p /tmp -C 
+  143383 devc-pty -n32 
+  143385 screen -c /usr/lib/graphics/rcarh3_host/graphics-lucid-dash5dv.conf 
+  172065 io-pkt-v6-hc -D -d ravb mac=020000010701 -ptcpip pkt_typed_mem=below4G 
+  249892 /usr/bin/sshd 
+  294933 dumper -b -d /data/core_dumps 
+  294944 io-audio -c /etc/io_audio.conf 
+  311312 resarb 
+  327700 mmngr 
+  348189 vspm_if 
+  380958 uvcs_drv 
+  385055 mtouch -c /proc/boot/mtouch_IC-R.conf 
+  385062 mm-renderer -ck -vvv 
+  426021 mtouch -c /proc/boot/mtouch_CID.conf 
+  438311 vdev-wfd -c /etc/vdev_wfd.conf -n dis-adr 
+  802850 sensor -U 521:521,1001,0 -b external -r /data/sensor_images -c /etc/analog_camera.conf 
+  827433 sh /opt/atieva/icapp/ccapp.sh /opt/atieva/icapp/ccapp.sh /opt/atieva/icapp/ccapp.sh /opt/a 
+  872497 rpcbind 
+  970797 restart /opt/atieva/bin/qmlshow --resource=/opt/atieva/icapp/res/beta2/clusterQml.rcc --re 
+  978990 /opt/atieva/bin/qmlshow --resource=/opt/atieva/icapp/res/beta2/clusterQml.rcc --resource=/ 
+  983088 /bin/sh /sbin/vm_termination_monitor.sh 
+ 1060891 nfsd 
+ 1089576 vdev-wfd -c /etc/vdev_wfd.conf -n dis-adr 
+ 1204248 dtach -n /tmp/lvc -r winch qvm @/disk-dos/android-minimal-dash5.qvmconf 
+ 1204266 qvm @/disk-dos/android-minimal-dash5.qvmconf 
+ 4136971 sleep 5 
+ 4141074 pidin ar 
+
+======================================================================================================================
+ifconfig eth0 <ipaddress>
+ifconfig eth0 up
+===================================Guest a2b trigger====================================================================================
+Args = 2
+dev_str 6A
+maddr 0x6A
+saddr 0x6B
+Waiting for other A2B config to finish
+Waiting for other A2B config to finish
+Waiting for other A2B config to finish
+Waiting for other A2B config to finish
+Unmuting the base amp
+data: 1h 0h
+Data recvd:
+data: 4ch 20h
+Data recvd:
+Args = 2
+dev_str 6C
+maddr 0x6C
+saddr 0x6D
+Unmuting the prem amp
+data: 1h 0h
+Data recvd:
+data: 4ch 20h
+Data recvd:
+shared memory index 0
+main:226 attached buf 28001000
+sizeof xSemTriggerUpdate 8, buf 28001000, buf->shmSignature 280010a4
+main:233 buf->shmSignature 0
+Waiting for notification...
+Waiting for MsgReceivePulse...
+MsgReceivePulse received. pulse.code 0
+Read buf->shmSignature 0
+Waiting for notification...
+Waiting for MsgReceivePulse...
+MsgReceivePulse received. pulse.code 0
+Read buf->shmSignature 0
+Waiting for notification...
+Waiting for MsgReceivePulse...
+MsgReceivePulse received. pulse.code 0
+Read buf->shmSignature 0
+Waiting for notification...
+Waiting for MsgReceivePulse...
+MsgReceivePulse received. pulse.code 0
+Read buf->shmSignature 55aa55aa
+Waiting for MsgReceivePulse...
+MsgReceivePulse received. pulse.code 0
+connection  3 sent data
+Waiting for MsgReceivePulse...
+MsgReceivePulse received. pulse.code 0
+LUCID_CMD_A2B_UNMUTE_AMPS received
+connection  3 sent data
+Waiting for MsgReceivePulse...
+MsgReceivePulse received. pulse.code 0
+connection  2 sent data
+Waiting for MsgReceivePulse...
+MsgReceivePulse received. /data/ccc_mics.log
+data: 12h 84h
+Data recvd:
+data: 17h
+Data recvd: ffh
+data: 1bh 77h
+Data recvd:
+data: 1ch 0h
+Data recvd:
+data: 1dh fh
+Data recvd:
+data: fh 7ch
+Data recvd:
+data: 12h 1h
+Data recvd:
+data: 41h 42h
+Data recvd:
+data: 9h 1h
+Data recvd:
+data: 13h 7ch
+Data recvd:
+------
+A data: 1ah
+Data recvd: 1h
+------
+newStr 0x1
+======
+A 0x1
+======
+CCC Dsc Successful
+data: 1ah 1h
+Data recvd:
+data: 1h 0h
+Data recvd:
+data: 2h
+Data recvd: 0h
+data: 3h
+Data recvd: 28h
+data: 4h
+Data recvd: 0h
+data: 9h 21h
+Data recvd:
+data: 1h 0h
+Data recvd:
+data: 9h 1h
+Data recvd:
+data: 13h 78h
+Data recvd:
+------
+A data: 1ah
+Data recvd: 1h
+------
+newStr 0x1
+======
+A 0x1
+======
+Mic 1 Dsc Successful
+data: 1ah 1h
+Data recvd:
+data: 1h 1h
+Data recvd:
+data: 2h
+Data recvd: adh
+data: 3h
+Data recvd: 27h
+data: 4h
+Data recvd: 0h
+data: 1h 0h
+Data recvd:
+data: 9h 21h
+Data recvd:
+data: 1h 1h
+Data recvd:
+data: 12h 0h
+Data recvd:
+data: 9h 1h
+Data recvd:
+data: 13h 74h
+Data recvd:
+------
+A data: 1ah
+Data recvd: 1h
+------
+newStr 0x1
+======
+A 0x1
+======
+Mic 2 Dsc Successful
+data: 1ah 1h
+Data recvd:
+data: 1h 2h
+Data recvd:
+data: 2h
+Data recvd: 0h
+data: 3h
+Data recvd: 27h
+data: 4h
+Data recvd: 0h
+data: 1h 1h
+Data recvd:
+data: 9h 21h
+Data recvd:
+data: 1h 2h
+Data recvd:
+data: ah 0h
+Data recvd:
+data: bh 80h
+Data recvd:
+data: ch 4h
+Data recvd:
+data: 3fh 1h
+Data recvd:
+data: 47h 1fh
+Data recvd:
+data: 5dh 0h
+Data recvd:
+data: 48h 0h
+Data recvd:
+data: 4ah 10h
+Data recvd:
+data: 4dh 10h
+Data recvd:
+data: 4eh 0h
+Data recvd:
+data: 50h 0h
+Data recvd:
+data: 51h 0h
+Data recvd:
+data: 52h 0h
+Data recvd:
+data: 20h 0h
+Data recvd:
+data: 59h 1h
+Data recvd:
+data: 5ah 81h
+Data recvd:
+data: 60h 0h
+Data recvd:
+data: 61h 0h
+Data recvd:
+data: 62h 0h
+Data recvd:
+data: 63h 0h
+Data recvd:
+data: 64h 0h
+Data recvd:
+data: 65h 0h
+Data recvd:
+data: 66h 0h
+Data recvd:
+data: 67h 0h
+Data recvd:
+data: 68h 0h
+Data recvd:
+data: 69h 0h
+Data recvd:
+data: 81h 0h
+Data recvd:
+data: 82h 0h
+Data recvd:
+data: 83h 0h
+Data recvd:
+data: 84h 0h
+Data recvd:
+data: 85h 0h
+Data recvd:
+data: 86h 0h
+Data recvd:
+data: 87h 0h
+Data recvd:
+data: 88h 0h
+Data recvd:
+data: 8ah 0h
+Data recvd:
+data: 80h 0h
+Data recvd:
+data: 90h 0h
+Data recvd:
+data: 96h 0h
+Data recvd:
+data: 5ch 0h
+Data recvd:
+data: 58h 0h
+Data recvd:
+data: 57h 0h
+Data recvd:
+data: 2eh 0h
+Data recvd:
+data: 30h 0h
+Data recvd:
+data: 1bh 77h
+Data recvd:
+data: 1ch 7fh
+Data recvd:
+data: 1eh efh
+Data recvd:
+data: 1h 2h
+Data recvd:
+data: 1h 1h
+Data recvd:
+data: ah 0h
+Data recvd:
+data: bh 80h
+Data recvd:
+data: ch 4h
+Data recvd:
+data: 3fh 1h
+Data recvd:
+data: 47h 1fh
+Data recvd:
+data: 5dh 0h
+============================================================================================================
