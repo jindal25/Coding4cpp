@@ -1,0 +1,1 @@
+cmd_/home/pankajjindal/code/Coding4cpp/linux/skeleton.ko := ld -r -m elf_x86_64  --build-id=sha1  -T scripts/module.lds -o /home/pankajjindal/code/Coding4cpp/linux/skeleton.ko /home/pankajjindal/code/Coding4cpp/linux/skeleton.o /home/pankajjindal/code/Coding4cpp/linux/skeleton.mod.o;  true

@@ -1,0 +1,1 @@
+cmd_/home/pankajjindal/code/Coding4cpp/linux/Module.symvers := sed 's/ko$$/o/' /home/pankajjindal/code/Coding4cpp/linux/modules.order | scripts/mod/modpost -m -a   -o /home/pankajjindal/code/Coding4cpp/linux/Module.symvers -e -i Module.symvers   -T -
