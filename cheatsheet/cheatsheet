@@ -3332,15 +3332,20 @@ execute lucidAndroid2x4mic
 CCC Dsc Successful
 
 Mic 1 Dsc Successful
-
+audio 
 Mic 2 Dsc Failed
 ==============================================================================================================================================
 
 
 pass loc 0xee0a0000,0x100,rwn intr gic:144 #OHCI0
 pass loc 0xee0a0100,0x100,rwn intr gic:144 #EHCI0
-#device tree 
-Is this our device tree file ? ./device/renesas/kernel/arch/arm64/boot/dts/renesas/r8a7795.dtsi 
+=============================================================#device tree ======================================================================
+Is this our device tree file ? ./device/renesas/kernel/arch/arm64/boot/dts/renesas/r8a7795.dtsi device tree
+/lucid_dash5dv_9r35/device/renesas/kernel/arch/arm64/boot/dts/renesas/dash5dv_base.dtsi ?
+The device tree for CCC is overlaid on tolp of this one
+=====================================audio driver============================================================================================
+/lucid_dash5dv_9r35/device/renesas/kernel/sound/soc/sh/rcar/
+/lucid_dash5dv_9r35/device/renesas/kernel/Documentation/devicetree/bindings/sound/
 ==============================how to make sure mics are up ?=====================================================================================================================
 on ICC :
 systemctl status a2bstart
@@ -4287,3 +4292,19 @@ data: 47h 1fh
 Data recvd:
 data: 5dh 0h
 ============================================================================================================
+pankajjindal@pankajjindal-ThinkPad-T470:~/code/Coding4cpp/linux$ sudo make -C /lib/modules/`uname -r`/build M=$PWD modules
+root@pankajjindal-ThinkPad-T470:/sys/kernel/debug/tracing# echo 0 > tracing_on 
+root@pankajjindal-ThinkPad-T470:/sys/kernel/debug/tracing# echo function_graph > current_tracer
+root@pankajjindal-ThinkPad-T470:/sys/kernel/debug/tracing# cat available_tracers 
+hwlat blk mmiotrace function_graph wakeup_dl wakeup_rt wakeup function nop
+root@pankajjindal-ThinkPad-T470:/sys/kernel/debug/tracing# echo  > trace
+root@pankajjindal-ThinkPad-T470:/sys/kernel/debug/tracing# echo :mod:skeleton > set_ftrace_filter
+root@pankajjindal-ThinkPad-T470:/sys/kernel/debug/tracing# echo 1 > tracing_on 
+root@pankajjindal-ThinkPad-T470:/sys/kernel/debug/tracing# insmod skeleton
+insmod: ERROR: could not load module skeleton: No such file or directory
+root@pankajjindal-ThinkPad-T470:/sys/kernel/debug/tracing# insmod /home/pankajjindal/code/Coding4cpp/linux/skeleton 
+insmod: ERROR: could not load module /home/pankajjindal/code/Coding4cpp/linux/skeleton: No such file or directory
+root@pankajjindal-ThinkPad-T470:/sys/kernel/debug/tracing# insmod /home/pankajjindal/code/Coding4cpp/linux/skeleton.ko 
+root@pankajjindal-ThinkPad-T470:/sys/kernel/debug/tracing# cat trace
+=============================================================================================
+
