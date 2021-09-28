@@ -475,6 +475,8 @@ Car-Lucid-VIN-155@lucidmotors.com
 Car-Lucid-VIN-172@lucidmotors.com
 Car-Lucid-VIN-171@lucidmotors.com
 Car-Lucid-VIN-134@lucidmotors.com
+Car-Lucid-VIN-105@lucidmotors.com
+28, 132, 56207, and 43434.
 ======================================================================================================
 adb shell dumpsys -l
  ./adb shell dumpsys audio > audio_dumpsys.txt
@@ -4306,5 +4308,125 @@ root@pankajjindal-ThinkPad-T470:/sys/kernel/debug/tracing# insmod /home/pankajji
 insmod: ERROR: could not load module /home/pankajjindal/code/Coding4cpp/linux/skeleton: No such file or directory
 root@pankajjindal-ThinkPad-T470:/sys/kernel/debug/tracing# insmod /home/pankajjindal/code/Coding4cpp/linux/skeleton.ko 
 root@pankajjindal-ThinkPad-T470:/sys/kernel/debug/tracing# cat trace
-=============================================================================================
+==============device driver =============================================================
+https://linux-kernel-labs.github.io/refs/heads/master/labs/device_drivers.html
+==========================building for 21.8===============================================================
+../qnx/qnx-scripts/build.sh --config ../qnx/qnx-scripts/build_config/dash5dv_ccc/bsp_latest.xml 
+../qnx/qnx-scripts/build.sh --config ../qnx/qnx-scripts/build_config/dash5dv_icc/bsp_latest.xml 
 
+===================flashing CCC========================================================
+local dir unzip dash5dv-file-<build#>.zip -d ~/android_guest
+
+==========================flashing ccc best page =====================================================
+https://lucidmotors.atlassian.net/wiki/spaces/INFO/pages/2063565639/Setup+QNX+hypervisor+and+Android+as+guest+OS+on+Dash5dv
+https://lucidmotors.atlassian.net/wiki/spaces/INFO/pages/1722581608/Setup+QNX+hypervisor+and+Yocto+Linux+as+guest+OS+on+Dash5dv
+========================================================================================================
+dash5dv-qnx#cd /init/audio/      
+dash5dv-qnx#ls -l
+total 74
+-rwxr-xr-x   1 root      root          12527 Sep 17  2021 lucidAndroid2x4mic_qnx.sh
+-rwxr-xr-x   1 root      root          23389 Sep 17  2021 sony_a2bstart_qnx.sh
+-rwxr-xr-x   1 root      root           1281 Sep 17  2021 sony_amp_unmute.sh
+======================================================================================================================================
+
+tracelogger -f1 -f /tmp/trace1.txt
+traceprinter -f /tmp/trace1.txt  -o /tmp/out_trace.txt 
+
+    
+
+slay qvm qmlshow io-usb-otg devb-umass 
+
+
+io-usb-otg -d hcd-xhci ioport=0xEE000000,irq=0x86 -d hcd-ehci ioport=0xEE0A0100,irq=0x90 devb-umass blk cache=10m cam pnp
+
+tracelogger -f1 -b 30 -c -f /tmp/trace1.txt
+traceprinter -f /tmp/trace1.txt  -o /tmp/out_na30.txt 
+
+tracelogger -f1 -b 30 -c -f /tmp/sp.txt
+traceprinter -f /tmp/sp.txt  -o /shared/out_sp30.txt 
+
+tracelogger -f1 -b 30 -c -f /tmp/rd.txt
+traceprinter -f /tmp/rd.txt  -o /shared/out_rd30.txt 
+
+tracelogger -f1 -b 30 -c -f /tmp/vc1.txt
+traceprinter -f /tmp/vc1.txt  -o /shared/out_vc30.txt 
+
+tracelogger -f1 -b 30 -c -f /tmp/bt.txt
+traceprinter -f /tmp/bt.txt  -o /shared/out_bt30.txt 
+
+tracelogger -f1 -b 1 -c -s 10 -f /tmp/tidal.txt
+traceprinter -f /tmp/tidal.txt  -o /shared/out_tidal31.txt 
+
+tracelogger -f1 -b 30 -f /tmp/alexa.txt
+traceprinter -f /tmp/alexa.txt  -o /shared/out_alexa30.txt 
+
+in the android: /storage/shared
+in the qnx: /shared
+adb pull /storage/shared/out_alexa.txt .
+
+============================================after mounting USB==========================================================================
+
+insert USB 
+boot into linux
+
+mkdir /m
+mount /dev/mmcblk0p11 ~/m
+cp *.kev  ~
+sync
+=========================================================================================================
+
+racelogger -f1 -b 30 -s 10 -f /shared/voice_call.kev 
+===============================================================================
+
+
+192.168.1.71
+audio is uo
+slog2info --- qnx log
+logzinfo | more
+ssh 192.168.1.71 
+/dev/qvshm ------------look for shred memory
+dmesg > /tmp/log 
+awe_qshm 63 0, awe_qsm 63 1
+/var/log/AudioManager.log 
+
+journalctl --system
+
+/data/core_dump/ ---qnx
+
+qttemp
+qtaudiocontroller
+vi slog2info | grep -i QAudioController 
+awe_shm 63 1
+awe_qshm 63 1
+adb connect 192.168.1.12
+ping 192.168.1.12 -- android 
+ping 192.168.1.70 -> this is qnx
+lucidaudioapp/build/rcar/test.c --------to send triggers
+==============================================================================
+
+#!/bin/sh
+ifconfig enx00249b6d1fec 192.168.52.16 up
+vconfig add enx00249b6d1fec 1
+ifconfig enx00249b6d1fec.1 192.168.1.99
+====================================================================
+to drop cache in linux 
+echo 3 > /proc/sys/vm/drop_caches
+========================SSH into linux guest=============================================
+give yourself a 192.168.52.96 ip address
+For Linux 192.168.52.8
+for QNX 192.168.52.5
+====================Process running on ICC ==================================================
+ 1808 ?        Ssl  1674:14 /opt/atieva/audioweaver/LucidAudioApp --qnx_guest 1
+ 1809 ?        Ssl    0:17 /opt/atieva/audioweaver/AudioManager -q
+ 1810 ?        Ss     0:00 /opt/atieva/audioweaver/dcx_frontend -o /tmp/out.wav
+ ===========================================================================================
+ oot@dash5dv:~# systemctl stop audioweaver
+root@dash5dv:~# export LD_LIBRARY_PATH=/opt/atieva/audioweaver/lib
+root@dash5dv:~# taskset 0x08 /opt/atieva/audioweaver/LucidAudioApp --qnx_guest 1
+/opt/atieva/audioweaver/LucidAudioApp: error while loading shared libraries: AWELib.so: cannot oy
+root@dash5dv:~#
+======================building LucidAudioApp ============================================
+go to ~/code/lucid/LucidAudioApp/build/rcar
+.setup-poky-env.sh
+./build.sh
+==========================================================================================
