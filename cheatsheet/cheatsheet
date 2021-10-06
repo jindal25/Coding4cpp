@@ -419,6 +419,7 @@ taskset 0x08 /opt/atieva/audioweaver/LucidAudioApp
 ====================================gitlab changes ====================================================
 https://gitlab.corp.atieva.com/VinayPal
 https://gitlab.corp.atieva.com/arvindagrawal
+https://gitlab.corp.atieva.com/YagyaSen
 ==================================Trigger file====================================================
 /opt/atieva/audioweaver/keys/trigger_shm.key
 =======================================================================================================
@@ -884,6 +885,7 @@ to connect to wifi just long home the settings button and then networks show jus
 ===============================USB audio HAL==============================================================================
 android_JDI_build_07013/dash5dv/hardware/libhardware/modules/usbaudio
 device/renesas/dash5dv/hal/audio/audio_hw.c
+https://gitlab.corp.atieva.com/issw/qaudiocontroller
 ===========================================tinyalsa===============================================================================
 ./external/tinyalsa
 device/renesas/dash5dv/hal/audio/audio_hw.c
@@ -4378,8 +4380,15 @@ sync
 racelogger -f1 -b 30 -s 10 -f /shared/voice_call.kev 
 ===============================================================================
 
+ICC
 
-192.168.1.71
+Linux 192.168.1.71
+QNX on ICC 192.169.1.11
+
+CCC
+android 192.168.1.12
+QNX 192.168.1.70
+
 audio is uo
 slog2info --- qnx log
 logzinfo | more
@@ -4402,6 +4411,14 @@ adb connect 192.168.1.12
 ping 192.168.1.12 -- android 
 ping 192.168.1.70 -> this is qnx
 lucidaudioapp/build/rcar/test.c --------to send triggers
+pcm_logger -l 1 
+pcm_logger -l 1 to start capture
+
+pcm_logger -l 0
+
+
+
+see if any data in the file, /tmp/captue_0_1*.wav
 ==============================================================================
 
 #!/bin/sh
@@ -4429,4 +4446,898 @@ root@dash5dv:~#
 go to ~/code/lucid/LucidAudioApp/build/rcar
 .setup-poky-env.sh
 ./build.sh
-==========================================================================================
+===============================AudioApp has opened the devices, so can not use aplay/arecord===========================================================
+
+root@dash5dv:~# ./sony_a2bstart.sh base
+dev_str 6A
+maddr 0x6A
+saddr 0x6B
+arecord: main:807: audio open error: No such file or directory
+aplay: playback:2806: read error
+Error: Could not open file `/dev/i2c-4' or `/dev/i2c/4': No such file or directory
+
+AudioApp has opened the devices, so can not use aplay/arecord
+=====================================================================================================================
+dash5dv-qnx#./sony_a2bstart_qnx.sh base
+dev_str 6A
+maddr 0x6A
+saddr 0x6B
+data: 12h 84h
+Data recvd:
+data: 40h 0h
+Data recvd:
+data: 41h 42h
+Data recvd:
+data: fh 89h
+Data recvd:
+data: 12h 81h
+Data recvd:
+data: 9h 1h
+Data recvd:
+data: 13h 89h
+Data recvd:
+------
+A data: 1ah
+Data recvd: 1h
+------
+newStr 0x1
+======
+A 0x1
+======
+DscDone
+data: 1h 0h
+Data recvd:
+newStr 0x0
+newStr 0x28
+newStr 0x0
+Vendor 0x0 Product 0x28 Version 0x0
+=========================================
+ Sample-B amp version v3
+=========================================
+data: ah 0h
+Data recvd:
+data: bh 10h
+Data recvd:
+data: dh 0h
+Data recvd:
+data: ch 0h
+Data recvd:
+data: eh 0h
+Data recvd:
+data: 3fh 0h
+Data recvd:
+data: 43h 0h
+Data recvd:
+data: 45h 0h
+Data recvd:
+data: 4dh e0h
+Data recvd:
+data: 4eh 7h
+Data recvd:
+data: dh 10h
+Data recvd:
+data: eh 0h
+Data recvd:
+data: 1eh bfh
+Data recvd:
+data: 10h 44h
+Data recvd:
+data: 11h 1h
+Data recvd:
+data: 42h 38h
+Data recvd:
+data: 12h 81h
+Data recvd:
+data: 4bh 60h
+Data recvd:
+data: 4ch 0h
+Data recvd:
+data: 1h 0h
+Data recvd:
+data: 0h 6dh
+Data recvd:
+data: 1h 20h
+Data recvd:
+data: 81h 5eh 10h 24h 1h
+Data recvd:
+data: 1h 0h
+Data recvd:
+data: 0h 6fh
+Data recvd:
+data: 1h 20h
+Data recvd:
+data: 81h 5eh 10h 24h 1h
+Data recvd:
+data: 1h 0h
+Data recvd:
+data: 0h 10h
+Data recvd:
+data: 1h 20h
+Data recvd:
+data: 0h 7h
+Data recvd:
+data: ah 9dh
+Data recvd:
+data: 1h 0h
+Data recvd:
+data: 42h bh
+Data recvd:
+data: 41h e2h
+Data recvd:
+data: 0h 48h
+Data recvd:
+data: 1h 20h
+Data recvd:
+=========================================
+ V3.0
+=========================================
+Temp Sensor1 read out data
+data: 0h
+Data recvd: 25h 0h
+data: 1h 0h
+Data recvd:
+data: 0h 49h
+Data recvd:
+data: 1h 20h
+Data recvd:
+Temp Sensor2 read out data
+data: 0h
+Data recvd: 27h 80h
+data: 1h 0h
+Data recvd:
+data: 0h 4dh
+Data recvd:
+data: 1h 20h
+Data recvd:
+ADC1 read out data
+data:
+Data recvd: 5h 1bh
+data: 1h 0h
+Data recvd:
+data: 0h 6dh
+Data recvd:
+data: 1h 20h
+Data recvd:
+AB1 startup Diag. results
+data:
+Data recvd: 44h 0h c4h 0h 0h
+newStr 0x44 0x0 0xc4 0x0 0x0
+data: 1h 0h
+Data recvd:
+data: 0h 6fh
+Data recvd:
+data: 1h 20h
+Data recvd:
+AB2 startup Diag. results
+data:
+Data recvd: 55h 4h d5h 11h 0h
+newStr 0x55 0x4 0xd5 0x11 0x0
+data: 1h 0h
+Data recvd:
+data: 4ch 20h
+Data recvd:
+./sony_a2bstart_qnx.sh base AB1 0x44 0x0 0xc4 0x0
+B is 0x44 1
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB1 Amp Ch1 - BRM Open
+AB1 Amp Ch1 - BRM Open
+B is 0x0 2
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB1 Amp Ch2 - FRM Connected
+AB1 Amp Ch2 - FRM Connected
+B is 0xc4 3
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB1 Amp Ch3 - BLM Open
+AB1 Amp Ch3 - BLM Open
+B is 0x0 4
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB1 Amp Ch4 - FLM Connected
+AB1 Amp Ch4 - FLM Connected
+DONE DONE DONE
+tee:  Unable to open '/disk-dos/base_speaker.log'
+
+
+./sony_a2bstart_qnx.sh base AB2 0x55 0x4 0xd5 0x11
+B is 0x55 1
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB2 Amp Ch1 - SR_M Short to GND
+AB2 Amp Ch1 - SR_M Short to GND
+B is 0x4 2
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB2 Amp Ch2 - CM Open
+AB2 Amp Ch2 - CM Open
+B is 0xd5 3
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB2 Amp Ch3 - SL_M Short to GND
+AB2 Amp Ch3 - SL_M Short to GND
+B is 0x11 4
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB2 Amp Ch4 - CTw Short to GND
+AB2 Amp Ch4 - CTw Short to GND
+DONE DONE DONE
+AMP base
+classDerr
+/disk-dos/base_speaker.log
+./sony_a2bstart_qnx.sh[803]: cannot create /disk-dos/base_speaker.log: Read-only file system
+tee:  Unable to open '/disk-dos/base_speaker.log'
+=====================================================================
+=====================================================================
+tee:  Unable to open '/disk-dos/base_speaker.log'
+base amp Speaker Diagnostics
+base amp Speaker Diagnostics
+tee:  Unable to open '/disk-dos/base_speaker.log'
+=====================================================================
+=====================================================================
+tee:  Unable to open '/disk-dos/base_speaker.log'
+
+
+AB1SD 0x44 0x0 0xc4 0x0 0x0
+AB2SD 0x55 0x4 0xd5 0x11 0x0
+./sony_a2bstart_qnx.sh base AB1 0x44 0x0 0xc4 0x0
+B is 0x44 1
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB1 Amp Ch1 - BRM Open
+AB1 Amp Ch1 - BRM Open
+B is 0x0 2
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB1 Amp Ch2 - FRM Connected
+AB1 Amp Ch2 - FRM Connected
+B is 0xc4 3
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB1 Amp Ch3 - BLM Open
+AB1 Amp Ch3 - BLM Open
+B is 0x0 4
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB1 Amp Ch4 - FLM Connected
+AB1 Amp Ch4 - FLM Connected
+DONE DONE DONE
+tee:  Unable to open '/disk-dos/base_speaker.log'
+
+
+./sony_a2bstart_qnx.sh base AB2 0x55 0x4 0xd5 0x11
+B is 0x55 1
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB2 Amp Ch1 - SR_M Short to GND
+AB2 Amp Ch1 - SR_M Short to GND
+B is 0x4 2
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB2 Amp Ch2 - CM Open
+AB2 Amp Ch2 - CM Open
+B is 0xd5 3
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB2 Amp Ch3 - SL_M Short to GND
+AB2 Amp Ch3 - SL_M Short to GND
+B is 0x11 4
+tee:  Unable to open '/disk-dos/base_speaker.log'
+AB2 Amp Ch4 - CTw Short to GND
+AB2 Amp Ch4 - CTw Short to GND
+DONE DONE DONE
+classDerr
+AMP base
+==============================================================================================================================
+All the A2B buses are on QNX now
+=========================================================
+dash5dv-qnx#cd /init/audio/
+dash5dv-qnx#ls -l
+total 74
+-rwxr-xr-x   1 root      root          12527 Sep 17  2021 lucidAndroid2x4mic_qnx.sh
+-rwxr-xr-x   1 root      root          23389 Sep 17  2021 sony_a2bstart_qnx.sh
+-rwxr-xr-x   1 root      root           1281 Sep 17  2021 sony_amp_unmute.sh
+===========================audio trigger===============================================================
+Sep 30 13:59:30.185                 qt_tcp.1212455              default   9000  json_arr =  "[{\"type\":\"audio_trigger\", \"index\":3, \"value\":114}\n]"
+Sep 30 13:59:30.186                 qt_tcp.1212455              default   9000  "raw str: {\"type\":\"audio_trigger\", \"index\":19, \"value\":114}\n"
+Sep 30 13:59:30.186                 qt_tcp.1212455              default   9000  json_arr =  "[{\"type\":\"audio_trigger\", \"index\":19, \"value\":114}\n]"
+Sep 30 13:59:30.378                 qt_tcp.1212455              default   9000  "raw str: {\"type\":\"audio_trigger\", \"index\":3, \"value\":122}\n"
+Sep 30 13:59:30.378                 qt_tcp.1212455              default   9000  json_arr =  "[{\"type\":\"audio_trigger\", \"index\":3, \"value\":122}\n]"
+Sep 30 13:59:30.378                 qt_tcp.1212455              default   9000  "raw str: {\"type\":\"audio_trigger\", \"index\":19, \"value\":122}\n"
+Sep 30 13:59:30.378                 qt_tcp.1212455              default   9000  json_arr =  "[{\"type\":\"audio_trigger\", \"index\":19, \"value\":122}\n]"
+Sep 30 13:59:30.379                 qt_tcp.1212455              default   9000  "raw str: {\"type\":\"audio_trigger\", \"index\":3, \"value\":130}\n"
+Sep 30 13:59:30.379                 qt_tcp.1212455              default   9000  json_arr =  "[{\"type\":\"audio_trigger\", \"index\":3, \"value\":130}\n]"
+Sep 30 13:59:30.379                 qt_tcp.1212455              default   9000  "raw str: {\"type\":\"audio_trigger\", \"index\":19, \"value\":130}\n"
+Sep 30 13:59:30.379                 qt_tcp.1212455              default   9000  json_arr =  "[{\"type\":\"audio_trigger\", \"index\":19, \"value\":130}\n]"
+Sep 30 13:59:30.379                 qt_tcp.1212455              default   9000  "raw str: {\"type\":\"audio_trigger\", \"index\":3, \"value\":137}\n"
+Sep 30 13:59:30.379                 qt_tcp.1212455              default   9000  json_arr =  "[{\"type\":\"audio_trigger\", \"index\":3, \"value\":137}\n]"
+Sep 30 13:59:30.379                 qt_tcp.1212455              default   9000  "raw str: {\"type\":\"audio_trigger\", \"index\":19, \"value\":137}\n"
+Sep 30 13:59:30.379                 qt_tcp.1212455              default   9000  json_arr =  "[{\"type\":\"audio_trigger\", \"index\":19, \"value\":137}\n]"
+Sep 30 13:59:30.379                 qt_tcp.1212455              default   9000  "raw str: {\"type\":\"audio_trigger\", \"index\":3, \"value\":145}\n"
+Sep 30 13:59:30.379                 qt_tcp.1212455              default   9000  json_arr =  "[{\"type\":\"audio_trigger\", \"index\":3, \"value\":145}\n]"
+Sep 30 13:59:30.379                 qt_tcp.1212455              default   9000  "raw str: {\"type\":\"audio_trigger\", \"index\":19, \"value\":145}\n"
+Sep 30 13:59:30.379                 qt_tcp.1212455              default   9000  json_arr =  "[{\"type\":\"audio_trigger\", \"index\":19, \"value\":145}\n]"
+Sep 30 13:59:30.622                 qt_tcp.1212455              default   9000  "raw str: {\"type\":\"audio_trigger\", \"index\":3, \"value\":153}\n"
+Sep 30 13:59:30.622                 qt_tcp.1212455              default   9000  json_arr =  "[{\"type\":\"audio_trigger\", \"index\":3, \"value\":153}\n]"
+Sep 30 13:59:30.815                 qt_tcp.1212455              default   9000  "raw str: {\"type\":\"audio_trigger\", \"index\":19, \"value\":153}\n"
+Sep 30 13:59:30.815                 qt_tcp.1212455              default   9000  json_arr =  "[{\"type\":\"audio_trigger\", \"index\":19, \"value\":153}\n]"
+Sep 30 13:59:30.815                 qt_tcp.1212455              default   9000  "raw str: {\"type\":\"audio_trigger\", \"index\":3, \"value\":160}\n"
+Sep 30 13:59:30.815                 qt_tcp.1212455              default   9000  json_arr =  "[{\"type\":\"audio_trigger\", \"index\":3, \"value\":160}\n]"
+Sep 30 13:59:30.816                 qt_tcp.1212455              default   9000  "raw str: {\"type\":\"audio_trigger\", \"index\":19, \"value\":160}\n"
+Sep 30 13:59:30.816                 qt_tcp.1212455              default   9000  json_arr =  "[{\"type\":\"audio_trigger\", \"index\":19, \"value\":160}\n]"
+Sep 30 13:59:30.816                 qt_tcp.1212455              default   9000  "raw str: {\"type\":\"audio_trigger\", \"index\":3, \"value\":168}\n"
+Sep 30 13:59:30.816                 qt_tcp.1212455              default   9000  json_arr =  "[{\"type\":\"audio_trigger\", \"index\":3, \"value\":168}\n]"
+Sep 30 13:59:30.816                 qt_tcp.1212455              default   9000  "raw str: {\"type\":\"audio_trigger\", \"index\":19, \"value\":168}\n"
+Sep 30 13:59:30.816                 qt_tcp.1212455              default   9000  json_arr =  "[{\"type\":\"audio_trigger\", \"index\":19, \"value\":168}\n]"
+Sep 30 13:59:30.816                 qt_tcp.1212455              default   9000  "raw str: {\"type\":\"audio_trigger\", \"index\":3, \"value\":175}\n"
+Sep 30 13:59:30.816                 qt_tcp.1212455              default   9000  json_arr =  "[{\"type\":\"audio_trigger\", \"index\":3, \"value\":175}\n]"
+Sep 30 13:59:30.816                 qt_tcp.1212455              default   9000  "raw str: {\"type\":\"audio_trigger\", \"index\":19, \"value\":175}\n"
+Sep 30 13:59:30.816                 qt_tcp.1212455              default   9000  json_arr =  "[{\"type\":\"audio_trigger\", \"index\":19, \"value\":175}\n]"
+Sep 30 13:59:43.993                 qt_tcp.1212455              default   9000  "raw str: {\"type\":\"audio_trigger\", \"index\":3, \"value\":183}\n"
+Sep 30 13:59:43.993                 qt_tcp.1212455              default   9000  json_arr =  "[{\"type\":\"audio_trigger\", \"index\":3, \"value\":183}\n]"
+Sep 30 13:59:44.186                 qt_tcp.1212455              default   9000  "raw str: {\"type\":\"audio_trigger\", \"index\":19, \"value\":183}\n"
+Sep 30 13:59:44.186                 qt_tcp.1212455              default   9000  json_arr =  "[{\"type\":\"audio_trigger\", \"index\":19, \"value\":183}\n]"
+Sep 30 13:59:44.378                 qt_tcp.1212455              default   9000  "raw str: {\"type\":\"audio_trigger\", \"index\":3, \"value\":175}\n"
+Sep 30 13:59:44.378                 qt_tcp.1212455              default   9000  json_arr =  "[{\"type\":\"audio_trigger\", \"index\":3, \"value\":175}\n]"
+Sep 30 13:59:44.378                 qt_tcp.1212455              default   9000  "raw str: {\"type\":\"audio_trigger\", \"index\":19, \"value\":175}\n"
+Sep 30 13:59:44.378                 qt_tcp.1212455              default   9000  json_arr =  "[{\"type\":\"audio_trigger\", \"index\":19, \"value\":175}\n]"
+Sep 30 13:59:45.195                 qt_tcp.1212455              default   9000  "raw str: {\"type\":\"audio_trigger\", \"index\":3, \"value\":168}\n"
+Sep 30 13:59:45.195                 qt_tcp.1212455              default   9000  json_arr =  "[{\"type\":\"audio_trigger\", \"index\":3, \"value\":168}\n]"
+Sep 30 13:59:45.384                 qt_tcp.1212455              default   9000  "raw str: {\"type\":\"audio_trigger\", \"index\":19, \"value\":168}\n"
+Sep 30 13:59:45.386                 qt_tcp.1212455              default   9000  json_arr =  "[{\"type\":\"audio_trigger\", \"index\":19, \"value\":168}\n]"
+==============================================================================================================================================================
+https://gitlab.corp.atieva.com/arvindagrawal/adi_a2b_stack/-/tree/master/a2bstack_2.0.0/a2bstack-doc
+https://gitlab.corp.atieva.com/issw/qaudiocontroller
+https://gitlab.corp.atieva.com/issw?utf8=%E2%9C%93&filter=yocto
+=============================================================================
+adb wait-for-device && adb logcat > log00.txt
+===============================background commands on server====================================================
+nohup <command > &
+================================================================================================================
+frameworks/av/services/audiopolicy/managerdefault/AudioPolicyManager.cpp 
+building AudioPolicymanager
+/system/lib64/libaudiopolicymanagerdefault.so
+ mmma frameworks/av/services/audiopolicy
+ 
+ 
+Audio HAL build ==================================================================================================
+out/target/product/dash5dv/o...ash5dv_intermediates/audio.primary.dash5dv.so.toc
+
+#### build completed successfully (01:11 (mm:ss)) ####
+
+pankajjindal@hqdevbld01:/local2/pankajjindal/android_JDI_build_1003/dash5dv$ mmm device/renesas/dash5dv/hal/audio
+==================================================================================================================
+pankajjindal@hqdevbld01:/local2/pankajjindal/android_JDI_build_1003/dash5dv$ mmma frameworks/av/services/audiopolicy
+============================================
+PLATFORM_VERSION_CODENAME=REL
+PLATFORM_VERSION=9
+TARGET_PRODUCT=dash5dv
+TARGET_BUILD_VARIANT=userdebug
+TARGET_BUILD_TYPE=release
+TARGET_ARCH=arm64
+TARGET_ARCH_VARIANT=armv8-a
+TARGET_CPU_VARIANT=cortex-a53
+TARGET_2ND_ARCH=arm
+TARGET_2ND_ARCH_VARIANT=armv8-a
+TARGET_2ND_CPU_VARIANT=cortex-a53
+HOST_ARCH=x86_64
+HOST_2ND_ARCH=x86
+HOST_OS=linux
+HOST_OS_EXTRA=Linux-4.15.0-99-generic-x86_64-Ubuntu-18.04.5-LTS
+HOST_CROSS_OS=windows
+HOST_CROSS_ARCH=x86
+HOST_CROSS_2ND_ARCH=x86_64
+HOST_BUILD_TYPE=release
+BUILD_ID=S21.8.CCC.Aa00.1A00.1AA1.00.01
+OUT_DIR=out
+============================================
+ninja: no work to do.
+[1/1] out/soong/.bootstrap/bin/soong_build out/soong/build.ninja
+wildcard(out/target/product/dash5dv/clean_steps.mk) was changed, regenerating...
+No need to regenerate ninja file
+[100% 14/14] build out/target/product/dash5dv/obj/SHARED_LIBRARIES/libaudiopolicyservice_intermediates/libaudiopolicyservice.so.toc
+
+#### build completed successfully (37 seconds) ####
+============/vendor/etc=====================================================================
+adb pull /vendor/etc/audio_policy_configuration.xml .
+usb_audio_policy_configuration.xml
+=============================================================================================
+
+
+dash5dv-qnx#./lucidAndroid2x4mic_qnx.sh 
+/data/ccc_mics.log
+data: 12h 84h
+Data recvd:
+data: 17h
+Data recvd: ffh
+data: 1bh 77h
+Data recvd:
+data: 1ch 0h
+Data recvd:
+data: 1dh fh
+Data recvd:
+data: fh 7ch
+Data recvd:
+data: 12h 1h
+Data recvd:
+data: 41h 42h
+Data recvd:
+data: 9h 1h
+Data recvd:
+data: 13h 7ch
+Data recvd:
+------
+A data: 1ah
+Data recvd: 1h
+------
+newStr 0x1
+======
+A 0x1
+======
+CCC Dsc Successful
+data: 1ah 1h
+Data recvd:
+data: 1h 0h
+Data recvd:
+data: 2h
+Data recvd: adh
+data: 3h
+Data recvd: 0h
+data: 4h
+Data recvd: 0h
+data: 9h 21h
+Data recvd:
+data: 1h 0h
+Data recvd:
+data: 9h 1h
+Data recvd:
+data: 13h 78h
+Data recvd:
+------
+A data: 1ah
+Data recvd: 1h
+------
+newStr 0x1
+======
+A 0x1
+======
+Mic 1 Dsc Successful
+data: 1ah 1h
+Data recvd:
+data: 1h 1h
+Data recvd:
+data: 2h
+Data recvd: 0h
+data: 3h
+Data recvd: 27h
+data: 4h
+Data recvd: 0h
+data: 1h 0h
+Data recvd:
+data: 9h 21h
+Data recvd:
+data: 1h 1h
+Data recvd:
+data: 12h 0h
+Data recvd:
+data: 9h 1h
+Data recvd:
+data: 13h 74h
+Data recvd:
+------
+A data: 1ah
+Data recvd: 1h
+------
+newStr 0x1
+======
+A 0x1
+======
+Mic 2 Dsc Successful
+data: 1ah 1h
+Data recvd:
+data: 1h 2h
+Data recvd:
+data: 2h
+Data recvd: adh
+data: 3h
+Data recvd: 27h
+data: 4h
+Data recvd: 0h
+data: 1h 1h
+Data recvd:
+data: 9h 21h
+Data recvd:
+data: 1h 2h
+Data recvd:
+data: ah 0h
+Data recvd:
+data: bh 80h
+Data recvd:
+data: ch 4h
+Data recvd:
+data: 3fh 1h
+Data recvd:
+data: 47h 1fh
+Data recvd:
+data: 5dh 0h
+Data recvd:
+data: 48h 0h
+Data recvd:
+data: 4ah 10h
+Data recvd:
+data: 4dh 10h
+Data recvd:
+data: 4eh 0h
+Data recvd:
+data: 50h 0h
+Data recvd:
+data: 51h 0h
+Data recvd:
+data: 52h 0h
+Data recvd:
+data: 20h 0h
+Data recvd:
+data: 59h 1h
+Data recvd:
+data: 5ah 81h
+Data recvd:
+data: 60h 0h
+Data recvd:
+data: 61h 0h
+Data recvd:
+data: 62h 0h
+Data recvd:
+data: 63h 0h
+Data recvd:
+data: 64h 0h
+Data recvd:
+data: 65h 0h
+Data recvd:
+data: 66h 0h
+Data recvd:
+data: 67h 0h
+Data recvd:
+data: 68h 0h
+Data recvd:
+data: 69h 0h
+Data recvd:
+data: 81h 0h
+Data recvd:
+data: 82h 0h
+Data recvd:
+data: 83h 0h
+Data recvd:
+data: 84h 0h
+Data recvd:
+data: 85h 0h
+Data recvd:
+data: 86h 0h
+Data recvd:
+data: 87h 0h
+Data recvd:
+data: 88h 0h
+Data recvd:
+data: 8ah 0h
+Data recvd:
+data: 80h 0h
+Data recvd:
+data: 90h 0h
+Data recvd:
+data: 96h 0h
+Data recvd:
+data: 5ch 0h
+Data recvd:
+data: 58h 0h
+Data recvd:
+data: 57h 0h
+Data recvd:
+data: 2eh 0h
+Data recvd:
+data: 30h 0h
+Data recvd:
+data: 1bh 77h
+Data recvd:
+data: 1ch 7fh
+Data recvd:
+data: 1eh efh
+Data recvd:
+data: 1h 2h
+Data recvd:
+data: 1h 1h
+Data recvd:
+data: ah 0h
+Data recvd:
+data: bh 80h
+Data recvd:
+data: ch 4h
+Data recvd:
+data: 3fh 1h
+Data recvd:
+data: 47h 1fh
+Data recvd:
+data: 5dh 0h
+Data recvd:
+data: 48h 0h
+Data recvd:
+data: 4ah 10h
+Data recvd:
+data: 4dh 10h
+Data recvd:
+data: 4eh 0h
+Data recvd:
+data: 50h 0h
+Data recvd:
+data: 51h 0h
+Data recvd:
+data: 52h 0h
+Data recvd:
+data: 20h 0h
+Data recvd:
+data: 59h 1h
+Data recvd:
+data: 5ah 81h
+Data recvd:
+data: 60h 0h
+Data recvd:
+data: 61h 0h
+Data recvd:
+data: 62h 0h
+Data recvd:
+data: 63h 0h
+Data recvd:
+data: 64h 0h
+Data recvd:
+data: 65h 0h
+Data recvd:
+data: 66h 0h
+Data recvd:
+data: 67h 0h
+Data recvd:
+data: 68h 0h
+Data recvd:
+data: 69h 0h
+Data recvd:
+data: 81h 0h
+Data recvd:
+data: 82h 0h
+Data recvd:
+data: 83h 0h
+Data recvd:
+data: 84h 0h
+Data recvd:
+data: 85h 0h
+Data recvd:
+data: 86h 0h
+Data recvd:
+data: 87h 0h
+Data recvd:
+data: 88h 0h
+Data recvd:
+data: 8ah 0h
+Data recvd:
+data: 80h 0h
+Data recvd:
+data: 90h 0h
+Data recvd:
+data: 96h 0h
+Data recvd:
+data: 5ch 0h
+Data recvd:
+data: 58h 0h
+Data recvd:
+data: 57h 0h
+Data recvd:
+data: 2eh 0h
+Data recvd:
+data: 30h 0h
+Data recvd:
+data: 1bh 77h
+Data recvd:
+data: 1ch 7fh
+Data recvd:
+data: 1eh efh
+Data recvd:
+data: 1h 1h
+Data recvd:
+data: 1h 0h
+Data recvd:
+data: ah 0h
+Data recvd:
+data: bh 80h
+Data recvd:
+data: ch 8h
+Data recvd:
+data: 3fh 0h
+Data recvd:
+data: 46h 0h
+Data recvd:
+data: 41h 42h
+Data recvd:
+data: 42h 11h
+Data recvd:
+data: 43h 0h
+Data recvd:
+data: 47h 0h
+Data recvd:
+data: 48h 0h
+Data recvd:
+data: 4ah 0h
+Data recvd:
+data: 4dh 0h
+Data recvd:
+data: 4eh 0h
+Data recvd:
+data: 50h 0h
+Data recvd:
+data: 51h 0h
+Data recvd:
+data: 52h 1h
+Data recvd:
+data: 20h 0h
+Data recvd:
+data: 59h 0h
+Data recvd:
+data: 5ah 1h
+Data recvd:
+data: 60h 0h
+Data recvd:
+data: 61h 0h
+Data recvd:
+data: 62h 0h
+Data recvd:
+data: 63h 0h
+Data recvd:
+data: 64h 0h
+Data recvd:
+data: 65h ffh
+Data recvd:
+data: 66h 0h
+Data recvd:
+data: 67h 0h
+Data recvd:
+data: 68h 0h
+Data recvd:
+data: 69h 0h
+Data recvd:
+data: 81h 0h
+Data recvd:
+data: 82h 0h
+Data recvd:
+data: 83h 0h
+Data recvd:
+data: 84h 0h
+Data recvd:
+data: 85h 0h
+Data recvd:
+data: 86h 0h
+Data recvd:
+data: 87h 0h
+Data recvd:
+data: 88h 0h
+Data recvd:
+data: 8ah 0h
+Data recvd:
+data: 80h 0h
+Data recvd:
+data: 90h 0h
+Data recvd:
+data: 96h 0h
+Data recvd:
+data: 5ch 0h
+Data recvd:
+data: 58h 0h
+Data recvd:
+data: 57h 0h
+Data recvd:
+data: 1bh 10h
+Data recvd:
+data: 1ch 0h
+Data recvd:
+data: 1eh 0h
+Data recvd:
+data: 1h 0h
+Data recvd:
+data: 3fh 0h
+Data recvd:
+data: 42h 33h
+Data recvd:
+data: 44h 0h
+Data recvd:
+data: 45h 0h
+Data recvd:
+data: 47h 0h
+Data recvd:
+data: 48h 0h
+Data recvd:
+data: 4ah 0h
+Data recvd:
+data: 4dh 0h
+Data recvd:
+data: 4eh 0h
+Data recvd:
+data: 50h 0h
+Data recvd:
+data: 51h 0h
+Data recvd:
+data: 52h 1h
+Data recvd:
+data: 20h 0h
+Data recvd:
+data: 59h 0h
+Data recvd:
+data: 5ah 0h
+Data recvd:
+data: 81h 0h
+Data recvd:
+data: 82h 0h
+Data recvd:
+data: 83h 0h
+Data recvd:
+data: 84h 0h
+Data recvd:
+data: 85h 0h
+Data recvd:
+data: 86h 0h
+Data recvd:
+data: 87h 0h
+Data recvd:
+data: 88h 0h
+Data recvd:
+data: 8ah 0h
+Data recvd:
+data: 80h 0h
+Data recvd:
+data: 57h 0h
+Data recvd:
+data: 1eh efh
+Data recvd:
+data: 1h 1h
+Data recvd:
+data: dh 0h
+Data recvd:
+data: eh 4h
+Data recvd:
+data: 1h 0h
+Data recvd:
+data: dh 0h
+Data recvd:
+data: eh 8h
+Data recvd:
+data: dh 8h
+Data recvd:
+data: eh 10h
+Data recvd:
+data: 1h 1h
+Data recvd:
+data: 9h 1h
+Data recvd:
+data: 1h 0h
+Data recvd:
+data: 9h 1h
+Data recvd:
+data: 9h 1h
+Data recvd:
+data: 1h 1h
+Data recvd:
+data: 40h 0h
+Data recvd:
+data: 1h 2h
+Data recvd:
+data: 40h 0h
+Data recvd:
+data: 1h 0h
+Data recvd:
+data: 10h 26h
+Data recvd:
+data: 11h 3h
+Data recvd:
+data: 56h 1h
+Data recvd:
+data: 12h 1h
+Data recvd:
+
+
+
+
+
+
+
+============================================
+adb shell dumpsys package <my.package> | grep versionName
+
+
+==========================================================================
+
+lp -o sides=two-sided-long-edge Notes.pdf
+
+lp -o sides=two-sided-long-edge -o landscape -o number-up=2 audio_hw.c 
+
+
+
+
