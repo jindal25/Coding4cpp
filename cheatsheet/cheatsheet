@@ -57,7 +57,7 @@ Android_guest 125 https://jenkins.infotainment.prod.atieva.com/view/1.2-CCC-Main
 aplay -D hw:1,2 /opt/atieva/audioweaver/sounds/welcome.wav
 ===============================================================================================================================
 QNX - cat /etc/qnx_build_info.txt
-Android - adb shell getprop ro.build.fingerprint
+Android - 	
 =====================================================================================================
 ./adb shell service call bluetooth_manager 6
 ./adb shell am start -a android.bluetooth.adapter.action.REQUEST_ENABLE
@@ -4383,7 +4383,7 @@ racelogger -f1 -b 30 -s 10 -f /shared/voice_call.kev
 ICC
 
 Linux 192.168.1.71
-QNX on ICC 192.169.1.11
+QNX on ICC 192.168.1.11
 
 CCC
 android 192.168.1.12
@@ -4411,6 +4411,11 @@ adb connect 192.168.1.12
 ping 192.168.1.12 -- android 
 ping 192.168.1.70 -> this is qnx
 lucidaudioapp/build/rcar/test.c --------to send triggers
+
+
+
+
+
 pcm_logger -l 1 
 pcm_logger -l 1 to start capture
 
@@ -5337,7 +5342,358 @@ adb shell dumpsys package <my.package> | grep versionName
 lp -o sides=two-sided-long-edge Notes.pdf
 
 lp -o sides=two-sided-long-edge -o landscape -o number-up=2 audio_hw.c 
+=================================================================================
+
+grep multiple patterns
+
+grep -irn -e Pipeline  -e Status -e PrintLog * -> this is or
+
+grep -E 'Pipeline.*Status' * --> this is AND
+
+============================compile LudioAudioApp====================================================
+
+go to ~/code/lucid/LucidAudioApp/build/rcar
+. setup-poky-env.sh
+./build.sh
+================================git sort branches based on recent========================================
+git for-each-ref --sort='-committerdate:iso8601' --format='%(committerdate:relative)|%(refname:short)|%(committername)' refs/remotes/ | column -s '|' -t
+
+==========================================ATMOS usecase=======================================================
+
+*****************************Audio Manager*******************************************************************
+021.09.28-23:08:01.466< W>: Sound configuration for trigger id 5 already present into XML file: record discarded
+================id 5 is media stereo===============
+2021.09.28-23:08:01.467< W>: Sound configuration for trigger id 5 already present into XML file: record discarded
+================id 5 is media stereo ===============
+2021.09.28-23:08:01.467< W>: Sound configuration for trigger id 5 already present into XML file: record discarded
+2021.09.28-23:08:01.467< W>: Sound configuration for trigger id 5 already present into XML file: record discarded
+2021.09.28-23:08:01.477< N>: XML configuration file parsed: found 228 sounds (159 valid)
+2021.09.28-23:08:01.477< N>: LUCID_AUDIO_TRIGGERS_MAX = 164
+2021.09.28-23:08:01.478< N>: Trigger SHM key id is 1090782136
+2021.09.28-23:08:01.478< N>: Trigger SHM succesfully allocated
+2021.09.28-23:08:01.478< N>: Laa SHM key id is 1107559351
+=============this is LucidAudioApp shared mem ........ this is audio weaver=========================
+2021.09.28-23:08:01.478< N>: Wait for LAA Shm...
+2021.09.28-23:08:01.478< N>: Laa SHM succesfully allocated
+
+2021.09.28-23:08:01.478< N>: Trigger SHM initialized to 0
+2021.09.28-23:08:01.478< N>: TriggerAttachQnx:141 iQnxShmFD=4
+==============which is this trigger ?===========================
+SHM1 AudioWeaver
+SHM2 QNX "/dev/qvmshm"
+
+2021.09.28-23:08:01.478< N>: Initializing shared memory QNX
+2021.09.28-23:08:01.494<D5>: TriggerWriteShmQnx:220  wcnt 248
+==trigger is written from QNX to SHM the trigger number is not know but 248 bytes were written=========
+2021.09.28-23:08:01.494< N>: QNX Trigger SHM initialized to 0
+2021.09.28-23:08:01.494< N>: eventfd file descriptors created
+===========why we need this ?========================================
+2021.09.28-23:08:01.494< N>: epoll file descriptor created
+=================why do we ned this ?======================================
+2021.09.28-23:08:01.495< N>: Trigger Manager thread started
+2021.09.28-23:08:01.495< N>: Trigger Manager Qnx thread started
+2021.09.28-23:08:01.495< N>: Wait for LAA Shm signature...
+=========================?===========================
+2021.09.28-23:08:01.495<D5>: TriggerReadShmQnx:209 Read... FD 4
+
+2021.09.28-23:08:01.622< N>: LAA Shm signature found
+2021.09.28-23:08:01.622<D3>: Sound Controls committed to SHM
+2021.09.28-23:08:01.623< N>: Sound Manager thread started
+2021.09.28-23:08:01.623< N>: Read IPC control default values
+==================how does IPC works ?====================================
+2021.09.28-23:08:01.623< N>: Trigger SHM initialized to startup defaults
+2021.09.28-23:08:01.623< N>: Trigger SHM QNX initialized to startup defaults
+2021.09.28-23:08:01.623<D5>: TriggerWriteShmQnx:220  wcnt 248
+2021.09.28-23:08:01.623<D2>: Set MaxVolume to 255
+2021.09.28-23:08:01.623<D0>: [SendCmdFunctions] cmd = 3 - value = 1
+2021.09.28-23:08:01.623<D5>: TriggerWriteShmQnx:220  wcnt 248
+2021.09.28-23:08:03.549<D5>: TriggerReadShmQnx:211 Read Done rcnt 1024...
+2021.09.28-23:08:03.550<D5>: TriggerReadShmQnx:213 Shm Sync done 1024...
+2021.09.28-23:08:03.550<D5>: TriggerReadShmQnx:209 Read... FD 4
+2021.09.28-23:08:03.565<D5>: TriggerReadShmQnx:211 Read Done rcnt 1024...
+2021.09.28-23:08:03.566<D5>: TriggerReadShmQnx:213 Shm Sync done 1024...
+2021.09.28-23:08:03.566<D5>: TriggerReadShmQnx:209 Read... FD 4
+2021.09.28-23:08:03.573<D5>: TriggerReadShmQnx:211 Read Done rcnt 1024...
+2021.09.28-23:08:03.573<D5>: TriggerReadShmQnx:213 Shm Sync done 1024...
+2021.09.28-23:08:03.573<D5>: TriggerReadShmQnx:209 Read... FD 4
+2021.09.28-23:08:03.762<D5>: TriggerReadShmQnx:211 Read Done rcnt 1024...
+2021.09.28-23:08:03.763<D5>: TriggerSyncQnx:201 New trigger 155 - value 1
+======================== syncs and add trigger to QNX 	=====================
+2021.09.28-23:08:03.763<D5>: TriggerReadShmQnx:213 Shm Sync done 1024...
+2021.09.28-23:08:03.763<D5>: TriggerReadShmQnx:209 Read... FD 4
+2021.09.28-23:08:03.763<D4>: Function start trigger event (trigger id=155 (LUCID_GEN_ALERT_LEVEL_2))
+==================/* Level 2 Gen Alert Notification Stereo  */
+
+==================================================================================================================
+==================================================================================================================
+=====================================================================================================================
+
+2021.09.28-23:08:03.763<D4>: New active sound with token 1 at stack position 0
+==========================new sound===========
+2021.09.28-23:08:03.763<D4>: Stack[0] Pipeline:CHIME2 Mode:2(PLAY_NORMAL) Loudness:180 Status:0 NextAction:1
+
+2021.09.28-23:08:03.763<D4>: ActiveSounds stack has 1 elements
+2021.09.28-23:08:03.763<D4>: Pipeline CHIME2: using default fade-in time
+2021.09.28-23:08:03.763<D3>: Set Sound Control for pipeline CHIME2: action=2, mode=0, name=Gen_Alert_2_st_v1.wav
+
+2021.09.28-23:08:03.763<D2>: Set AWE IPC control value (ix=28 - val=180)
+2021.09.28-23:08:03.763<D2>: Set AWE IPC control value (ix=29 - val=0)
+2021.09.28-23:08:03.763<D2>: Set AWE IPC control value (ix=59 - val=20)
+2021.09.28-23:08:03.763<D4>: Pipeline CHIME2: Status IDLE->TO_PLAY
+2021.09.28-23:08:03.763<D2>: AWE Controls committed to SHM
+2021.09.28-23:08:03.763<D3>: Sound Controls committed to SHM
+2021.09.28-23:08:03.764<D4>: Received PLAYING sound event on pipeline CHIME2
+2021.09.28-23:08:03.764<D4>: Pipeline CHIME2: Status TO_PLAY->PLAY
+2021.09.28-23:08:05.745<D4>: Received SOUNDEND sound event on pipeline CHIME2
+2021.09.28-23:08:05.745<D2>: Set AWE IPC control value (ix=28 - val=0)
+2021.09.28-23:08:05.745<D2>: Set AWE IPC control value (ix=29 - val=1)
+2021.09.28-23:08:05.745<D4>: Removed ActiveSound with token 1 from stack
+2021.09.28-23:08:05.745<D3>: Set Sound Control for pipeline CHIME2: action=1
+2021.09.28-23:08:05.745<D4>: Pipeline CHIME2: Status PLAY->WAIT_IDLE
+2021.09.28-23:08:05.745<D2>: AWE Controls committed to SHM
+2021.09.28-23:08:05.745<D3>: Sound Controls committed to SHM
+2021.09.28-23:08:05.761<D4>: Received STOPPED sound event on pipeline CHIME2
+2021.09.28-23:08:05.761<D3>: Set Sound Control for pipeline CHIME2: action=0
+2021.09.28-23:08:05.761<D4>: ActiveSounds stack has 0 elements
+
+==========================================================================================
+=========================================================================================
+======================================================================================================
+
+2021.09.28-23:08:05.761<D4>: Pipeline CHIME2: Status WAIT_IDLE->IDLE
+2021.09.28-23:08:05.761<D3>: Sound Controls committed to SHM
+2021.09.28-23:08:06.172<D5>: TriggerReadShmQnx:211 Read Done rcnt 1024...
+2021.09.28-23:08:06.173<D5>: TriggerReadShmQnx:213 Shm Sync done 1024...
+2021.09.28-23:08:06.173<D5>: TriggerReadShmQnx:209 Read... FD 4
+2021.09.28-23:08:13.673<D5>: TriggerReadShmQnx:211 Read Done rcnt 1024...
 
 
+2021.09.28-23:08:13.674<D5>: TriggerSyncQnx:201 New trigger 155 - value 0
+2021.09.28-23:08:13.674<D5>: TriggerReadShmQnx:213 Shm Sync done 1024...
+2021.09.28-23:08:13.674<D5>: TriggerReadShmQnx:209 Read... FD 4
+2021.09.28-23:08:13.674<D4>: Function stop trigger event (trigger id=155 (LUCID_GEN_ALERT_LEVEL_2))
+2021.09.28-23:08:13.683<D5>: TriggerReadShmQnx:211 Read Done rcnt 1024...
+2021.09.28-23:08:13.683<D5>: TriggerReadShmQnx:213 Shm Sync done 1024...
+2021.09.28-23:08:13.683<D5>: TriggerReadShmQnx:209 Read... FD 4
+2021.09.28-23:08:13.717<D5>: TriggerReadShmQnx:211 Read Done rcnt 1024...
+2021.09.28-23:08:13.718<D5>: TriggerSyncQnx:201 New trigger 155 - value 1
+2021.09.28-23:08:13.718<D5>: TriggerReadShmQnx:213 Shm Sync done 1024...
+2021.09.28-23:08:13.718<D5>: TriggerReadShmQnx:209 Read... FD 4
+2021.09.28-23:08:13.718<D4>: Function start trigger event (trigger id=155 (LUCID_GEN_ALERT_LEVEL_2))
+2021.09.28-23:08:13.718<D4>: New active sound with token 2 at stack position 0
+2021.09.28-23:08:13.718<D4>: Stack[0] Pipeline:CHIME2 Mode:2(PLAY_NORMAL) Loudness:180 Status:0 NextAction:1
+2021.09.28-23:08:13.718<D4>: ActiveSounds stack has 1 elements
+2021.09.28-23:08:13.718<D4>: Pipeline CHIME2: using default fade-in time
+2021.09.28-23:08:13.718<D3>: Set Sound Control for pipeline CHIME2: action=2, mode=0, name=Gen_Alert_2_st_v1.wav
+2021.09.28-23:08:13.718<D2>: Set AWE IPC control value (ix=28 - val=180)
+2021.09.28-23:08:13.718<D2>: Set AWE IPC control value (ix=29 - val=0)
+2021.09.28-23:08:13.718<D4>: Pipeline CHIME2: Status IDLE->TO_PLAY
+2021.09.28-23:08:13.718<D2>: AWE Controls committed to SHM
+2021.09.28-23:08:13.718<D3>: Sound Controls committed to SHM
+2021.09.28-23:08:13.732<D4>: Received PLAYING sound event on pipeline CHIME2
+2021.09.28-23:08:13.732<D4>: Pipeline CHIME2: Status TO_PLAY->PLAY
+2021.09.28-23:08:14.813<D5>: TriggerReadShmQnx:211 Read Done rcnt 1024...
+2021.09.28-23:08:14.813<D5>: TriggerReadShmQnx:213 Shm Sync done 1024...
+2021.09.28-23:08:14.813<D5>: TriggerReadShmQnx:209 Read... FD 4
+2021.09.28-23:08:14.865<D5>: TriggerReadShmQnx:211 Read Done rcnt 1024...
+2021.09.28-23:08:14.866<D5>: TriggerSyncQnx:201 New trigger 46 - value 1
+2021.09.28-23:08:14.866<D5>: TriggerReadShmQnx:213 Shm Sync done 1024...
+2021.09.28-23:08:14.866<D5>: TriggerReadShmQnx:209 Read... FD 4
+2021.09.28-23:08:14.866<D0>: [SendCmdFunctions] cmd = 1 - value = 1
+2021.09.28-23:08:14.866<D5>: TriggerWriteShmQnx:220  wcnt 248
+2021.09.28-23:08:14.880<D5>: TriggerReadShmQnx:211 Read Done rcnt 1024...
+2021.09.28-23:08:14.880<D5>: TriggerReadShmQnx:213 Shm Sync done 1024...
+2021.09.28-23:08:14.881<D5>: TriggerReadShmQnx:209 Read... FD 4
+2021.09.28-23:08:15.001<D5>: TriggerReadShmQnx:211 Read Done rcnt 1024...
+2021.09.28-23:08:15.002<D5>: TriggerReadShmQnx:213 Shm Sync done 1024...
+2021.09.28-23:08:15.002<D5>: TriggerReadShmQnx:209 Read... FD 4
+2021.09.28-23:08:15.002<D5>: TriggerReadShmQnx:211 Read Done rcnt 1024...
 
+==============================================================================================
+=============================================================================================
+===========================================================================================
+171:2021.09.28-23:08:15.002<D1>: Audio control changed (MEDIA_ATMOS_VOLUME = 153)
+594:2021.09.28-23:11:52.738<D4>: Function start trigger event (trigger id=18 (LUCID_MEDIA_ATMOS))
+598:2021.09.28-23:11:52.738<D4>: Stack[0] Pipeline:ATMOS Mode:2(PLAY_NORMAL) Loudness:153 Status:0 NextAction:1
+600:2021.09.28-23:11:52.738<D4>: Pipeline ATMOS: using default fade-in time
+601:2021.09.28-23:11:52.738<D3>: Set Sound Control for pipeline ATMOS: action=2, mode=0, name=
+605:2021.09.28-23:11:52.738<D4>: Pipeline ATMOS: Status IDLE->TO_PLAY
+608:2021.09.28-23:11:52.743<D4>: Received PLAYING sound event on pipeline ATMOS
+609:2021.09.28-23:11:52.743<D4>: Pipeline ATMOS: Status TO_PLAY->PLAY
+=========================================================================================================
+========================THIS IS WHERE ATMOS STARTS=====================================================
+2021.09.28-23:11:52.738<D4>: Function start trigger event (trigger id=18 (LUCID_MEDIA_ATMOS))
+2021.09.28-23:11:52.738<D5>: TriggerReadShmQnx:213 Shm Sync done 1024...
+2021.09.28-23:11:52.738<D5>: TriggerReadShmQnx:209 Read... FD 4
+2021.09.28-23:11:52.738<D4>: New active sound with token 12 at stack position 0
+2021.09.28-23:11:52.738<D4>: Stack[0] Pipeline:ATMOS Mode:2(PLAY_NORMAL) Loudness:153 Status:0 NextAction:1
+2021.09.28-23:11:52.738<D4>: ActiveSounds stack has 1 elements
+2021.09.28-23:11:52.738<D4>: Pipeline ATMOS: using default fade-in time
+2021.09.28-23:11:52.738<D3>: Set Sound Control for pipeline ATMOS: action=2, mode=0, name=
+2021.09.28-23:11:52.738<D2>: Set AWE IPC control value (ix=0 - val=1)
+2021.09.28-23:11:52.738<D2>: Set AWE IPC control value (ix=4 - val=0)
+2021.09.28-23:11:52.738<D2>: Set AWE IPC control value (ix=54 - val=20)
+2021.09.28-23:11:52.738<D4>: Pipeline ATMOS: Status IDLE->TO_PLAY
+2021.09.28-23:11:52.738<D2>: AWE Controls committed to SHM
+2021.09.28-23:11:52.738<D3>: Sound Controls committed to SHM
+2021.09.28-23:11:52.743<D4>: Received PLAYING sound event on pipeline ATMOS
+2021.09.28-23:11:52.743<D4>: Pipeline ATMOS: Status TO_PLAY->PLAY
+============================================================================================================
+PIPELINES in AUDIO MANAGER
+    "NONE",
+    "CHIME1",
+    "CHIME2",
+    "CHIME3",
+    "AVS",
+    "LC",
+    "MEDIA",
+    "PROMPTS",
+    "TELEPHONY",
+    "ATMOS",
+    "ADAS_L",
+    "ADAS_R",
+    "ADAS_C",
+    "ADAS_LS",
+    "ADAS_RS",
+    "ADAS_LRS_RRS",
+    "MICROPHONE",
+=============================================================================================================
+adb shell getprop | grep build.description
+This is userC
+[ro.build.description]: [dash5dv-perftest 9 S21.8.CCC.Aa00.1A00.1AA1.00.01 21 test-keys]
+
+this is user only 
+[Yesterday 5:38 PM] Pankaj Jindal
+[ro.build.description]: [dash5dv-user 9 S21.8.CCC.Aa00.1A00.1AA1.00.01 128 test-keys]
+
+
+==========================================================================================================
+$adb root && adb remont
+
+$adb install [apk_name.apk]
+
+then check
+
+$adb shell ls -al /data/app/
+
+if the app is installed fine, it should show some file under here ..
+
+db push automotive-release-rc-4.apk /system/app/Tidal/Tidal.apk
+
+and then, maybe adb shell and check if the APK is pushed fine by comparing file size
+===========================================================================================================F
+
+we_qshm  60 1  --> background sounds.
+===============================================================
+Android's cpueater--- to generate CPU consumption
+Android's memeater ---> to generate memory consumption
+systrace
+==============================================================
+
+tcpdump -i eth0.70 -s0 -w /data/rtm1.pcap
+===================================================================
+out/target/product/dash5dv/vendor/bin/hw/android.hardware.audio@4.0-service.dash5dv
+=======================================================================
+setprop persist.testapp.debug.log 5
+
+
+dash5dv-qnx#pidin ar
+     pid Arguments
+       1 procnto-smp-instr -ae 
+       2 slogger2 
+       3 pipe 
+       4 random -t 
+       5 wdtkick -W 0x0:0x5A5AFF00 
+       6 devc-serscif -e -F -b115200 -t 14 scif2 
+       7 i2c-rcar-A -p0xe6500000 -i319 -v 
+       8 i2c-rcar-A -p0xe6508000 -i320 -v 
+       9 i2c-rcar-A -p0xe6510000 -i318 -v 
+      10 i2c-rcar-A -p0xe66D8000 -i51 -v 
+      11 i2c-rcar-A -p0xe66e0000 -i52 -v 
+      12 i2c-rcar-A -p0xe66e8000 -i53 -v 
+      13 i2c-rcar-B -p0xe60b0000 -i205 
+      14 devb-sdmmc-rcar_gen3 blk cache=32m,maxio=256,commit=none,memory=below4G cam cache,async,ma 
+      15 ksh 
+    8209 /bin/smmuman @/etc/rcar3-h3_r30.smmu 
+  143379 pps -p /tmp -C 
+  147479 screen -c /usr/lib/graphics/rcarh3/graphics-lucid.conf 
+  155672 devc-pty -n32 
+  192541 io-pkt-v6-hc -D -d ravb mac=020000030200 -ptcpip pkt_typed_mem=below4G 
+  253986 /usr/bin/sshd 
+  299029 dumper -b -I -d /data/core_dumps 
+  319504 resarb 
+  319518 io-audio -c /etc/io_audio.conf 
+  335903 mmngr 
+  352291 /usr/bin/guest_a2b_trigger 
+  372768 vspm_if 
+  409638 uvcs_drv 
+  409641 mm-renderer -ck -vvvv 
+ 1331233 sh /opt/atieva/icapp/icapp.sh /opt/atieva/icapp/icapp.sh /opt/atieva/icapp/icapp.sh /opt/a 
+ 1331239 /opt/atieva/qtcpserver/qt_tcp 192.168.1.11 
+ 1372206 mqueue 
+ 1425435 mtouch -c /proc/boot/mtouch_IC-L.conf 
+ 1429548 /usr/bin/shutdown_service 
+ 1486890 restart /opt/atieva/bin/qmlshow --resource=/opt/atieva/icapp/res/beta2/clusterImages.rcc - 
+ 1495087 /opt/atieva/bin/qmlshow --resource=/opt/atieva/icapp/res/beta2/clusterImages.rcc --resourc 
+ 1507373 rcar-thermal -I 1 -t 90,107,110 -V h3 -vvvvvvv -s 
+ 1507378 DiagErrorHandlingApp 
+ 1515572 DoIPSrvRunProcess 
+ 1589296 mtouch -c /proc/boot/mtouch_REAR.conf 
+ 1597458 rpcbind 
+ 1617974 /bin/sh /disk-dos/vm_termination_monitor.sh 
+ 1617976 atmel-buttons 
+ 1658905 nngcat --listen tcp://192.168.1.11:8082 --sub0 --subscribe=OTA --quoted 
+ 1658923 dtach -n /tmp/lvc -r winch on qvm @/disk-dos/linux.qvmconf logger info,error slog 
+ 1658929 /bin/sh /disk-dos/vm_termination_monitor.sh 
+ 1663027 qvm @/disk-dos/linux.qvmconf logger info,error slog 
+ 1712181 nfsd 
+23126036 pidin ar 
+======================================================================
+if i try to run audiomanager its stopped saying a2b bus is locked
+=======================================================================
+1. awe_qshm 63 1
+awe_qshm 63 0
+
+See if you hear anything
+
+2. /init/audio/sony_amp_unmute.sh base unmute
+
+and check if sound comes back, capture all the output
+
+3. try step 1 again
+
+4. Still no audio, lets try configuring the Amps again
+
+/init/audio/sony_a2bstart_qnx.sh base
+
+See if any failures, capture the output
+
+/init/audio/sony_amp_unmute.sh base unmute
+
+Again note if any failures
+
+5. try pinging 192.168.1.12, 192.168.1.71
+=====================================================================
+
+I will add more things if I think of something else
+
+===========================================================================
+lunch:   lunch <product_name>-<build_variant>
+   tapas:   tapas [<App1> <App2> ...] [arm|x86|mips|armv5] [eng|userdebug|user]
+   croot:   Changes directory to the top of the tree.
+   m:       Makes from the top of the tree.
+   mm:      Builds all of the modules in the current directory, but not their dependencies.
+   mmm:     Builds all of the modules in the supplied directories, but not their dependencies.
+            To limit the modules being built use the syntax: mmm dir/:target1,target2.
+   mma:     Builds all of the modules in the current directory, and their dependencies.
+   mmma:    Builds all of the modules in the supplied directories, and their dependencies.
+   cgrep:   Greps on all local C/C++ files.
+   jgrep:   Greps on all local Java files.
+   resgrep: Greps on all local res/*.xml files.
+   godir:   Go to the directory containing a file.
+   f
+   mmm packages/apps/Car/LucidAssistant/Assistant showcommands
+=========================nvh wave file===================================================
+"/tmp/nvh.wav"
+==========================================================================
 
