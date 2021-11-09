@@ -5697,3 +5697,49 @@ lunch:   lunch <product_name>-<build_variant>
 "/tmp/nvh.wav"
 ==========================================================================
 
+adb install -t ~/Downloads/demo-noDecoderExtensions-debug.apk 
+Success
+adb push ~/Downloads/fallen_angel_intro_edit.mp4 /storage/emulated/11/Music/1.mp4
+adb shell am start -n com.android.car.carlauncher/.CarLauncher 
+=========================================================================================
+adb shell setprop debug.lucid.analytics.service verbose
+
+adb shell setprop persist.vendor.lucid.analytics.interval 5000 - interval in ms
+
+adb shell setprop persist.vendor.lucid.analytics.base_url "http://infotainment-analytics.data.lucidmotors.com/"
+
+adb shell setprop persist.lucid.analytics.service.disable false
+============================================
+4990
+========================================
+fastboot
+fastboot devices
+fastboot update -w dash5-img-19.zip
+===============================================
+
+LucidCarSettings.apk
+adb shell setprop debug.lucid.analytics.service verbose
+adb shell ps -ef | grep analytics
+adb shell ls -l /system/priv-app/LucidAnalyticsService
+adb shell setprop debug.lucid.analytics.service verbose
+adb shell setprop persist.vendor.lucid.analytics.interval 5000 - interval in ms
+adb shell setprop persist.vendor.lucid.analytics.base_url "http://infotainment-analytics.data.lucidmotors.com/"
+adb shell setprop persist.lucid.analytics.service.disable false
+adb shell ls -l /system/priv-app/LucidCarSettings/
+
+adb shell getprop | grep analytics
+adb shell setprop persist.vendor.lucid.analytics.interval 5
+
+ xref: /lucid_dash5dv_9r35/vendor/lucid/apps/LucidAnalytics/libs/src/com/lucid/analytics/ 
+ http://hqdevbld01.corp.lucid.lcl:8888/source/xref/lucid_dash5dv_9r35/vendor/lucid/apps/LucidAnalytics/libs/src/com/lucid/analytics/
+ http://hqdevbld01.corp.lucid.lcl:8888/source/xref/lucid_dash5dv_9r35/vendor/lucid/apps/LucidAnalytics/utils/src/com/lucid/analytics/
+  xref: /lucid_dash5dv_9r35/vendor/lucid/apps/LucidAnalytics/utils/src/com/lucid/analytics/ 
+All code
+xref: /lucid_dash5dv_9r35/vendor/lucid/apps/LucidAnalytics/service/src/main/java/com/lucid/analytics/ 
+http://hqdevbld01.corp.lucid.lcl:8888/source/xref/lucid_dash5dv_9r35/vendor/lucid/apps/LucidAnalytics/service/src/main/java/com/lucid/analytics/
+
+
+========================================================================================================================================================
+
+
+
