@@ -5720,7 +5720,7 @@ fastboot update -w dash5-img-19.zip
 LucidCarSettings.apk
 adb shell setprop debug.lucid.analytics.service verbose
 adb shell ps -ef | grep analytics
-adb shell ls -l /system/priv-app/LucidAnalyticsService
+seradb shell ls -l /system/priv-app/LucidAnalyticsService
 adb shell setprop debug.lucid.analytics.service verbose
 adb shell setprop persist.vendor.lucid.analytics.interval 5000 - interval in ms
 adb shell setprop persist.vendor.lucid.analytics.base_url "http://infotainment-analytics.data.lucidmotors.com/"
@@ -5741,5 +5741,100 @@ http://hqdevbld01.corp.lucid.lcl:8888/source/xref/lucid_dash5dv_9r35/vendor/luci
 
 ========================================================================================================================================================
 
+The app is at 
+vendor/lucid/apps/LucidAnalytics
+branch mainline
+
+mac-91386:~ pankajjindal$ adb shell ps -ef | grep analytics
+system        2689  1695 2 03:11:49 ?     00:00:06 com.lucid.analytics
+u11_system    4217  1695 0 03:12:04 ?     00:00:00 com.lucid.analytics
+mac-91386:~ pankajjindal$ adb logcat | grep 2689
+11-08 03:11:50.481  2080  2097 I ActivityManager: Start proc 2689:com.lucid.analytics/1000 for added application com.lucid.analytics
+11-08 03:12:17.648  2689  2697 W lucid.analytic: Receiving file descriptor from ADB failed (socket 31): Success
+11-08 03:12:17.648  2689  2697 E lucid.analytic: Something went wrong getting fds from adb. Retry!: Success
+11-08 03:13:03.243  2689  2689 I com.lucid.analytics: type=1400 audit(0.0:516): avc: denied { use } for comm=4144422D4A44575020436F6E6E6563 path="socket:[43795]" dev="sockfs" ino=43795 scontext=u:r:system_app:s0 tcontext=u:r:su:s0 tclass=fd permissive=1
+
+/local2/pankajjindal/android_JDI_build_1003_qnx/dash5dv/packages/apps/Car/LucidCarSettings
 
 
+adb push ~/LucidCarSettings.apk /system/priv-app/LucidCarSettings
+
+============To connect to internet ==============================
+
+adb push ~/Downloads/set_eth0_default_gateway.sh /vendor/bin
+execute the last line
+adb shell ip route replace default via 10.9.54.1 dev wlan0
+befoe this 
+mac-91386:~ pankajjindal$ adb shell am start --display 1 -a android.settings.WIFI_SETTINGS
+Starting: Intent {}
+
+adb shell am start --display 1 -a android.settings.WIFI_SETTINGS
+
+=====================================
+DNS failure 
+netcfg
+1|dash5dv:/ $ getprop | grep dns                                                                                                                                 
+[init.svc.mdnsd]: [running]
+[net.dns1]: [192.168.100.8]
+[net.eth0.dns1]: [8.8.8.8]
+[net.eth0.dns2]: [4.4.4.4]
+[ro.boottime.mdnsd]: [6567208020]
+dash5dv:/ $ 
+https://webgateway.algol.staging.infotainment.pdx.atieva.com/wpa_passthrough
+
+
+adb shell getprop ro.build.fingerprint
+===========cloning mainline=============
+
+./android-scripts/build_dash5dv_9r35_QNX.sh --full --clean --force-sync --dist --adb-enable --vari user -b mainline
+
+adb push ~/LucidCarSettings.apk /system/priv-app/LucidCarSettings
+
+cd vendor/lucid/apps/LucidAnalytics/
+ 193  adb install LucidAnalyticsApp.apk 
+  200  adb install -t LucidAnalyticsApp.apk 
+  672  history | grep -i lucidanalyticsapp.apk
+  
+  adb push ~/LucidAnalyticsApp_arun.apk /system/app/LucidAnalyticsApp.apk
+  
+  pm list packages -f | grep analytics                                                                            
+package:/data/app/com.lucid.analyticsapp-i9Om74CXS0BjmKLPnDmOTg==/base.apk=com.lucid.analyticsapp
+  ==========Lucid analytics app on server===================================
+out/target/product/dash5dv/system/app/LucidAnalyticsApp/LucidAnalyticsApp.apk
+===================single query=========================
+
+12-14 12:53:24.116  4484  4484 I BluetoothFragment:   device : F8:87:F1:A6:AE:57 connectOption: 0
+12-14 12:53:24.490  4484  4484 I BluetoothFragment:   device : F8:87:F1:A6:AE:57 connectOption: 0
+
+git push --all -u
+
+
+pankajjindal@mac-91386 ~ % adb logcat | grep -iE 'ConnectionsListAdapter|BluetoothUtils|ConnectionsFragment|bluetooth.pairing.fragment|BluetoothFragment|BTListAdapter|BluetoothPairingService|BluetoothPairingFragment|BluetoothPairingRequest'   
+
+
+
+adb install -t ~/Downloads/demo-noDecoderExtensions-debug.apk 
+Success
+adb push ~/Downloads/fallen_angel_intro_edit.mp4 /storage/emulated/11/Music/1.mp4
+adb shell am start -n com.android.car.carlauncher/.CarLauncher 
+=========================================================================================
+adb shell setprop debug.lucid.analytics.service verbose
+
+adb shell setprop persist.vendor.lucid.analytics.interval 5000 - interval in ms
+
+adb shell setprop persist.vendor.lucid.analytics.base_url "http://infotainment-analytics.data.lucidmotors.com/"
+
+adb shell setprop persist.lucid.analytics.service.disable false
+============================================
+4990
+========================================
+fastboot
+fastboot devices
+fastboot update -w dash5-img-19.zip
+===============================================
+screen /dev/cu.usbserial-DO01RHAG 115200 -L
+
+
+/local2/pankajjindal/android_JDI_build_1207_mainline/dash5dv/packages/apps/Car/LucidCarService
+
+git rebase -i HEAD~10

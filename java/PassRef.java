@@ -1,39 +1,52 @@
-class Test{
-	int x;
-	int y;
+class Cheese{
+	int stickiness;
 	
-	Test(){
-		x = -1;
-		y = -1;
+	Cheese(){
+		stickiness = 10;
 	}
 
-	Test( int a, int b)
+	void changeStickiness()
 	{
-		x = a;
-		y = b;
+		stickiness+=1;
+	}
+	
+	void changeStickiness(Cheese c)
+	{
+		c.stickiness+=1;
+		
+	}
+	
+	void PrintCheese()
+	{
+		System.out.println(" stickinees ; " +this.stickiness);
 	}
 
-	void meth(Test o)
-	{
-		o.x=o.x*2;
-		o.y=o.y*2;
-	}
-
-	void printTest()
-	{
-		System.out.println(" o.x: " +this.x+ " 0.y: " +this.y);
-	}
 }
 
 class PassRef{
 	public static void main(String[] args)
 	{
-		Test t = new Test(5,6);
-		
-		t.printTest();
-		t.meth(t);
-		t.printTest();
-
+		Cheese c = new Cheese();
+		c.PrintCheese();	
+		c.changeStickiness();
+		c.changeStickiness();
+		c.changeStickiness();
+		c.changeStickiness();
+		c.changeStickiness();
+		c.changeStickiness();
+		c.PrintCheese();
+		changeStickiness1(c);
+		c.PrintCheese();
 	}
 
+
+	static void changeStickiness1(Cheese c){
+		c = new Cheese();
+		c.changeStickiness();
+		c.changeStickiness();
+		c.changeStickiness();
+		c.changeStickiness();
+		c.changeStickiness();
+	}
 }
+
