@@ -1,31 +1,32 @@
 
 class Stack{
 
-	private int[] stck = new int[10];
-	private int tos = -1;
+	private int[] stck;
+	private int tos;
 
 	Stack(){
+		stck = new int[10];
 		tos = -1;
 	}
 
-void push(int x){
-  	if ( tos >= 9 )
+	void push(int x){
+  	if ( tos >= stck.length-1 )
      		System.out.println(" underflow");
   	else
      		stck[++tos]=x;
-}
+	}
 	
 
 
-int pop()
-{
- 	if (tos >= 0)
+	int pop()
+	{
+ 		if (tos >= 0)
      		return stck[tos--];
- 	else {
+ 		else {
      		System.out.println(" underflow");
 			return 0;
+		}
 	}
-}
 
 }
 
@@ -39,7 +40,6 @@ public class StackUse{
 			s1.push(2);
 			s1.push(4);
 			s1.push(3);
-			System.out.println("Pop returned :"+s1.pop());
 			System.out.println("Pop returned :"+s1.pop());
 			System.out.println("Pop returned :"+s1.pop());
 			System.out.println("Pop returned :"+s1.pop());
